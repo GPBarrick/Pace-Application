@@ -1,18 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/gray_accent_1"
     tools:context=".MainActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <!-- Id Naming Convention: layout_name_purpose_view -->
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <!-- 11/5/2023 Create two recycler views. The recycler view on the
+     bottom of the layout must have a vertical orientation, the recycler view
+     on the top of the layout must have a horizontal orientation. -->
+
+    <RelativeLayout
+        android:id="@+id/activity_main_averages_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="100dp">
+
+        <!-- RecyclerView nested within RelativeLayout to provide different orientations -->
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/activity_main_averages_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            />
+
+    </RelativeLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/activity_main_daily_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/activity_main_averages_layout"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="75dp"
+        android:layout_centerHorizontal="true"
+        />
+
+</RelativeLayout>
