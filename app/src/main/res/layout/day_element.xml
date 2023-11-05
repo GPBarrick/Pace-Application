@@ -27,8 +27,7 @@
             android:layout_alignParentBottom="true"
             android:layout_marginStart="20dp"
             android:layout_marginTop="20dp"
-            android:layout_marginBottom="20dp"
-            android:background="@color/gray_accent_1"/>
+            android:layout_marginBottom="20dp"/>
         
         <TextView
             android:id="@+id/day_element_date_text"
