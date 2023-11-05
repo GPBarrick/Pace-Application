@@ -1,10 +1,14 @@
 package com.example.pace;
 public class ClientModule {
+<<<<<<< HEAD
 
+=======
+>>>>>>> saul
     private String dateText;
     private int imageResource;
 
     //constructor for variable.
+<<<<<<< HEAD
     public ClientModule(String DateText, int imageResource){
         this.dateText = DateText;
         this.imageResource = imageResource;
@@ -13,6 +17,16 @@ public class ClientModule {
     //getters
     public String getDateText() { return this.dateText; }
     public int getImageResource() { return this.imageResource; }
+=======
+    public ClientModule(String DateText, int ImageResource){
+        this.dateText = DateText;
+        this.imageResource = ImageResource;
+    }
+
+    //getters
+    public String getDateText() { return dateText; }
+    public int getImageResource() { return imageResource; }
+>>>>>>> saul
 
     //Setters
     public void setDateText(String dateText) { this.dateText = dateText; }
