@@ -1,33 +1,22 @@
 package com.example.pace;
 public class ClientModule {
-private String DateText;
-private int ImageResource;
 
-//constructor for variable.
-public void ClientModule(String DateText, int ImageResource){
-    this.DateText = DateText;
-    this.ImageResource = ImageResource;
-}
+private String dateText;
+private int imageResource;
 
-//getters
-    public String getDateText() {
-        return DateText;
+    //constructor for variable.
+    public ClientModule(String dateText, int imageResource){
+        this.dateText = dateText;
+        this.imageResource = imageResource;
     }
 
-    public int getImageResource() {
-        return ImageResource;
-    }
+    //getters
+    public String getDateText() { return dateText; }
+    public int getImageResource() { return imageResource; }
 
     //Setters
-
-    public void setDateText(String dateText) {
-        DateText = dateText;
-    }
-
-
-    public void setImageResource(int imageResource) {
-        ImageResource = imageResource;
-    }
+    public void setDateText(String dateText) { this.dateText = dateText; }
+    public void setImageResource(int imageResource) { this.imageResource = imageResource; }
 }
 
 /* 11/5/2023 Create the class members that will represent the statistics we will be manipulating
