@@ -1,49 +1,22 @@
 package com.example.pace;
 public class ClientModule {
-<<<<<<< HEAD
 
-private String dateText;
-private int imageResource;
+    private String dateText;
+    private int imageResource;
 
     //constructor for variable.
-    public ClientModule(String dateText, int imageResource){
-        this.dateText = dateText;
+    public ClientModule(String DateText, int imageResource){
+        this.dateText = DateText;
         this.imageResource = imageResource;
     }
 
     //getters
-    public String getDateText() { return dateText; }
-    public int getImageResource() { return imageResource; }
+    public String getDateText() { return this.dateText; }
+    public int getImageResource() { return this.imageResource; }
 
     //Setters
     public void setDateText(String dateText) { this.dateText = dateText; }
     public void setImageResource(int imageResource) { this.imageResource = imageResource; }
-=======
-    private String DateText;
-    private int ImageResource;
-
-    //constructor for variable.
-    public ClientModule(String DateText, int ImageResource){
-        this.DateText = DateText;
-        this.ImageResource = ImageResource;
-    }
-
-    //getters
-    public String getDateText() {
-        return DateText;
-    }
-    public int getImageResource() {
-        return ImageResource;
-    }
-
-    //Setters
-    public void setDateText(String dateText) {
-        DateText = dateText;
-    }
-    public void setImageResource(int imageResource) {
-        ImageResource = imageResource;
-    }
->>>>>>> saul
 }
 
 /* 11/5/2023
