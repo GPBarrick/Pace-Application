@@ -1,9 +1,199 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/gray_accent_1"
     tools:context=".AddClientModule">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <!--Miles per Gallon Input -->
+    <TextView
+        android:id="@+id/add_client_mpg_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="60dp"
+        android:text="@string/mpg_text"
+        android:textSize="20sp" />
+
+    <EditText
+        android:id="@+id/add_client_mpg_edit"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:layout_below="@+id/add_client_mpg_text"
+        android:layout_alignStart="@+id/add_client_mpg_text"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="50dp"
+        android:hint="@string/mpg_hint"
+        android:layout_marginTop="15dp"
+        android:background="@color/white"
+        android:elevation="15dp"
+        android:gravity="center"/>
+
+    <!-- Date -->
+
+    <TextView
+        android:id="@+id/add_client_date_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="160dp"
+        android:text="@string/date_text"
+        android:textSize="20sp"/>
+
+    <EditText
+        android:id="@+id/add_client_date_edit"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:layout_below="@+id/add_client_date_text"
+        android:layout_alignStart="@+id/add_client_date_text"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="50dp"
+        android:hint="@string/date_hint"
+        android:layout_marginTop="15dp"
+        android:background="@color/white"
+        android:elevation="15dp"
+        android:gravity="center"/>
+
+    <!-- Gas Price -->
+
+    <TextView
+        android:id="@+id/add_client_gas_price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="260dp"
+        android:text="@string/gas_price_text"
+        android:textSize="20sp"/>
+
+    <EditText
+        android:id="@+id/add_client_gas_price_edit"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:layout_below="@+id/add_client_gas_price"
+        android:layout_alignStart="@+id/add_client_gas_price"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="50dp"
+        android:hint="@string/gas_price_hint"
+        android:layout_marginTop="15dp"
+        android:background="@color/white"
+        android:elevation="15dp"
+        android:gravity="center"/>
+
+    <!-- Gas Added to Tank -->
+
+    <TextView
+        android:id="@+id/add_client_gas_added"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="360dp"
+        android:text="@string/gas_added_text"
+        android:textSize="20sp"/>
+
+    <EditText
+        android:id="@+id/add_client_gas_added_edit"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:layout_below="@+id/add_client_gas_added"
+        android:layout_alignStart="@+id/add_client_gas_added"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="50dp"
+        android:hint="@string/gas_added_hint"
+        android:layout_marginTop="15dp"
+        android:background="@color/white"
+        android:elevation="15dp"
+        android:gravity="center"/>
+
+    <!-- Trip Distance -->
+
+    <TextView
+        android:id="@+id/add_client_trip_distance"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="460dp"
+        android:text="@string/trip_distance_text"
+        android:textSize="20sp"/>
+
+    <EditText
+        android:id="@+id/add_client_trip_distance_edit"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:layout_below="@+id/add_client_trip_distance"
+        android:layout_alignStart="@+id/add_client_trip_distance"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="50dp"
+        android:hint="@string/trip_distance_hint"
+        android:layout_marginTop="15dp"
+        android:background="@color/white"
+        android:elevation="15dp"
+        android:gravity="center"/>
+
+    <!-- Income -->
+
+    <TextView
+        android:id="@+id/add_client_income"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="560dp"
+        android:text="@string/income_text"
+        android:textSize="20sp"/>
+
+    <EditText
+        android:id="@+id/add_client_income_edit"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:layout_below="@+id/add_client_income"
+        android:layout_alignStart="@+id/add_client_income"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="50dp"
+        android:hint="@string/trip_distance_hint"
+        android:layout_marginTop="15dp"
+        android:background="@color/white"
+        android:elevation="15dp"
+        android:gravity="center"/>
+
+    <!-- Route Statistics Header -->
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="25dp"
+        android:text="@string/route_statistics_header"
+        android:textSize="30dp"
+        android:textStyle="bold"
+        android:gravity="center"/>
+
+    <!-- Add Button -->
+
+    <Button
+        android:id="@+id/add_client_calculate_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="50dp"
+        android:layout_marginEnd="50dp"
+        android:layout_marginBottom="20dp"
+        android:text="@string/button_add_text" />
+    
+</RelativeLayout>
+
