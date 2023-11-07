@@ -1,12 +1,10 @@
 <resources>
     <string name="app_name">Pace</string>
     <string name="sample_text">sample</string>
-<<<<<<< HEAD
     <string name="routes_text">Routes: </string>
     <string name="plus_percent_sign">+%</string>
     <string name="negative_percent_sign">-%</string>
     <string name="percent_sign">%</string>
-=======
 
     //Route Statistics Headings
     <string name="mpg_text">MPG</string>
@@ -28,5 +26,4 @@
     //Route Statistics Button Text
     <string name="button_add_text">ADD</string>
 
->>>>>>> josh
 </resources>
