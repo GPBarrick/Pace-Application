@@ -3,13 +3,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
-
 public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,8 +58,11 @@ public class MainActivity extends AppCompatActivity {
     /* 11/5/2023 Initialize the DayListAdapter and LinearLayoutManager for this.dayList */
     public DayListAdapter dayListAdapter;
     private void InitializeDayListAdapter() {
-        this.dayListAdapter = new DayListAdapter(t.populateClientModuleList());
-        this.dayList.setLayoutManager(new LinearLayoutManager(MainActivity.this));
+        this.dayListAdapter = new DayListAdapter(t.populateCalendarDataList());
+        LinearLayoutManager layoutManager = new LinearLayoutManager(MainActivity.this);
+        layoutManager.setReverseLayout(true);
+        layoutManager.setStackFromEnd(false);
+        this.dayList.setLayoutManager(layoutManager);
         this.dayList.setAdapter(this.dayListAdapter);
     }
 }

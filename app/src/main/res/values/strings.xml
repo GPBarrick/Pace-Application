@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">Pace</string>
     <string name="sample_text">sample</string>
+    <string name="routes_text">Routes: </string>
+    <string name="plus_percent_sign">+%</string>
+    <string name="negative_percent_sign">-%</string>
+    <string name="percent_sign">%</string>
 </resources>
