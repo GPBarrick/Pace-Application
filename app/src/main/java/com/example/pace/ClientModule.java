@@ -1,22 +1,50 @@
 package com.example.pace;
+import java.util.ArrayList;
 public class ClientModule {
 
     private String dateText;
     private int imageResource;
 
-    //constructor for variable.
-    public ClientModule(String DateText, int imageResource){
+    private float distance;
+    private float milesPerGallon;
+    private float gasPrice;
+    private float income;
+
+    public ClientModule(String DateText){
         this.dateText = DateText;
-        this.imageResource = imageResource;
     }
 
-    //getters
+    public ClientModule(float distance, float milesPerGallon, float gasPrice, float income) {
+        this.distance = distance;
+        this.milesPerGallon = milesPerGallon;
+        this.gasPrice = gasPrice;
+        this.income = income;
+    }
+
+    public void setDateText(String dateText) { this.dateText = dateText; }
     public String getDateText() { return this.dateText; }
+
+    public void setImageResource(int imageResource) { this.imageResource = imageResource; }
     public int getImageResource() { return this.imageResource; }
 
-    //Setters
-    public void setDateText(String dateText) { this.dateText = dateText; }
-    public void setImageResource(int imageResource) { this.imageResource = imageResource; }
+    public void setDistance(float distance) { this.distance = distance; }
+    public float getDistance() { return this.distance; }
+
+    public void setMilesPerGallon(float milesPerGallon) { this.milesPerGallon = milesPerGallon; }
+    public float getMilesPerGallon() { return this.milesPerGallon; }
+
+    public void setGasPrice(float gasPrice) { this.gasPrice = gasPrice; }
+    public float getGasPrice() { return this.gasPrice; }
+
+    public void setIncome(float income) { this.income = income; }
+    public float getIncome() { return income; }
+
+    public float CalculateExpenditure() {
+        return (this.distance / this.milesPerGallon) * this.gasPrice;
+    }
+    public float CalculateExpenditureFromIncome() {
+        return ((this.distance / this.milesPerGallon) * this.gasPrice) - this.income;
+    }
 }
 
 /* 11/5/2023

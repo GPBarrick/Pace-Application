@@ -1,9 +1,15 @@
 package com.example.pace;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.widget.ImageButton;
+
 public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -11,6 +17,10 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         InitializeTest();
+
+        InitializeToolbarProperties();
+
+        AddClientButton();
 
         InitializeViews();
 
@@ -20,6 +30,25 @@ public class MainActivity extends AppCompatActivity {
     public Test t;
     private void InitializeTest() { this.t = new Test(); }
 
+    /* 11/6/2023 Initialize the Toolbar */
+    public Toolbar toolbar;
+    public ImageButton toolbarAddClientButton;
+    private void InitializeToolbarProperties() {
+        this.toolbar = findViewById(R.id.app_toolbar);
+        setSupportActionBar(this.toolbar);
+        this.toolbarAddClientButton = findViewById(R.id.app_toolbar_add_button);
+    }
+
+    /* 11/6/2023 Initialize the Toolbar ImageButton */
+    private void AddClientButton() {
+        this.toolbarAddClientButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, AddClientModule.class);
+                startActivity(intent);
+            }
+        });
+    }
 
     /* 11/5/2023 Set the xml elements to their public member objects */
     public RecyclerView dayList, averagesList;
