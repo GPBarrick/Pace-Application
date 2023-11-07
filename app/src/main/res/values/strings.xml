@@ -1,8 +1,32 @@
 <resources>
     <string name="app_name">Pace</string>
     <string name="sample_text">sample</string>
+<<<<<<< HEAD
     <string name="routes_text">Routes: </string>
     <string name="plus_percent_sign">+%</string>
     <string name="negative_percent_sign">-%</string>
     <string name="percent_sign">%</string>
+=======
+
+    //Route Statistics Headings
+    <string name="mpg_text">MPG</string>
+    <string name="date_text">Date</string>
+    <string name="gas_price_text">Gas Price</string>
+    <string name="gas_added_text">Gas Added to Tank</string>
+    <string name="trip_distance_text">Trip Distance</string>
+    <string name="income_text">Income</string>
+    <string name="route_statistics_header">Route Statistics</string>
+
+    //Route Statistics Hints
+    <string name="mpg_hint">miles per gallon</string>
+    <string name="date_hint">mm/dd/yy</string>
+    <string name="gas_price_hint">in dollars</string>
+    <string name="gas_added_hint">in gallons</string>
+    <string name="trip_distance_hint">in miles</string>
+    <string name="income_hint">in dollars</string>
+
+    //Route Statistics Button Text
+    <string name="button_add_text">ADD</string>
+
+>>>>>>> josh
 </resources>
