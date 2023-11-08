@@ -26,4 +26,7 @@
     //Route Statistics Button Text
     <string name="button_add_text">ADD</string>
 
+    //Home Page Headings
+    <string name="home_page_heading">My Wallet</string>
+
 </resources>
