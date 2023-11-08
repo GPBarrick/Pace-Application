@@ -5,4 +5,6 @@
     <color name="gray_accent_1">#E3E3E3</color>
     <color name="dark_mode_blue">#001737</color>
     <color name="add_button_color">#3400BC</color>
+    <color name="green_accent_1">#228B22</color>
+    <color name="red_accent_1">#D2042D</color>
 </resources>

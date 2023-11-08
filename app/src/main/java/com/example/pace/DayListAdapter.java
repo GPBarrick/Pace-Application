@@ -1,4 +1,6 @@
 package com.example.pace;
+import android.content.Context;
+import android.graphics.Color;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -6,18 +8,24 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 public class DayListAdapter extends RecyclerView.Adapter<DayListAdapter.ViewHolder> {
 
     private List<CalendarData> calendarData;
+    private Context applicationContext;
 
-    public DayListAdapter(List<CalendarData> calendarData) {
+    public DayListAdapter(List<CalendarData> calendarData, Context applicationContext) {
         this.calendarData = calendarData;
+        this.applicationContext = applicationContext;
     }
 
     public void getCalendarData (List<CalendarData> newClientModuleList) { this.calendarData = newClientModuleList; }
     public List<CalendarData> setCalendarData() { return this.calendarData; }
+
+    public Context getApplicationContext() { return applicationContext; }
+    public void setApplicationContext(Context applicationContext) { this.applicationContext = applicationContext;}
 
     @NonNull
     @Override
@@ -29,7 +37,6 @@ public class DayListAdapter extends RecyclerView.Adapter<DayListAdapter.ViewHold
 
     @Override
     public void onBindViewHolder(@NonNull DayListAdapter.ViewHolder holder, int position) {
-        //holder.statusImage.setImageResource(this.calendarData.get(position).getClientModule(position).getImageResource());
         String dateFormat = this.calendarData.get(position).getMonth() + "/" + this.calendarData.get(position).getDay() + "/" + this.calendarData.get(position).getYear();
         holder.dateText.setText(dateFormat);
         holder.routesText.setText(String.valueOf(this.calendarData.size() + 1));
@@ -43,11 +50,31 @@ public class DayListAdapter extends RecyclerView.Adapter<DayListAdapter.ViewHold
                     this.calendarData.get(position).CalculateClientExpenditure()
             );
             if (percentageCalculation == 0) {
+                holder.statusImage.setImageResource(R.drawable.green_circle);
                 holder.percentageStatus.setText(R.string.percent_sign);
+            }
+            else if (percentageCalculation < -0.0f) {
+                percentageCalculation = percentageCalculation * -1.0f;
+                holder.percentageStatus.setText(R.string.negative_percent_sign);
+                holder.statusImage.setImageResource(R.drawable.red_circle);
+                int color = ContextCompat.getColor(this.applicationContext, R.color.red_accent_1);
+                holder.percentageStatus.setTextColor(color);
+                holder.percentageText.setTextColor(color);
+            }
+            else if (percentageCalculation > 0.0f) {
+                holder.percentageStatus.setText(R.string.plus_percent_sign);
+                holder.statusImage.setImageResource(R.drawable.green_circle);
+                int color = ContextCompat.getColor(this.applicationContext, R.color.green_accent_1);
+                holder.percentageStatus.setTextColor(color);
+                holder.percentageText.setTextColor(color);
             }
             holder.percentageText.setText(String.format("%.2f", percentageCalculation));
         }
         else {
+            int color = ContextCompat.getColor(this.applicationContext, R.color.green_accent_1);
+            holder.percentageStatus.setTextColor(color);
+            holder.percentageText.setTextColor(color);
+            holder.statusImage.setImageResource(R.drawable.green_circle);
             holder.percentageStatus.setText(R.string.plus_percent_sign);
             holder.percentageText.setText("100");
         }

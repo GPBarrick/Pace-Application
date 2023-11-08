@@ -64,6 +64,22 @@
         android:elevation="15dp"
         android:gravity="center"/>
 
+    <CheckBox
+        android:id="@+id/add_client_open_calendar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/add_client_date_edit"
+        android:layout_alignBottom="@+id/add_client_date_edit"
+        android:elevation="20dp"/>
+
+    <CalendarView
+        android:id="@+id/add_client_calendar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:elevation="20dp"
+        android:visibility="gone"/>
+
     <!-- Gas Price -->
 
     <TextView

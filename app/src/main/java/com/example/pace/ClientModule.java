@@ -1,9 +1,9 @@
 package com.example.pace;
+import java.io.Serializable;
 import java.util.ArrayList;
-public class ClientModule {
+public class ClientModule implements Serializable {
 
     private String dateText;
-    private int imageResource;
 
     private float distance;
     private float milesPerGallon;
@@ -23,9 +23,6 @@ public class ClientModule {
 
     public void setDateText(String dateText) { this.dateText = dateText; }
     public String getDateText() { return this.dateText; }
-
-    public void setImageResource(int imageResource) { this.imageResource = imageResource; }
-    public int getImageResource() { return this.imageResource; }
 
     public void setDistance(float distance) { this.distance = distance; }
     public float getDistance() { return this.distance; }

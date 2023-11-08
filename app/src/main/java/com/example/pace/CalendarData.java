@@ -1,6 +1,7 @@
 package com.example.pace;
+import java.io.Serializable;
 import java.util.ArrayList;
-public class CalendarData {
+public class CalendarData implements Serializable {
     private int month;
     private int day;
     private int year;
