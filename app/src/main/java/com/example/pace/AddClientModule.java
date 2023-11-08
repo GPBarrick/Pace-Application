@@ -1,6 +1,6 @@
 package com.example.pace;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -10,9 +10,9 @@ import android.widget.CalendarView;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import java.util.ArrayList;
-
 public class AddClientModule extends AppCompatActivity implements View.OnClickListener {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,7 +21,9 @@ public class AddClientModule extends AppCompatActivity implements View.OnClickLi
 
         InitializeViews();
 
-        InitializeOpenCalendarButton();
+        InitializeOpenCalendarButton(this.calendar);
+
+        InitializeCalendarListener();
 
         SetListenerToButton();
     }
@@ -41,8 +43,7 @@ public class AddClientModule extends AppCompatActivity implements View.OnClickLi
         this.addButton = findViewById(R.id.add_client_calculate_button);
         this.openCalendar = findViewById(R.id.add_client_open_calendar);
         this.calendar = findViewById(R.id.add_client_calendar);
-
-        this.isCalendarOpen = false;
+        this.calendar.setVisibility(View.INVISIBLE);
     }
 
     public String mpg, date, gasPrice, tank, dist, income;
@@ -59,12 +60,31 @@ public class AddClientModule extends AppCompatActivity implements View.OnClickLi
         this.addButton.setOnClickListener(this);
     }
 
-    boolean isCalendarOpen;
-    private void InitializeOpenCalendarButton() {
+    private void UpdateCalendarState(boolean isOpened) {
+        if (isOpened) {
+            calendar.setVisibility(View.VISIBLE);
+
+        } else {
+            calendar.setVisibility(View.INVISIBLE);
+        }
+    }
+    private void InitializeOpenCalendarButton(CalendarView calendar) {
         this.openCalendar.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                
+                Log.v("calendar_open", ""+b);
+                UpdateCalendarState(b);
+            }
+        });
+    }
+
+    private void InitializeCalendarListener() {
+        this.calendar.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
+            @Override
+            public void onSelectedDayChange(@NonNull CalendarView calendarView, int i, int i1, int i2) {
+                String calendarDateSelected = String.valueOf(i) + "/" + String.valueOf(i1) + "/" + String.valueOf(i2);
+                Toast.makeText(getApplicationContext(), calendarDateSelected, Toast.LENGTH_SHORT).show();
+                UpdateCalendarState(false);
             }
         });
     }
