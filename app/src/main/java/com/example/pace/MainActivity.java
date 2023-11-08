@@ -26,6 +26,8 @@ public class MainActivity extends AppCompatActivity {
 
         InitializeCalendarData();
 
+        DetermineIntentFunctionality();
+
         AddClientButton(this.calendarDataList, this.t);
 
         InitializeDayListAdapter();
@@ -75,9 +77,18 @@ public class MainActivity extends AppCompatActivity {
     private void InitializeDayListAdapter() {
         this.dayListAdapter = new DayListAdapter(this.calendarDataList, getApplicationContext());
         LinearLayoutManager layoutManager = new LinearLayoutManager(MainActivity.this);
-        layoutManager.setReverseLayout(true);
-        layoutManager.setStackFromEnd(false);
         this.dayList.setLayoutManager(layoutManager);
         this.dayList.setAdapter(this.dayListAdapter);
+    }
+
+    /* 11/7/2023 Determine where the getIntent() is coming from */
+    private void DetermineIntentFunctionality() {
+        Intent getIntent = getIntent();
+        int retCode = getIntent.getIntExtra("ret_code", 402);
+        Log.v("ret_code", ""+retCode);
+        if (retCode == 10) {
+            this.calendarDataList = (ArrayList<CalendarData>)getIntent.getSerializableExtra("calendar_data_list");
+            //InitializeDayListAdapter();
+        }
     }
 }

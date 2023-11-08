@@ -39,7 +39,7 @@ public class DayListAdapter extends RecyclerView.Adapter<DayListAdapter.ViewHold
     public void onBindViewHolder(@NonNull DayListAdapter.ViewHolder holder, int position) {
         String dateFormat = this.calendarData.get(position).getMonth() + "/" + this.calendarData.get(position).getDay() + "/" + this.calendarData.get(position).getYear();
         holder.dateText.setText(dateFormat);
-        holder.routesText.setText(String.valueOf(this.calendarData.size() + 1));
+        holder.routesText.setText(String.valueOf(this.calendarData.get(position).getClientModuleList().size()));
         holder.totalGasExpenditure.setText(String.format("%.2f", this.calendarData.get(position).CalculateClientExpenditure()));
 
         Log.v("NDX", ""+position);

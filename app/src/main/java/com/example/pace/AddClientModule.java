@@ -10,9 +10,14 @@ import android.widget.CalendarView;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+
 public class AddClientModule extends AppCompatActivity implements View.OnClickListener {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,7 +68,6 @@ public class AddClientModule extends AppCompatActivity implements View.OnClickLi
     private void UpdateCalendarState(boolean isOpened) {
         if (isOpened) {
             calendar.setVisibility(View.VISIBLE);
-
         } else {
             calendar.setVisibility(View.INVISIBLE);
         }
@@ -78,13 +82,26 @@ public class AddClientModule extends AppCompatActivity implements View.OnClickLi
         });
     }
 
+    private int month;
+    private int GetMonth() { return this.month; }
+    private void SetMonth(int month) { this.month = month; }
+    private int day;
+    private int GetDay() { return this.day; }
+    private void SetDay(int day) { this.day = day; }
+    private int year;
+    private int GetYear() { return this.year; }
+    private void SetYear(int year) { this.year = year; }
+    private EditText GetCalendarEditText () { return this.dateInput; }
     private void InitializeCalendarListener() {
         this.calendar.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
             public void onSelectedDayChange(@NonNull CalendarView calendarView, int i, int i1, int i2) {
-                String calendarDateSelected = String.valueOf(i) + "/" + String.valueOf(i1) + "/" + String.valueOf(i2);
-                Toast.makeText(getApplicationContext(), calendarDateSelected, Toast.LENGTH_SHORT).show();
+                String calendarDateSelected = String.valueOf(i1) + "/" + String.valueOf(i2) + "/" + String.valueOf(i);
+                SetMonth(i1);
+                SetDay(i2);
+                SetYear(i);
                 UpdateCalendarState(false);
+                GetCalendarEditText().setText(calendarDateSelected);
             }
         });
     }
@@ -103,16 +120,46 @@ public class AddClientModule extends AppCompatActivity implements View.OnClickLi
                 Float.valueOf(this.income)
         );
 
+        Log.v("calendar_size", String.valueOf(calendarData.size()));
         if (calendarData.size() > 0) {
-            // Find common date to store new ClientModule within the ArrayList<CalendarData>
+            boolean wasFound = false;
             for (int i = 0; i < calendarData.size(); ++i) {
-                //if (calendarData.get(i).getMonth())
+                if (calendarData.get(i).getMonth() == GetMonth() && calendarData.get(i).getDay() == GetDay() && calendarData.get(i).getYear() == GetYear()) {
+                    Log.v("calendar_indexing", String.valueOf(GetMonth() + "/" + GetDay() + "/" + GetYear()));
+                    calendarData.get(i).getClientModuleList().add(newModule);
+                    wasFound = true;
+                    break;
+                }
             }
+            if (!wasFound) {
+                ArrayList<ClientModule> clientModuleList = new ArrayList<>();
+                clientModuleList.add(newModule);
+                calendarData.add(0, new CalendarData(clientModuleList, GetMonth(), GetDay(), GetYear()));
+            }
+        } else {
+            ArrayList<ClientModule> clientModuleList = new ArrayList<>();
+            clientModuleList.add(newModule);
+            calendarData.add(new CalendarData(clientModuleList, GetMonth(), GetDay(), GetYear()));
         }
 
-        /* 11/7/2023 Testing received data */ Log.v("CALENDAR_DATA_SIZE", ""+calendarData.size());
+        Collections.sort(calendarData, new Comparator<CalendarData>() {
+            @Override
+            public int compare(CalendarData o1, CalendarData o2) {
+                if (o1.getYear() != o2.getYear()) {
+                    return o2.getYear() - o1.getYear(); // Descending order for year
+                } else if (o1.getMonth() != o2.getMonth()) {
+                    return o2.getMonth() - o1.getMonth(); // Descending order for month
+                } else {
+                    return o2.getDay() - o1.getDay(); // Descending order for day
+                }
+            }
+        });
 
-        Intent setintent = new Intent(AddClientModule.this, MainActivity.class);
-        //startActivity(setIntent);
+        /* 11/7/2023 Testing received data */ //Log.v("calendar_data_size", ""+calendarData.size());
+
+        Intent setIntent = new Intent(AddClientModule.this, MainActivity.class);
+        setIntent.putExtra("calendar_data_list", calendarData);
+        setIntent.putExtra("ret_code", 10);
+        startActivity(setIntent);
     }
 }
