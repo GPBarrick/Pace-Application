@@ -1,6 +1,5 @@
 package com.example.pace;
 import android.content.Context;
-import android.graphics.Color;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -42,41 +41,27 @@ public class DayListAdapter extends RecyclerView.Adapter<DayListAdapter.ViewHold
         holder.routesText.setText(String.valueOf(this.calendarData.get(position).getClientModuleList().size()));
         holder.totalGasExpenditure.setText(String.format("%.2f", this.calendarData.get(position).CalculateClientExpenditure()));
 
-        Log.v("NDX", ""+position);
-
-        if (this.calendarData.size() >= 2 && position > 0) {
-            float percentageCalculation = this.calendarData.get(position).getPercentageText(
-                    this.calendarData.get(position - 1).CalculateClientExpenditure(),
-                    this.calendarData.get(position).CalculateClientExpenditure()
-            );
-            if (percentageCalculation == 0) {
-                holder.statusImage.setImageResource(R.drawable.green_circle);
+        if (this.calendarData.get(position).getPercentageCalculation() <= 0.0f) {
+            if (this.calendarData.get(position).getPercentageCalculation() != 0.0f) {
+                this.calendarData.get(position).setPercentageCalculation(this.calendarData.get(position).getPercentageCalculation() * -1.0f);
+                holder.percentageStatus.setText(R.string.negative_percent_sign);
+            } else {
                 holder.percentageStatus.setText(R.string.percent_sign);
             }
-            else if (percentageCalculation < -0.0f) {
-                percentageCalculation = percentageCalculation * -1.0f;
-                holder.percentageStatus.setText(R.string.negative_percent_sign);
-                holder.statusImage.setImageResource(R.drawable.red_circle);
-                int color = ContextCompat.getColor(this.applicationContext, R.color.red_accent_1);
-                holder.percentageStatus.setTextColor(color);
-                holder.percentageText.setTextColor(color);
-            }
-            else if (percentageCalculation > 0.0f) {
-                holder.percentageStatus.setText(R.string.plus_percent_sign);
-                holder.statusImage.setImageResource(R.drawable.green_circle);
-                int color = ContextCompat.getColor(this.applicationContext, R.color.green_accent_1);
-                holder.percentageStatus.setTextColor(color);
-                holder.percentageText.setTextColor(color);
-            }
-            holder.percentageText.setText(String.format("%.2f", percentageCalculation));
-        }
-        else {
             int color = ContextCompat.getColor(this.applicationContext, R.color.green_accent_1);
-            holder.percentageStatus.setTextColor(color);
-            holder.percentageText.setTextColor(color);
             holder.statusImage.setImageResource(R.drawable.green_circle);
+            holder.percentageText.setText(String.format("%.2f", this.calendarData.get(position).getPercentageCalculation()));
+            holder.percentageText.setTextColor(color);
+            holder.percentageStatus.setTextColor(color);
+        } else if (this.calendarData.get(position).getPercentageCalculation() > 0.0f) {
             holder.percentageStatus.setText(R.string.plus_percent_sign);
-            holder.percentageText.setText("100");
+            int color = ContextCompat.getColor(this.applicationContext, R.color.red_accent_1);
+            holder.statusImage.setImageResource(R.drawable.red_circle);
+            holder.percentageText.setText(String.format("%.2f", this.calendarData.get(position).getPercentageCalculation()));
+            holder.percentageText.setTextColor(color);
+            holder.percentageStatus.setTextColor(color);
+        } else {
+
         }
     }
 

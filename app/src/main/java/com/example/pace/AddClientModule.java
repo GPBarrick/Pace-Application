@@ -113,6 +113,7 @@ public class AddClientModule extends AppCompatActivity implements View.OnClickLi
         Intent getIntent = getIntent();
         ArrayList<CalendarData> calendarData = (ArrayList<CalendarData>)getIntent.getSerializableExtra("calendar_data_list");
 
+
         ClientModule newModule = new ClientModule(
                 Float.valueOf(this.dist),
                 Float.valueOf(this.mpg),

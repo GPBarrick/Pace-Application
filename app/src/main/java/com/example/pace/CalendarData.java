@@ -7,7 +7,7 @@ public class CalendarData implements Serializable {
     private int year;
     private ArrayList<ClientModule> clientModuleList;
 
-    private float percentageText;
+    private float percentageCalculation;
 
     public CalendarData(ArrayList<ClientModule> clientModuleList, int month, int day, int year) {
         this.clientModuleList = clientModuleList;
@@ -64,8 +64,14 @@ public class CalendarData implements Serializable {
         return total;
     }
 
-    public float getPercentageText(float original, float newNumber) {
-        float increase = newNumber - original;
-        return (increase / original) * 100;
+    public float calculatePercentage(float original, float newNumber) {
+        float calculation = original - newNumber;
+        calculation = (calculation / newNumber) * 100.0f;
+        return calculation;
     }
+
+    public void setPercentageCalculation(float percentageCalculation) { this.percentageCalculation = percentageCalculation; }
+
+    public float getPercentageCalculation() { return this.percentageCalculation; }
+
 }

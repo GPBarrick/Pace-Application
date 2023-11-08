@@ -75,6 +75,10 @@ public class MainActivity extends AppCompatActivity {
     /* 11/5/2023 Initialize the DayListAdapter and LinearLayoutManager for this.dayList */
     public DayListAdapter dayListAdapter;
     private void InitializeDayListAdapter() {
+
+        //ArrayList<CalendarData> calData = this.t.populateCalendarDataList();
+
+        SetCalculatedPercentage(this.calendarDataList);
         this.dayListAdapter = new DayListAdapter(this.calendarDataList, getApplicationContext());
         LinearLayoutManager layoutManager = new LinearLayoutManager(MainActivity.this);
         this.dayList.setLayoutManager(layoutManager);
@@ -88,7 +92,46 @@ public class MainActivity extends AppCompatActivity {
         Log.v("ret_code", ""+retCode);
         if (retCode == 10) {
             this.calendarDataList = (ArrayList<CalendarData>)getIntent.getSerializableExtra("calendar_data_list");
+
             //InitializeDayListAdapter();
         }
     }
+
+    /* 11/8/2023 Create a function that calculates a percentage and populates members with that value from the ArrayList<CalendarData> */
+    private void SetCalculatedPercentage(ArrayList<CalendarData> calendarDataList) {
+
+        for (int i = 0; i < calendarDataList.size(); ++i) {
+
+            Log.w("cal_data_m", "= " + calendarDataList.get(i).getMonth());
+
+            if (i + 1 < calendarDataList.size()) {
+                float originalExpenditure = calendarDataList.get(i).CalculateClientExpenditure();
+                float newExpenditure = calendarDataList.get(i + 1).CalculateClientExpenditure();
+
+                if (originalExpenditure != 0) {
+                    float percentageCalculation = calendarDataList.get(i).calculatePercentage(originalExpenditure, newExpenditure);
+
+                    calendarDataList.get(i).setPercentageCalculation(percentageCalculation);
+
+                    Log.e("cal_data_calc", "= "+percentageCalculation);
+                } else {
+
+                    calendarDataList.get(i).setPercentageCalculation(0);
+                    Log.e("cal_data_error", "Original expenditure is zero, cannot calculate percentage change.");
+                }
+            } else {
+                calendarDataList.get(i).setPercentageCalculation(100.0f);
+            }
+        }
+    }
 }
+
+
+
+
+
+
+
+
+
+
