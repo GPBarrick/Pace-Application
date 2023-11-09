@@ -56,7 +56,9 @@
                 android:layout_marginTop="10dp"
                 android:hint="UserName"
                 android:padding="8dp"
-                android:textColor="@color/black" />
+                android:textColor="@color/black"
+                android:autofillHints=""
+                android:inputType="text" />
 
             <EditText
                 android:id="@+id/password_edit_text"
@@ -65,7 +67,9 @@
                 android:layout_marginTop="10dp"
                 android:hint="Password"
                 android:padding="8dp"
-                android:textColor="@color/black" />
+                android:textColor="@color/black"
+                android:autofillHints=""
+                android:inputType="textPassword" />
 
             <Button
                 android:id="@+id/login_temp_button"
