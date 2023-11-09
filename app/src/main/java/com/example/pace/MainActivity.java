@@ -2,7 +2,10 @@ package com.example.pace;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.LinearSnapHelper;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.SnapHelper;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -10,7 +13,6 @@ import android.view.View;
 import android.widget.ImageButton;
 
 import java.util.ArrayList;
-import java.util.Calendar;
 
 public class MainActivity extends AppCompatActivity {
     @Override
@@ -31,6 +33,8 @@ public class MainActivity extends AppCompatActivity {
         AddClientButton(this.calendarDataList, this.t);
 
         InitializeDayListAdapter();
+
+        InitializeAveragesListAdapter();
     }
     /* 11/5/2023 Initialize Test object member */
     public Test t;
@@ -102,8 +106,6 @@ public class MainActivity extends AppCompatActivity {
 
         for (int i = 0; i < calendarDataList.size(); ++i) {
 
-            Log.w("cal_data_m", "= " + calendarDataList.get(i).getMonth());
-
             if (i + 1 < calendarDataList.size()) {
                 float originalExpenditure = calendarDataList.get(i).CalculateClientExpenditure();
                 float newExpenditure = calendarDataList.get(i + 1).CalculateClientExpenditure();
@@ -112,17 +114,25 @@ public class MainActivity extends AppCompatActivity {
                     float percentageCalculation = calendarDataList.get(i).calculatePercentage(originalExpenditure, newExpenditure);
 
                     calendarDataList.get(i).setPercentageCalculation(percentageCalculation);
-
-                    Log.e("cal_data_calc", "= "+percentageCalculation);
                 } else {
-
                     calendarDataList.get(i).setPercentageCalculation(0);
-                    Log.e("cal_data_error", "Original expenditure is zero, cannot calculate percentage change.");
                 }
             } else {
                 calendarDataList.get(i).setPercentageCalculation(100.0f);
             }
         }
+    }
+
+    /* 11/8/2023 Initialize the AveragesListAdapter */
+    public AveragesListAdapter averagesListAdapter;
+    private void InitializeAveragesListAdapter() {
+        // The SnapHelper will create snap the item on the screen to the center
+        SnapHelper snapHelper = new LinearSnapHelper();
+        snapHelper.attachToRecyclerView(this.averagesList);
+        averagesListAdapter = new AveragesListAdapter(this.calendarDataList, getApplicationContext());
+        LinearLayoutManager layoutManager = new LinearLayoutManager(MainActivity.this, LinearLayoutManager.HORIZONTAL, false);
+        this.averagesList.setLayoutManager(layoutManager);
+        this.averagesList.setAdapter(this.averagesListAdapter);
     }
 }
 
