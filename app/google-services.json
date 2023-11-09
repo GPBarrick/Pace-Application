@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "818817431963",
+    "project_id": "pace-5946d",
+    "storage_bucket": "pace-5946d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:818817431963:android:075ce3df70d4f6e35e493e",
+        "android_client_info": {
+          "package_name": "com.example.pace"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "818817431963-m8r2li0v17lvs1mb1389bs206m6hicah.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.pace",
+            "certificate_hash": "3bf75964c8d23947817697b9a5a5e012ac53a25c"
+          }
+        },
+        {
+          "client_id": "818817431963-p2hpenvohpieql6d1108qgf5i2j7p8r1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCeTHVSynpkqR1GTt_7VTk7lR_Pnm-h7fw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "818817431963-p2hpenvohpieql6d1108qgf5i2j7p8r1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
