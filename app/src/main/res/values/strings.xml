@@ -28,5 +28,16 @@
 
     //Home Page Headings
     <string name="home_page_heading">My Wallet</string>
+    <string name="averages_text">Averages</string>
+
+    //Settings Page Headings
+    <string name="settings_header">Settings</string>
+    <string name="general_settings_header">General Settings</string>
+    <string name="mode">Mode</string>
+    <string name="dark_and_light">Dark/Light</string>
+    <string name="miles_and_km">Miles/Km</string>
+
+
+
 
 </resources>
