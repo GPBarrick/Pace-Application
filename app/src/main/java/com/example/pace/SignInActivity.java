@@ -33,10 +33,11 @@ public class SignInActivity extends AppCompatActivity {
 
     private static final int REQ_ONE_TAP = 2;
 
-    SignInClient oneTapClient;
-    BeginSignInRequest signInRequest;
+    private SignInClient oneTapClient;
+    private BeginSignInRequest signUpRequest;
     SignInButton SingInBnt;
     private boolean showOneTapUI = true;
+    FirebaseUser currentUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,93 +46,64 @@ public class SignInActivity extends AppCompatActivity {
 
         SingInBnt = findViewById(R.id.google_signIn_btn);
 
+
         oneTapClient = Identity.getSignInClient(this);
-        signInRequest = BeginSignInRequest.builder()
-                .setPasswordRequestOptions(BeginSignInRequest.PasswordRequestOptions.builder()
-                        .setSupported(true)
-                        .build())
+        signUpRequest = BeginSignInRequest.builder()
                 .setGoogleIdTokenRequestOptions(BeginSignInRequest.GoogleIdTokenRequestOptions.builder()
                         .setSupported(true)
                         // Your server's client ID, not your Android client ID.
                         .setServerClientId(getString(R.string.webId))
-                        // Only show accounts previously used to sign in.
-                        .setFilterByAuthorizedAccounts(true)
+                        // Show all accounts on the device.
+                        .setFilterByAuthorizedAccounts(false)
                         .build())
-                // Automatically sign in when exactly one credential is retrieved.
-                .setAutoSelectEnabled(true)
                 .build();
+        currentUser = FirebaseAuth.getInstance().getCurrentUser();
 
-        if(isUserSingIn()){
-            StartMainActivity();
-        }
-        else{
-            ShowOneTapSingIn();
-        }
+        //---------------------------------------------------
+        ActivityResultLauncher<IntentSenderRequest> activityResultLauncher=
+                registerForActivityResult(new ActivityResultContracts.StartIntentSenderForResult(),
+                        new ActivityResultCallback<ActivityResult>() {
+                            @Override
+                            public void onActivityResult(ActivityResult o) {
+                                try {
+                                    SignInCredential credential = oneTapClient.getSignInCredentialFromIntent(o.getData());
+                                    String idToken = credential.getGoogleIdToken();
+                                    if (idToken !=  null) {
+                                        String userName = credential.getId();
+                                        String PassWord = credential.getPassword();
+                                       // Log.d("TAG", "Got ID token.");
+                                    }
+                                } catch (ApiException e) {
+                                    e.printStackTrace();
+                                }
+                            }
+                        });
 
-    }
+        //-------------------------------------------------
 
-
-
-private void StartMainActivity(){
-        Intent intent = new Intent(this, MainActivity.class);
-        startActivity(intent);
-        finish();
-}
-
-private boolean isUserSingIn(){
-        FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
-        return currentUser != null;
-    }
-    
-private void ShowOneTapSingIn(){
-    ActivityResultLauncher<IntentSenderRequest> activityResultLauncher = registerForActivityResult(new ActivityResultContracts.StartIntentSenderForResult(), new ActivityResultCallback<ActivityResult>() {
-        @Override
-        public void onActivityResult(ActivityResult result) {
-            if(result.getResultCode()== Activity.RESULT_OK){
-                try {
-                    SignInCredential credential = oneTapClient.getSignInCredentialFromIntent(result.getData());
-                    String idToken = credential.getGoogleIdToken();
-                    String username = credential.getId();
-                    String password = credential.getPassword();
-                    if (idToken !=  null) {
-                        String Email = credential.getId();
-                        String Password = credential.getPassword();
-
-                    } else if (password != null) {
-
-
-                    }
-                } catch (ApiException e) {
-                    e.printStackTrace();
-                }
+        SingInBnt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                oneTapClient.beginSignIn(signUpRequest)
+                        .addOnSuccessListener(SignInActivity.this, new OnSuccessListener<BeginSignInResult>() {
+                            @Override
+                            public void onSuccess(BeginSignInResult result) {
+                                IntentSenderRequest Request = new IntentSenderRequest.Builder(result.getPendingIntent().getIntentSender()).build();
+                                activityResultLauncher.launch(Request);
+                            }
+                        })
+                        .addOnFailureListener(SignInActivity.this, new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                // No Google Accounts found. Just continue presenting the signed-out UI.
+                                Log.d("TAG", e.getLocalizedMessage());
+                            }
+                        });
             }
-        }
-    });
-    SingInBnt.setOnClickListener(new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            oneTapClient.beginSignIn(signInRequest)
-                    .addOnSuccessListener(SignInActivity.this, new OnSuccessListener<BeginSignInResult>() {
-                        @Override
-                        public void onSuccess(BeginSignInResult result) {
-                            IntentSenderRequest intentSenderRequest =
-                                    new IntentSenderRequest.Builder(result.getPendingIntent().getIntentSender()).build();
-                            activityResultLauncher.launch(intentSenderRequest);
+        });
+        //----------------------------------------------------
 
-                        }
-                    })
-                    .addOnFailureListener(SignInActivity.this, new OnFailureListener() {
-                        @Override
-                        public void onFailure(@NonNull Exception e) {
-                            // No saved credentials found. Launch the One Tap sign-up flow, or
-                            // do nothing and continue presenting the signed-out UI.
-                            Log.d("TAG", e.getLocalizedMessage());
-                        }
-                    });
-        }
-    });
-}
-
+    }
 
 
 }
