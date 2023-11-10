@@ -71,13 +71,13 @@
                 android:autofillHints=""
                 android:inputType="textPassword" />
 
-            <Button
-                android:id="@+id/login_temp_button"
+            <com.google.android.gms.common.SignInButton
+                android:id="@+id/google_signIn_btn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="40dp"
-                android:text="LogIn"
-                android:textSize="18sp" />
+                android:layout_marginTop="15dp">
+
+            </com.google.android.gms.common.SignInButton>
 
 
 

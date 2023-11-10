@@ -3,6 +3,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 public class MainActivity extends AppCompatActivity {
     @Override
@@ -15,7 +16,16 @@ public class MainActivity extends AppCompatActivity {
         InitializeViews();
 
         InitializeDayListAdapter();
+
     }
+   @Override
+   protected void onStart(){
+       super.onStart();
+       Intent singInIntent = new Intent(MainActivity.this, SignInActivity.class);
+       startActivity(singInIntent);
+       finish();
+   }
+
     /* 11/5/2023 Initialize Test object member */
     public Test t;
     private void InitializeTest() { this.t = new Test(); }
