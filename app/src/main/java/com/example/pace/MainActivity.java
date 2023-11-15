@@ -69,8 +69,8 @@ public class MainActivity extends AppCompatActivity {
 
     public ViewPager2 viewPagerTop, viewPagerBottom;
     private void InitializeViews() {
-        this.viewPagerTop = findViewById(R.id.activity_main_top_viewpager);
-        this.viewPagerBottom = findViewById(R.id.activity_main_bottom_viewpager);
+        //this.viewPagerTop = findViewById(R.id.activity_main_top_viewpager);
+        //this.viewPagerBottom = findViewById(R.id.activity_main_bottom_viewpager);
     }
 
     /* 11/7/2023 Create the ArrayList<CalendarData> to represent your day to day view*/
