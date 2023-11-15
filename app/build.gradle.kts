@@ -3,11 +3,11 @@ plugins {
 }
 
 android {
-    namespace = "com.example.pace-application"
+    namespace = "com.example.pace"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.example.pace-application"
+        applicationId = "com.example.pace"
         minSdk = 25
         targetSdk = 34
         versionCode = 1

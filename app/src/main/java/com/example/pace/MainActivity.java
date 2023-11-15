@@ -63,8 +63,8 @@ public class MainActivity extends AppCompatActivity {
     /* 11/5/2023 Set the xml elements to their public member objects */
     public RecyclerView dayList, averagesList;
     private void InitializeViews() {
-        this.averagesList = findViewById(R.id.activity_main_averages_list);
-        this.dayList = findViewById(R.id.activity_main_daily_list);
+        //this.averagesList = findViewById(R.id.activity_main_averages_list);
+        //this.dayList = findViewById(R.id.activity_main_daily_list);
     }
 
     /* 11/7/2023 Create the ArrayList<CalendarData> to represent your day to day view*/
