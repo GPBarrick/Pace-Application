@@ -10,8 +10,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.pace-application.R;
-
 public class MainTopFragment extends Fragment {
 
     public MainTopFragment(){
@@ -21,6 +19,6 @@ public class MainTopFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(android.R.layout.fragment_main_top, container, false);
+        return inflater.inflate(R.layout.fragment_main_top, container, false);
     }
 }

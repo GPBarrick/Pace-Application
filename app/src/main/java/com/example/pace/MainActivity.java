@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.LinearSnapHelper;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.SnapHelper;
+import androidx.viewpager2.widget.ViewPager2;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -33,9 +34,11 @@ public class MainActivity extends AppCompatActivity {
 
         AddClientButton(this.calendarDataList, this.t);
 
-        InitializeDayListAdapter();
+        InitFragments();
 
-        InitializeAveragesListAdapter();
+        //InitializeDayListAdapter();
+
+        //InitializeAveragesListAdapter();
     }
     /* 11/5/2023 Initialize Test object member */
     public Test t;
@@ -64,30 +67,16 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    /* 11/5/2023 Set the xml elements to their public member objects */
-    public RecyclerView dayList, averagesList;
+    public ViewPager2 viewPagerTop, viewPagerBottom;
     private void InitializeViews() {
-        this.averagesList = findViewById(R.id.activity_main_averages_list);
-        this.dayList = findViewById(R.id.activity_main_daily_list);
+        this.viewPagerTop = findViewById(R.id.activity_main_top_viewpager);
+        this.viewPagerBottom = findViewById(R.id.activity_main_bottom_viewpager);
     }
 
     /* 11/7/2023 Create the ArrayList<CalendarData> to represent your day to day view*/
     public ArrayList<CalendarData> calendarDataList;
     private void InitializeCalendarData() {
         this.calendarDataList = new ArrayList<>();
-    }
-
-    /* 11/5/2023 Initialize the DayListAdapter and LinearLayoutManager for this.dayList */
-    public DayListAdapter dayListAdapter;
-    private void InitializeDayListAdapter() {
-
-        //ArrayList<CalendarData> calData = this.t.populateCalendarDataList();
-
-        SetCalculatedPercentage(this.calendarDataList);
-        this.dayListAdapter = new DayListAdapter(this.calendarDataList, getApplicationContext());
-        LinearLayoutManager layoutManager = new LinearLayoutManager(MainActivity.this);
-        this.dayList.setLayoutManager(layoutManager);
-        this.dayList.setAdapter(this.dayListAdapter);
     }
 
     /* 11/7/2023 Determine where the getIntent() is coming from */
@@ -124,17 +113,40 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    /* 11/8/2023 Initialize the AveragesListAdapter */
-    public AveragesListAdapter averagesListAdapter;
-    private void InitializeAveragesListAdapter() {
-        // The SnapHelper will create snap the item on the screen to the center
-        SnapHelper snapHelper = new LinearSnapHelper();
-        snapHelper.attachToRecyclerView(this.averagesList);
-        averagesListAdapter = new AveragesListAdapter(this.calendarDataList, getApplicationContext());
-        LinearLayoutManager layoutManager = new LinearLayoutManager(MainActivity.this, LinearLayoutManager.HORIZONTAL, false);
-        this.averagesList.setLayoutManager(layoutManager);
-        this.averagesList.setAdapter(this.averagesListAdapter);
+    /* 11/14/2023 Set the Fragments */
+    public MainTopFragment mainTopFragment;
+    private void InitFragments() {
+        mainTopFragment = new MainTopFragment();
     }
+
+    private void InitFragmentData() {
+
+    }
+
+    /* 11/8/2023 Initialize the AveragesListAdapter */
+    //public AveragesListAdapter averagesListAdapter;
+    //private void InitializeAveragesListAdapter() {
+    //    // The SnapHelper will create snap the item on the screen to the center
+    //    SnapHelper snapHelper = new LinearSnapHelper();
+    //    snapHelper.attachToRecyclerView(this.averagesList);
+    //    averagesListAdapter = new AveragesListAdapter(this.calendarDataList, getApplicationContext());
+    //    LinearLayoutManager layoutManager = new LinearLayoutManager(MainActivity.this, LinearLayoutManager.HORIZONTAL, false);
+    //    this.averagesList.setLayoutManager(layoutManager);
+    //    this.averagesList.setAdapter(this.averagesListAdapter);
+    //}
+
+    ///* 11/5/2023 Initialize the DayListAdapter and LinearLayoutManager for this.dayList */
+    //public DayListAdapter dayListAdapter;
+    //private void InitializeDayListAdapter() {
+
+    //ArrayList<CalendarData> calData = this.t.populateCalendarDataList();
+
+    //SetCalculatedPercentage(this.calendarDataList);
+    //this.dayListAdapter = new DayListAdapter(this.calendarDataList, getApplicationContext());
+    //LinearLayoutManager layoutManager = new LinearLayoutManager(MainActivity.this);
+    //this.dayList.setLayoutManager(layoutManager);
+    //this.dayList.setAdapter(this.dayListAdapter);
+    //}
 }
 
 
