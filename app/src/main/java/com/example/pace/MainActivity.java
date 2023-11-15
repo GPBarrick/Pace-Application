@@ -35,16 +35,12 @@ public class MainActivity extends AppCompatActivity {
         AddClientButton(this.calendarDataList, this.t);
 
         InitFragments();
-
-        //InitializeDayListAdapter();
-
-        //InitializeAveragesListAdapter();
     }
-    /* 11/5/2023 Initialize Test object member */
+    /* Initialize Test object member */
     public Test t;
     private void InitializeTest() { this.t = new Test(); }
 
-    /* 11/6/2023 Initialize the Toolbar */
+    /* Initialize the Toolbar */
     public Toolbar toolbar;
     public ImageButton toolbarAddClientButton;
     private void InitializeToolbarProperties() {
@@ -53,13 +49,13 @@ public class MainActivity extends AppCompatActivity {
         this.toolbarAddClientButton = findViewById(R.id.app_toolbar_add_button);
     }
 
-    /* 11/6/2023 Initialize the Toolbar ImageButton */
+    /* Initialize the Toolbar ImageButton */
     private void AddClientButton(ArrayList<CalendarData> calendarDataList, Test t) {
         this.toolbarAddClientButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this, AddClientModule.class);
-                /* 11/7/2023 Populate the passed serializable ArrayList<CalendarData> to test receiving end (AddClientModule.class)
+                /* Populate the passed serializable ArrayList<CalendarData> to test receiving end (AddClientModule.class)
                 *calendarDataList.add(new CalendarData(t.populateClientModuleListDataSet2(), 11, 2, 2023));*/
                 intent.putExtra("calendar_data_list", calendarDataList);
                 startActivity(intent);
@@ -69,25 +65,21 @@ public class MainActivity extends AppCompatActivity {
 
     public ViewPager2 viewPagerTop, viewPagerBottom;
     private void InitializeViews() {
-        //this.viewPagerTop = findViewById(R.id.activity_main_top_viewpager);
-        //this.viewPagerBottom = findViewById(R.id.activity_main_bottom_viewpager);
+        this.viewPagerTop = findViewById(R.id.activity_main_top_viewpager);
+        this.viewPagerBottom = findViewById(R.id.activity_main_bottom_viewpager);
     }
 
-    /* 11/7/2023 Create the ArrayList<CalendarData> to represent your day to day view*/
     public ArrayList<CalendarData> calendarDataList;
     private void InitializeCalendarData() {
         this.calendarDataList = new ArrayList<>();
     }
 
-    /* 11/7/2023 Determine where the getIntent() is coming from */
     private void DetermineIntentFunctionality() {
         Intent getIntent = getIntent();
         int retCode = getIntent.getIntExtra("ret_code", 402);
         Log.v("ret_code", ""+retCode);
         if (retCode == 10) {
             this.calendarDataList = (ArrayList<CalendarData>)getIntent.getSerializableExtra("calendar_data_list");
-
-            //InitializeDayListAdapter();
         }
     }
 
@@ -114,13 +106,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /* 11/14/2023 Set the Fragments */
-    public MainTopFragment mainTopFragment;
+    //public MainTopFragment mainTopFragment;
     private void InitFragments() {
-        mainTopFragment = new MainTopFragment();
+        //mainTopFragment = new MainTopFragment();
     }
 
     private void InitFragmentData() {
-
+       // MainTopFragmentAdapter
     }
 
     /* 11/8/2023 Initialize the AveragesListAdapter */
