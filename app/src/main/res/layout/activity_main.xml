@@ -8,6 +8,16 @@
     android:background="@color/gray_accent_1"
     tools:context=".MainActivity">
 
+    <!-- need to log out user only testing the log out -->
+    <Button
+        android:id="@+id/Sign_out_btn"
+        android:text="Sign In"
+        android:textSize="18sp"
+        android:textAlignment="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+    <!-- testing button area. delete after complete -->
+
     <!-- Id Naming Convention: layout_name_purpose_view -->
 
     <!-- 11/5/2023 Create two recycler views. The recycler view on the
