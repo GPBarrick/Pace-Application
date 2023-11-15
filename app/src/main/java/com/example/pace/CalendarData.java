@@ -64,12 +64,6 @@ public class CalendarData implements Serializable {
         return total;
     }
 
-    public float calculatePercentage(float original, float newNumber) {
-        float calculation = original - newNumber;
-        calculation = (calculation / newNumber) * 100.0f;
-        return calculation;
-    }
-
     public void setPercentageCalculation(float percentageCalculation) { this.percentageCalculation = percentageCalculation; }
 
     public float getPercentageCalculation() { return this.percentageCalculation; }

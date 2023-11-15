@@ -39,4 +39,11 @@ public class Test {
         calendarDataList.add(new CalendarData(populateClientModuleListDataSet2(), 5, 3, 2023));
         return calendarDataList;
     }
+
+    public ArrayList<WeeklyData> populateWeeklyDataList() {
+        ArrayList<WeeklyData> weeklyDataList = new ArrayList<>();
+        weeklyDataList.add(new WeeklyData(1, 1, 1, 7, 2023, 2023, populateClientModuleListDataSet1()));
+        weeklyDataList.add(new WeeklyData(1, 1, 8, 15, 2023, 2023, populateClientModuleListDataSet3()));
+        return weeklyDataList;
+    }
 }

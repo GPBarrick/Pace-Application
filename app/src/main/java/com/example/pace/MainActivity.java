@@ -1,7 +1,9 @@
 package com.example.pace;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.LinearSnapHelper;
 import androidx.recyclerview.widget.RecyclerView;
@@ -13,6 +15,9 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
+
+import com.google.android.material.tabs.TabLayout;
+import com.google.android.material.tabs.TabLayoutMediator;
 
 import java.util.ArrayList;
 
@@ -35,6 +40,10 @@ public class MainActivity extends AppCompatActivity {
         AddClientButton(this.calendarDataList, this.t);
 
         InitFragments();
+
+        InitFragmentData();
+
+        InitTabs(this.dailyFragments);
     }
     /* Initialize Test object member */
     public Test t;
@@ -63,10 +72,12 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    public ViewPager2 viewPagerTop, viewPagerBottom;
+    public ViewPager2 viewPagerAverages, viewPagerDaily;
+    public TabLayout tabLayout;
     private void InitializeViews() {
-        this.viewPagerTop = findViewById(R.id.activity_main_top_viewpager);
-        this.viewPagerBottom = findViewById(R.id.activity_main_bottom_viewpager);
+        this.viewPagerAverages = findViewById(R.id.activity_main_top_viewpager);
+        this.viewPagerDaily = findViewById(R.id.activity_main_bottom_viewpager);
+        this.tabLayout = findViewById(R.id.activity_main_tab_layout);
     }
 
     public ArrayList<CalendarData> calendarDataList;
@@ -83,7 +94,8 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    /* 11/8/2023 Create a function that calculates a percentage and populates members with that value from the ArrayList<CalendarData> */
+    /* Create a function that calculates a percentage and populates members with that value from the ArrayList<CalendarData> */
+    public ListFunctions listFunctions = new ListFunctions();
     private void SetCalculatedPercentage(ArrayList<CalendarData> calendarDataList) {
 
         for (int i = 0; i < calendarDataList.size(); ++i) {
@@ -93,7 +105,7 @@ public class MainActivity extends AppCompatActivity {
                 float newExpenditure = calendarDataList.get(i + 1).CalculateClientExpenditure();
 
                 if (originalExpenditure != 0) {
-                    float percentageCalculation = calendarDataList.get(i).calculatePercentage(originalExpenditure, newExpenditure);
+                    float percentageCalculation = this.listFunctions.calculatePercentage(originalExpenditure, newExpenditure);
 
                     calendarDataList.get(i).setPercentageCalculation(percentageCalculation);
                 } else {
@@ -105,14 +117,60 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    /* 11/14/2023 Set the Fragments */
-    //public MainTopFragment mainTopFragment;
+    /* Set the Fragments */
+    public AveragesFragment monthlyAverages, yearlyAverages;
+    public DailyFragment dailyList, weeklyList, monthlyList;
+    public ArrayList<DailyFragment> dailyFragments;
     private void InitFragments() {
-        //mainTopFragment = new MainTopFragment();
+        // Fragment instantiation
+        this.monthlyAverages = new AveragesFragment();
+        this.yearlyAverages = new AveragesFragment();
+
+        ArrayList<CalendarData> calendarDataTestList = this.t.populateCalendarDataList();
+
+        // Fragment instantiation
+        this.dailyList = new DailyFragment(getApplicationContext(), "Daily", 1);
+        this.dailyList.SetCalendarData(calendarDataTestList);
+
+        this.weeklyList = new DailyFragment(getApplicationContext(), "Weekly", 2);
+        this.weeklyList.SetWeeklyData(this.listFunctions.organizeCalendarData(calendarDataTestList));
+
+        this.monthlyList = new DailyFragment(getApplicationContext(), "Monthly", 3);
+
+
+        // TabLayout
+        this.dailyFragments = new ArrayList<>();
+        this.dailyFragments.add(this.dailyList);
+        this.dailyFragments.add(this.weeklyList);
+        this.dailyFragments.add(this.monthlyList);
     }
 
+    public AveragesFragmentAdapter averagesAdapter;
+    public DailyFragmentAdapter dailyAdapter;
     private void InitFragmentData() {
-       // MainTopFragmentAdapter
+        // Averages adapter
+        this.averagesAdapter = new AveragesFragmentAdapter(getSupportFragmentManager(), getLifecycle());
+        this.averagesAdapter.addFragment(monthlyAverages);
+        this.averagesAdapter.addFragment(yearlyAverages);
+
+        // Daily adapter
+        this.dailyAdapter = new DailyFragmentAdapter(getSupportFragmentManager(), getLifecycle());
+        this.dailyAdapter.addFragment(dailyList);
+        this.dailyAdapter.addFragment(weeklyList);
+        this.dailyAdapter.addFragment(monthlyList);
+
+        // Set adapter
+        this.viewPagerAverages.setAdapter(this.averagesAdapter);
+        this.viewPagerDaily.setAdapter(this.dailyAdapter);
+    }
+
+    private void InitTabs(ArrayList<DailyFragment> dailyFragments) {
+        new TabLayoutMediator(this.tabLayout, this.viewPagerDaily, new TabLayoutMediator.TabConfigurationStrategy() {
+            @Override
+            public void onConfigureTab(@NonNull TabLayout.Tab tab, int position) {
+                tab.setText(dailyFragments.get(position).getFragmentName());
+            }
+        }).attach();
     }
 
     /* 11/8/2023 Initialize the AveragesListAdapter */
