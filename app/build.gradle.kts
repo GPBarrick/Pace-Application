@@ -3,13 +3,13 @@ plugins {
 }
 
 android {
-    namespace = "com.example.pace"
+    namespace = "com.example.pace-application"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.example.pace"
+        applicationId = "com.example.pace-application"
         minSdk = 25
-        targetSdk = 33
+        targetSdk = 34
         versionCode = 1
         versionName = "1.0"
 
@@ -26,8 +26,8 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_1_9
+        targetCompatibility = JavaVersion.VERSION_1_9
     }
 }
 
@@ -39,4 +39,5 @@ dependencies {
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
+    implementation("androidx.viewpager2:viewpager2:1.0.0")
 }
