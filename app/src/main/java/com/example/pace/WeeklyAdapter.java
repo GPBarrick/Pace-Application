@@ -32,6 +32,30 @@ public class WeeklyAdapter extends RecyclerView.Adapter<WeeklyAdapter.ViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull WeeklyAdapter.ViewHolder holder, int position) {
+        holder.dateText.setText(String.valueOf(this.weeklyDataList.get(position).getDateFormat()));
+        holder.routesText.setText(String.valueOf(this.weeklyDataList.get(position).getClientModuleList().size()));
+        holder.totalGasExpenditure.setText(String.format("%.2f", this.weeklyDataList.get(position).getTotalExpenditure()));
+
+        if (this.weeklyDataList.get(position).getPercentageRate() <= 0.0f) {
+            if (this.weeklyDataList.get(position).getPercentageRate() != 0.0f) {
+                this.weeklyDataList.get(position).setPercentageRate(this.weeklyDataList.get(position).getPercentageRate() * -1.0f);
+                holder.percentageStatus.setText(R.string.negative_percent_sign);
+            } else {
+                holder.percentageStatus.setText(R.string.percent_sign);
+            }
+            int color = ContextCompat.getColor(this.applicationContext, R.color.green_accent_1);
+            holder.statusImage.setImageResource(R.drawable.green_circle);
+            holder.percentageText.setText(String.format("%.2f", this.weeklyDataList.get(position).getPercentageRate()));
+            holder.percentageText.setTextColor(color);
+            holder.percentageStatus.setTextColor(color);
+        } else if (this.weeklyDataList.get(position).getPercentageRate() > 0.0f) {
+            holder.percentageStatus.setText(R.string.plus_percent_sign);
+            int color = ContextCompat.getColor(this.applicationContext, R.color.red_accent_1);
+            holder.statusImage.setImageResource(R.drawable.red_circle);
+            holder.percentageText.setText(String.format("%.2f", this.weeklyDataList.get(position).getPercentageRate()));
+            holder.percentageText.setTextColor(color);
+            holder.percentageStatus.setTextColor(color);
+        }
 
     }
 

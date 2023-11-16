@@ -94,28 +94,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    /* Create a function that calculates a percentage and populates members with that value from the ArrayList<CalendarData> */
     public ListFunctions listFunctions = new ListFunctions();
-    private void SetCalculatedPercentage(ArrayList<CalendarData> calendarDataList) {
-
-        for (int i = 0; i < calendarDataList.size(); ++i) {
-
-            if (i + 1 < calendarDataList.size()) {
-                float originalExpenditure = calendarDataList.get(i).CalculateClientExpenditure();
-                float newExpenditure = calendarDataList.get(i + 1).CalculateClientExpenditure();
-
-                if (originalExpenditure != 0) {
-                    float percentageCalculation = this.listFunctions.calculatePercentage(originalExpenditure, newExpenditure);
-
-                    calendarDataList.get(i).setPercentageCalculation(percentageCalculation);
-                } else {
-                    calendarDataList.get(i).setPercentageCalculation(0);
-                }
-            } else {
-                calendarDataList.get(i).setPercentageCalculation(100.0f);
-            }
-        }
-    }
 
     /* Set the Fragments */
     public AveragesFragment monthlyAverages, yearlyAverages;
@@ -126,19 +105,28 @@ public class MainActivity extends AppCompatActivity {
         this.monthlyAverages = new AveragesFragment();
         this.yearlyAverages = new AveragesFragment();
 
-        ArrayList<CalendarData> calendarDataTestList = this.t.populateCalendarDataList();
-
-        // Fragment instantiation
+        // dailyList initialization (fragmentType == 1 ? daily)
         this.dailyList = new DailyFragment(getApplicationContext(), "Daily", 1);
-        this.dailyList.SetCalendarData(calendarDataTestList);
+        // Calculate percentages from dailyList members
+        this.listFunctions.SetCalculatedPercentage(this.calendarDataList);
+        // Set the calendarDataList to the fragment
+        this.dailyList.SetCalendarData(this.calendarDataList);
 
+        // weeklyList initialization (fragmentType == 2 ? weekly)
         this.weeklyList = new DailyFragment(getApplicationContext(), "Weekly", 2);
-        this.weeklyList.SetWeeklyData(this.listFunctions.organizeCalendarData(calendarDataTestList));
+        // Set the weekly list to the fragment member
+        ArrayList<WeeklyData> organizedWeeklyList = this.listFunctions.organizeCalendarData(this.calendarDataList);
+        this.listFunctions.setWeeklyDataExpenditure(organizedWeeklyList);
+        this.listFunctions.setWeekDateRange(organizedWeeklyList);
+        this.listFunctions.setWeeklyPercentages(organizedWeeklyList);
+        this.weeklyList.SetWeeklyData(organizedWeeklyList);
+
+
 
         this.monthlyList = new DailyFragment(getApplicationContext(), "Monthly", 3);
 
 
-        // TabLayout
+        // TabLayout list
         this.dailyFragments = new ArrayList<>();
         this.dailyFragments.add(this.dailyList);
         this.dailyFragments.add(this.weeklyList);

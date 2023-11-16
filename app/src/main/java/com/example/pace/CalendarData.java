@@ -1,4 +1,6 @@
 package com.example.pace;
+import androidx.annotation.NonNull;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 public class CalendarData implements Serializable {
@@ -14,6 +16,14 @@ public class CalendarData implements Serializable {
         this.month = month;
         this.day = day;
         this.year = year;
+    }
+
+    // Copy constructor
+    public CalendarData(CalendarData copyData) {
+        this.clientModuleList = new ArrayList<>(copyData.getClientModuleList());
+        this.month = copyData.getMonth();
+        this.day = copyData.getDay();
+        this.year = copyData.getYear();
     }
 
     public ArrayList<ClientModule> getClientModuleList() {
