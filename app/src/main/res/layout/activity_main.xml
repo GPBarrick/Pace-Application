@@ -16,7 +16,7 @@
         android:id="@+id/activity_main_top_viewpager"
         android:layout_width="match_parent"
         android:layout_height="250dp"
-        android:layout_below="@+id/app_toolbar"
+        android:layout_below="@+id/activity_main_toolbar"
         android:layout_centerHorizontal="true"
         />
 
@@ -43,6 +43,6 @@
     <!-- 11/6/2023 Include the app_toolbar.xml layout -->
 
     <include
-        layout="@layout/app_toolbar"/>
+        layout="@layout/activity_main_toolbar"/>
 
 </RelativeLayout>
