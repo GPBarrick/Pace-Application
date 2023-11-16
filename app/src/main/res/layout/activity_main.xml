@@ -36,11 +36,7 @@
         android:layout_alignParentBottom="true"/>
 
 
-
-
-
-
-    <!-- 11/6/2023 Include the app_toolbar.xml layout -->
+    <!-- 11/6/2023 Include the activity_main_toolbar.xml layout -->
 
     <include
         layout="@layout/activity_main_toolbar"/>

@@ -17,7 +17,7 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_marginStart="50dp"
-        android:layout_marginTop="85dp"
+        android:layout_marginTop="80dp"
         android:text="@string/mpg_text"
         android:textColor="@color/white"
         android:textSize="20sp" />
@@ -45,7 +45,7 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_marginStart="50dp"
-        android:layout_marginTop="189dp"
+        android:layout_marginTop="184dp"
         android:text="@string/date_text"
         android:textColor="@color/white"
         android:textSize="20sp" />
@@ -72,16 +72,17 @@
         android:layout_alignBottom="@+id/add_client_date_edit"
         android:elevation="20dp"/>
 
+    <!-- \\android:visibility="invisible" -->
+
+    <!-- Gas Price -->
+
     <CalendarView
         android:id="@+id/add_client_calendar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/white"
         android:elevation="20dp"
-        android:visibility="invisible"/>
-        <!-- \\android:visibility="invisible" -->
-
-    <!-- Gas Price -->
+        android:visibility="invisible" />
 
     <TextView
         android:id="@+id/add_client_gas_price"
@@ -90,7 +91,7 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_marginStart="50dp"
-        android:layout_marginTop="300dp"
+        android:layout_marginTop="295dp"
         android:text="@string/gas_price_text"
         android:textColor="@color/white"
         android:textSize="20sp" />
@@ -117,8 +118,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="53dp"
-        android:layout_marginTop="413dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="407dp"
         android:text="@string/gas_added_text"
         android:textColor="@color/white"
         android:textSize="20sp" />
@@ -145,8 +146,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="53dp"
-        android:layout_marginTop="520dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="515dp"
         android:text="@string/trip_distance_text"
         android:textColor="@color/white"
         android:textSize="20sp" />
@@ -173,8 +174,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="51dp"
-        android:layout_marginTop="626dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="621dp"
         android:text="@string/income_text"
         android:textColor="@color/white"
         android:textSize="20sp" />
@@ -213,14 +214,16 @@
         android:id="@+id/add_client_calculate_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/add_client_income_edit"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
         android:layout_marginStart="50dp"
+        android:layout_marginTop="21dp"
         android:layout_marginEnd="50dp"
         android:layout_marginBottom="20dp"
-        android:text="@string/button_add_text"
-        android:backgroundTint="#3400BC" />
+        android:backgroundTint="#3400BC"
+        android:text="@string/button_add_text" />
 
 </RelativeLayout>
 
