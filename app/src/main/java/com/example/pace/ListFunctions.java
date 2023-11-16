@@ -83,64 +83,43 @@ public class ListFunctions {
         for (int i = 0; i < weeklyDataList.size(); ++i) {
             Calendar calendar = Calendar.getInstance();
             calendar.set(Calendar.DAY_OF_YEAR, 1);
+            calendar.setMinimalDaysInFirstWeek(4);
 
+            // Move to the first week of the year
             while (calendar.get(Calendar.WEEK_OF_YEAR) != 1) {
                 calendar.add(Calendar.DAY_OF_YEAR, 1);
             }
 
+            // Move to the week of interest
             calendar.add(Calendar.WEEK_OF_YEAR, weeklyDataList.get(i).getWeekNumber() - 1);
-            calendar.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY);
-            // TODO: SET MONTH INDEX TO   ->   DetermineMonthName();
-            String startDate = String.format("%02d/%02d", calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH));
-            calendar.add(Calendar.DAY_OF_WEEK, 6);
-            String endDate = String.format("%02d/%02d", calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH));
+
+            // Set to Tuesday of that week
+            calendar.set(Calendar.DAY_OF_WEEK, Calendar.TUESDAY);
+
+            // Format and set start date
+            String startMonth = DetermineMonthName(calendar.get(Calendar.MONTH));
+            String startDay = String.format("%02d", calendar.get(Calendar.DAY_OF_MONTH));
+            String startDate = startMonth + "/" + startDay;
+
+            // Move to the next Monday (end of the week)
+            calendar.add(Calendar.DAY_OF_YEAR, 6);
+
+            // Format and set end date
+            String endMonth = DetermineMonthName(calendar.get(Calendar.MONTH));
+            String endDay = String.format("%02d", calendar.get(Calendar.DAY_OF_MONTH));
+            String endDate = endMonth + "/" + endDay;
+
+            // Set the formatted date range
             weeklyDataList.get(i).setDateFormat(startDate + " to " + endDate);
 
+            // Reset calendar
             calendar.clear();
         }
     }
 
     public String DetermineMonthName(int monthIndex) {
-        String monthName = "";
-        switch (monthIndex) {
-            case (1):
-                monthName = "Jan";
-                break;
-            case (2):
-                monthName = "Feb";
-                break;
-            case (3):
-                monthName = "Mar";
-                break;
-            case (4):
-                monthName = "Apr";
-                break;
-            case (5):
-                monthName = "May";
-                break;
-            case (6):
-                monthName = "Jun";
-                break;
-            case (7):
-                monthName = "Jul";
-                break;
-            case (8):
-                monthName = "Aug";
-                break;
-            case (9):
-                monthName = "Sep";
-                break;
-            case (10):
-                monthName = "Oct";
-                break;
-            case (11):
-                monthName = "Nov";
-                break;
-            case (12):
-                monthName = "Dec";
-                break;
-        }
-        return monthName;
+        String[] months = {"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec", "Dec"};
+        return months[monthIndex - 1];
     }
 
     public void SetCalculatedPercentage(@NonNull ArrayList<CalendarData> calendarDataList) {

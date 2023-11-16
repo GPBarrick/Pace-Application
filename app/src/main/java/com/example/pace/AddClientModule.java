@@ -124,8 +124,8 @@ public class AddClientModule extends AppCompatActivity implements View.OnClickLi
         this.calendar.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
             public void onSelectedDayChange(@NonNull CalendarView calendarView, int i, int i1, int i2) {
-                String calendarDateSelected = String.valueOf(i1) + "/" + String.valueOf(i2) + "/" + String.valueOf(i);
-                SetMonth(i1);
+                String calendarDateSelected = String.valueOf(i1+1) + "/" + String.valueOf(i2) + "/" + String.valueOf(i);
+                SetMonth(i1+1);
                 SetDay(i2);
                 SetYear(i);
                 UpdateCalendarState(false);
