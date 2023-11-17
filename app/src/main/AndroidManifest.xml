@@ -16,7 +16,8 @@
         <activity
             android:name=".AddClientModule"
             android:exported="false" />
-            android:name=".signUpActivity"
+            <activity
+                android:name=".signUpActivity"
             android:exported="true" />
         <activity
             android:name=".MainActivity"
