@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.google.firebase.auth.EmailAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
@@ -38,18 +39,6 @@ public class MainActivity extends AppCompatActivity {
         });
         //-------------------------------------testing sign out delete after complete---------------------
     }
-   @Override
-   protected void onStart(){
-       super.onStart();
-       FirebaseUser CurrentUser = FirebaseAuth.getInstance().getCurrentUser();
-       if(CurrentUser == null && GoogleAuthProvider.PROVIDER_ID.isEmpty()){
-           Intent singInIntent = new Intent(MainActivity.this, SignInActivity.class);
-           startActivity(singInIntent);
-           finish();
-
-       }
-
-   }
 
     /* 11/5/2023 Initialize Test object member */
     public Test t;

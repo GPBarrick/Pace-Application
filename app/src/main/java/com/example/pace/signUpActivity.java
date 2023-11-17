@@ -55,6 +55,14 @@ public class signUpActivity extends AppCompatActivity {
 
             }
         });
+
+        Button cancel = findViewById(R.id.Cancel_Bnt);
+        cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
     }
 
 private void createUser(){

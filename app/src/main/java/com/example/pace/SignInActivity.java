@@ -26,6 +26,7 @@ import com.google.android.gms.auth.api.identity.Identity;
 import com.google.android.gms.auth.api.identity.SignInClient;
 import com.google.android.gms.auth.api.identity.SignInCredential;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -51,7 +52,18 @@ public class SignInActivity extends AppCompatActivity {
     SignInClient oneTapClient;
     BeginSignInRequest signUpRequest;
 
+    @Override
+    protected void onStart(){
+        super.onStart();
+        FirebaseUser CurrentUser = FirebaseAuth.getInstance().getCurrentUser();
+        if(CurrentUser != null){
+            Intent singInIntent = new Intent(SignInActivity.this, MainActivity.class);
+            startActivity(singInIntent);
+            finish();
+        }
 
+
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -69,7 +81,7 @@ public class SignInActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent SingUpIntent = new Intent(getApplicationContext(), signUpActivity.class);
                 startActivity(SingUpIntent);
-                finish();
+
             }
         });
 
@@ -100,15 +112,30 @@ public class SignInActivity extends AppCompatActivity {
                 registerForActivityResult(new ActivityResultContracts.StartIntentSenderForResult(), new ActivityResultCallback<ActivityResult>() {
                     @Override
                     public void onActivityResult(ActivityResult result) {
+
                         if(result.getResultCode() == Activity.RESULT_OK){
                             try {
                                 SignInCredential credential = oneTapClient.getSignInCredentialFromIntent(result.getData());
                                 String idToken = credential.getGoogleIdToken();
                                 if (idToken !=  null) {
-                                    Toast.makeText(SignInActivity.this, "Google Signin successful", Toast.LENGTH_LONG).show();
-                                    Intent HomeIntent = new Intent(SignInActivity.this, MainActivity.class);
-                                    startActivity(HomeIntent);
-                                    finish();
+                                    AuthCredential firebaseCredential = GoogleAuthProvider.getCredential(idToken, null);
+                                    mAuth.signInWithCredential(firebaseCredential).addOnCompleteListener(
+                                            SignInActivity.this, new OnCompleteListener<AuthResult>() {
+                                        @Override
+                                        public void onComplete(@NonNull Task<AuthResult> task) {
+                                            if (task.isSuccessful()) {
+                                                // Sign in success, update UI with the signed-in user's information
+                                                FirebaseUser user = mAuth.getCurrentUser();
+                                                Intent singInIntent = new Intent(SignInActivity.this, MainActivity.class);
+                                                startActivity(singInIntent);
+                                                finish();
+                                            } else {
+                                                // If sign in fails, display a message to the user.
+                                                Log.w("TAG", "signInWithCredential:failure", task.getException());
+
+                                            }
+                                        }
+                                    });
                                 }
                             } catch (ApiException e) {
                                 e.printStackTrace();
@@ -123,8 +150,8 @@ public class SignInActivity extends AppCompatActivity {
                         .setSupported(true)
                         // Your server's client ID, not your Android client ID.
                         .setServerClientId(getString(R.string.webId))
-                        // Show all accounts on the device.
-                        .setFilterByAuthorizedAccounts(false)
+                        // Only show accounts previously used to sign in.
+                        .setFilterByAuthorizedAccounts(true)
                         .build())
                 .build();
 
@@ -180,7 +207,6 @@ public class SignInActivity extends AppCompatActivity {
                 });
 
     }
-
 
 }
 
