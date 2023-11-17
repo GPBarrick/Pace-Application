@@ -9,6 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
+import android.app.Instrumentation;
 import android.app.PendingIntent;
 import android.content.Intent;
 import android.content.IntentSender;
@@ -42,8 +43,6 @@ import com.google.firebase.auth.GoogleAuthProvider;
 
 public class SignInActivity extends AppCompatActivity {
 
-    private static final int REQ_ONE_TAP = 2;
-    private boolean showOneTapUI = true;
     SignInButton GoogleSignBnt;
     FirebaseAuth mAuth;
     Button signUpBnt;
@@ -52,6 +51,8 @@ public class SignInActivity extends AppCompatActivity {
     SignInClient oneTapClient;
     BeginSignInRequest signUpRequest;
 
+    //check if the user is logged in at the start of the application.
+    //if user is already logged in, it send them to the app homepage.
     @Override
     protected void onStart(){
         super.onStart();
@@ -71,11 +72,10 @@ public class SignInActivity extends AppCompatActivity {
 
         GoogleSignBnt = findViewById(R.id.google_signIn_btn);
         mAuth = FirebaseAuth.getInstance();
-        FirebaseUser currentUser = mAuth.getCurrentUser();
-
         singInBnt = findViewById(R.id.Sign_in_btn);
         signUpBnt = findViewById(R.id.Sign_up_btn);
 
+        //Bnt lister send the user to the create account activity.
         signUpBnt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -85,6 +85,7 @@ public class SignInActivity extends AppCompatActivity {
             }
         });
 
+        //Email and password sign in Bnt listener
         singInBnt.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -119,23 +120,7 @@ public class SignInActivity extends AppCompatActivity {
                                 String idToken = credential.getGoogleIdToken();
                                 if (idToken !=  null) {
                                     AuthCredential firebaseCredential = GoogleAuthProvider.getCredential(idToken, null);
-                                    mAuth.signInWithCredential(firebaseCredential).addOnCompleteListener(
-                                            SignInActivity.this, new OnCompleteListener<AuthResult>() {
-                                        @Override
-                                        public void onComplete(@NonNull Task<AuthResult> task) {
-                                            if (task.isSuccessful()) {
-                                                // Sign in success, update UI with the signed-in user's information
-                                                FirebaseUser user = mAuth.getCurrentUser();
-                                                Intent singInIntent = new Intent(SignInActivity.this, MainActivity.class);
-                                                startActivity(singInIntent);
-                                                finish();
-                                            } else {
-                                                // If sign in fails, display a message to the user.
-                                                Log.w("TAG", "signInWithCredential:failure", task.getException());
-
-                                            }
-                                        }
-                                    });
+                                    GoogleSingInCredentials(firebaseCredential);
                                 }
                             } catch (ApiException e) {
                                 e.printStackTrace();
@@ -159,25 +144,7 @@ public class SignInActivity extends AppCompatActivity {
         GoogleSignBnt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                oneTapClient.beginSignIn(signUpRequest)
-                        .addOnSuccessListener(SignInActivity.this, new OnSuccessListener<BeginSignInResult>() {
-                            @Override
-                            public void onSuccess(BeginSignInResult result) {
-                                IntentSenderRequest intentSenderRequest =
-                                       new IntentSenderRequest.Builder(result.getPendingIntent().getIntentSender()).build();
-                                activityResultLauncher.launch(intentSenderRequest);
-
-                            }
-                        })
-                        .addOnFailureListener(SignInActivity.this, new OnFailureListener() {
-                            @Override
-                            public void onFailure(@NonNull Exception e) {
-                                // No Google Accounts found. Just continue presenting the signed-out UI.
-                                Log.d("TAG", e.getLocalizedMessage());
-                                Toast.makeText(SignInActivity.this,"No Google Account", Toast.LENGTH_LONG).show();
-                            }
-                        });
+                GoogleActivityHandler(activityResultLauncher);
             }
         });
 
@@ -185,6 +152,7 @@ public class SignInActivity extends AppCompatActivity {
 
     }
 
+    //If user made an account with email and password this handler the request and sign the user in.
     void signInMethod(){
 
         mAuth.signInWithEmailAndPassword(userEmail, userPassWord)
@@ -203,6 +171,51 @@ public class SignInActivity extends AppCompatActivity {
                                     Toast.LENGTH_SHORT).show();
 
                         }
+                    }
+                });
+
+    }
+    //part of google sing in. This save the user credentials into firebase database
+    //help keep user logged in if they use google sign in.
+    void GoogleSingInCredentials(AuthCredential firebaseCredential){
+        mAuth.signInWithCredential(firebaseCredential).addOnCompleteListener(
+                SignInActivity.this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            // Sign in success, update UI with the signed-in user's information
+                            FirebaseUser user = mAuth.getCurrentUser();
+                            Intent singInIntent = new Intent(SignInActivity.this, MainActivity.class);
+                            startActivity(singInIntent);
+                            finish();
+                        } else {
+                            // If sign in fails, display a message to the user.
+                            Log.w("TAG", "signInWithCredential:failure", task.getException());
+
+                        }
+                    }
+                });
+
+    }
+
+    //handler the google sing in request and look for google accounts on the device.
+    void GoogleActivityHandler(ActivityResultLauncher activityResultLauncher){
+        oneTapClient.beginSignIn(signUpRequest)
+                .addOnSuccessListener(SignInActivity.this, new OnSuccessListener<BeginSignInResult>() {
+                    @Override
+                    public void onSuccess(BeginSignInResult result) {
+                        IntentSenderRequest intentSenderRequest =
+                                new IntentSenderRequest.Builder(result.getPendingIntent().getIntentSender()).build();
+                        activityResultLauncher.launch(intentSenderRequest);
+
+                    }
+                })
+                .addOnFailureListener(SignInActivity.this, new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        // No Google Accounts found. Just continue presenting the signed-out UI.
+                        Log.d("TAG", e.getLocalizedMessage());
+                        Toast.makeText(SignInActivity.this,"No Google Account", Toast.LENGTH_LONG).show();
                     }
                 });
 

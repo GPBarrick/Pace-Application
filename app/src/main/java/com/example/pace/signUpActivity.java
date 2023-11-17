@@ -36,6 +36,9 @@ public class signUpActivity extends AppCompatActivity {
         userPassword = findViewById(R.id.password_edit_text);
         signUp = findViewById(R.id.Create_user_btn2);
         mAuth = FirebaseAuth.getInstance();
+        
+        //checks that the user enter something in the editText and send them to the
+        //user account creation method down below.
         signUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -56,6 +59,7 @@ public class signUpActivity extends AppCompatActivity {
             }
         });
 
+        //if the user hit the cancel Bnt it will send them back into the logIn activity.
         Button cancel = findViewById(R.id.Cancel_Bnt);
         cancel.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -65,6 +69,7 @@ public class signUpActivity extends AppCompatActivity {
         });
     }
 
+    //It checks if the user was created successfully or the authentication failed.
 private void createUser(){
     mAuth.createUserWithEmailAndPassword(Email, PassWord)
             .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
