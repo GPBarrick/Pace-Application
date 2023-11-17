@@ -10,6 +10,7 @@ import android.widget.Button;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.GoogleAuthProvider;
 
 public class MainActivity extends AppCompatActivity {
     @Override
@@ -41,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
    protected void onStart(){
        super.onStart();
        FirebaseUser CurrentUser = FirebaseAuth.getInstance().getCurrentUser();
-       if(CurrentUser == null){
+       if(CurrentUser == null && GoogleAuthProvider.PROVIDER_ID.isEmpty()){
            Intent singInIntent = new Intent(MainActivity.this, SignInActivity.class);
            startActivity(singInIntent);
            finish();

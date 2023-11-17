@@ -73,7 +73,6 @@ public class SignInActivity extends AppCompatActivity {
             }
         });
 
-
         singInBnt.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -96,7 +95,7 @@ public class SignInActivity extends AppCompatActivity {
 
             }
         });
-
+//-----------------------Google SignIn---------------------------------------------------
         ActivityResultLauncher<IntentSenderRequest> activityResultLauncher =
                 registerForActivityResult(new ActivityResultContracts.StartIntentSenderForResult(), new ActivityResultCallback<ActivityResult>() {
                     @Override
@@ -107,7 +106,6 @@ public class SignInActivity extends AppCompatActivity {
                                 String idToken = credential.getGoogleIdToken();
                                 if (idToken !=  null) {
                                     Toast.makeText(SignInActivity.this, "Google Signin successful", Toast.LENGTH_LONG).show();
-                                    String GoogleSingIn = credential.getId();
                                     Intent HomeIntent = new Intent(SignInActivity.this, MainActivity.class);
                                     startActivity(HomeIntent);
                                     finish();
@@ -156,10 +154,9 @@ public class SignInActivity extends AppCompatActivity {
             }
         });
 
+        //-----------------------Google SingIn----------------------------------------------------------------------------------
+
     }
-
-
-
 
     void signInMethod(){
 
