@@ -9,7 +9,6 @@
 
     <!--Miles per Gallon Input -->
 
-
     <TextView
         android:id="@+id/add_client_mpg_text"
         android:layout_width="wrap_content"
@@ -20,7 +19,8 @@
         android:layout_marginTop="80dp"
         android:text="@string/mpg_text"
         android:textColor="@color/white"
-        android:textSize="20sp" />
+        android:textSize="20sp"/>
+
 
     <EditText
         android:id="@+id/add_client_mpg_edit"
@@ -29,12 +29,13 @@
         android:layout_below="@+id/add_client_mpg_text"
         android:layout_alignStart="@+id/add_client_mpg_text"
         android:layout_alignParentEnd="true"
+        android:layout_marginTop="0dp"
         android:layout_marginEnd="50dp"
-        android:hint="@string/mpg_hint"
-        android:layout_marginTop="15dp"
-        android:background="@color/white"
         android:elevation="15dp"
-        android:gravity="center"/>
+        android:gravity="center"
+        android:hint="@string/mpg_hint"
+        android:textColor="@color/white"
+        android:textColorHint="#C6C4C4" />
 
     <!-- Date -->
 
@@ -45,7 +46,7 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_marginStart="50dp"
-        android:layout_marginTop="184dp"
+        android:layout_marginTop="170dp"
         android:text="@string/date_text"
         android:textColor="@color/white"
         android:textSize="20sp" />
@@ -57,12 +58,13 @@
         android:layout_below="@+id/add_client_date_text"
         android:layout_alignStart="@+id/add_client_date_text"
         android:layout_alignParentEnd="true"
+        android:layout_marginTop="0dp"
         android:layout_marginEnd="50dp"
-        android:hint="@string/date_hint"
-        android:layout_marginTop="15dp"
-        android:background="@color/white"
         android:elevation="15dp"
-        android:gravity="center"/>
+        android:gravity="center"
+        android:hint="@string/date_hint"
+        android:textColor="@color/white"
+        android:textColorHint="#C6C4C4" />
 
     <CheckBox
         android:id="@+id/add_client_open_calendar"
@@ -72,9 +74,6 @@
         android:layout_alignBottom="@+id/add_client_date_edit"
         android:elevation="20dp"/>
 
-    <!-- \\android:visibility="invisible" -->
-
-    <!-- Gas Price -->
 
     <CalendarView
         android:id="@+id/add_client_calendar"
@@ -82,7 +81,11 @@
         android:layout_height="wrap_content"
         android:background="@color/white"
         android:elevation="20dp"
-        android:visibility="invisible" />
+        android:visibility="invisible"/>
+
+    <!-- \\android:visibility="invisible" -->
+
+    <!-- Gas Price -->
 
     <TextView
         android:id="@+id/add_client_gas_price"
@@ -91,10 +94,10 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_marginStart="50dp"
-        android:layout_marginTop="295dp"
+        android:layout_marginTop="260dp"
         android:text="@string/gas_price_text"
         android:textColor="@color/white"
-        android:textSize="20sp" />
+        android:textSize="20sp"/>
 
     <EditText
         android:id="@+id/add_client_gas_price_edit"
@@ -104,9 +107,10 @@
         android:layout_alignStart="@+id/add_client_gas_price"
         android:layout_alignParentEnd="true"
         android:layout_marginEnd="50dp"
+        android:textColor="@color/white"
         android:hint="@string/gas_price_hint"
-        android:layout_marginTop="15dp"
-        android:background="@color/white"
+        android:textColorHint="#C6C4C4"
+        android:layout_marginTop="0dp"
         android:elevation="15dp"
         android:gravity="center"/>
 
@@ -119,7 +123,7 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_marginStart="50dp"
-        android:layout_marginTop="407dp"
+        android:layout_marginTop="350dp"
         android:text="@string/gas_added_text"
         android:textColor="@color/white"
         android:textSize="20sp" />
@@ -132,9 +136,10 @@
         android:layout_alignStart="@+id/add_client_gas_added"
         android:layout_alignParentEnd="true"
         android:layout_marginEnd="50dp"
+        android:textColor="@color/white"
         android:hint="@string/gas_added_hint"
-        android:layout_marginTop="15dp"
-        android:background="@color/white"
+        android:textColorHint="#C6C4C4"
+        android:layout_marginTop="0dp"
         android:elevation="15dp"
         android:gravity="center"/>
 
@@ -147,7 +152,7 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_marginStart="50dp"
-        android:layout_marginTop="515dp"
+        android:layout_marginTop="440dp"
         android:text="@string/trip_distance_text"
         android:textColor="@color/white"
         android:textSize="20sp" />
@@ -160,9 +165,10 @@
         android:layout_alignStart="@+id/add_client_trip_distance"
         android:layout_alignParentEnd="true"
         android:layout_marginEnd="50dp"
+        android:textColor="@color/white"
         android:hint="@string/trip_distance_hint"
-        android:layout_marginTop="15dp"
-        android:background="@color/white"
+        android:textColorHint="#C6C4C4"
+        android:layout_marginTop="0dp"
         android:elevation="15dp"
         android:gravity="center"/>
 
@@ -175,7 +181,7 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_marginStart="50dp"
-        android:layout_marginTop="621dp"
+        android:layout_marginTop="530dp"
         android:text="@string/income_text"
         android:textColor="@color/white"
         android:textSize="20sp" />
@@ -188,9 +194,10 @@
         android:layout_alignStart="@+id/add_client_income"
         android:layout_alignParentEnd="true"
         android:layout_marginEnd="50dp"
+        android:textColor="@color/white"
         android:hint="@string/income_hint"
-        android:layout_marginTop="15dp"
-        android:background="@color/white"
+        android:textColorHint="#C6C4C4"
+        android:layout_marginTop="0dp"
         android:elevation="15dp"
         android:gravity="center"/>
 
@@ -221,7 +228,7 @@
         android:layout_marginStart="50dp"
         android:layout_marginTop="21dp"
         android:layout_marginEnd="50dp"
-        android:layout_marginBottom="20dp"
+        android:layout_marginBottom="110dp"
         android:backgroundTint="#3400BC"
         android:text="@string/button_add_text" />
 
