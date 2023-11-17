@@ -10,7 +10,7 @@ android {
     defaultConfig {
         applicationId = "com.example.pace"
         minSdk = 25
-        targetSdk = 33
+        targetSdk = 34
         versionCode = 1
         versionName = "1.0"
 
@@ -27,8 +27,8 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_1_9
+        targetCompatibility = JavaVersion.VERSION_1_9
     }
 }
 
@@ -41,8 +41,12 @@ dependencies {
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
+<<<<<<< HEAD
     // Import the BoM for the Firebase platform
     implementation ("com.google.firebase:firebase-bom:32.5.0")
     implementation ("com.google.android.gms:play-services-auth:18.1.0")
 
+=======
+    implementation("androidx.viewpager2:viewpager2:1.0.0")
+>>>>>>> gavin
 }

@@ -17,6 +17,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.Random;
 
 public class AddClientModule extends AppCompatActivity implements View.OnClickListener {
     @Override
@@ -53,12 +54,39 @@ public class AddClientModule extends AppCompatActivity implements View.OnClickLi
 
     public String mpg, date, gasPrice, tank, dist, income;
     private void SetTextValues() {
-        this.mpg = String.valueOf(this.mpgInput.getText());
+        boolean test = true;
+
+        if (test) {
+            Random random = new Random();
+            this.mpg = String.valueOf(random.nextInt(50 - 10) + 10);
+        } else {
+            this.mpg = String.valueOf(this.mpgInput.getText());
+        }
+
         this.date = String.valueOf(this.dateInput.getText());
-        this.gasPrice = String.valueOf(this.gasPriceInput.getText());
+
+        if (test) {
+            Random random = new Random();
+            this.gasPrice = String.valueOf(random.nextInt(4 - 1) + 1);
+        } else {
+            this.gasPrice = String.valueOf(this.gasPriceInput.getText());
+        }
+
         this.tank = String.valueOf(this.tankInput.getText());
-        this.dist = String.valueOf(this.distanceInput.getText());
-        this.income = String.valueOf(this.incomeInput.getText());
+
+        if (test) {
+            Random random = new Random();
+            this.dist = String.valueOf(random.nextInt(100 - 1) + 1);
+        } else {
+            this.dist = String.valueOf(this.distanceInput.getText());
+        }
+
+        if (test) {
+            Random random = new Random();
+            this.income = String.valueOf(random.nextInt(25 - 1) + 1);
+        } else {
+            this.income = String.valueOf(this.incomeInput.getText());
+        }
     }
 
     private void SetListenerToButton() {
@@ -96,8 +124,8 @@ public class AddClientModule extends AppCompatActivity implements View.OnClickLi
         this.calendar.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
             public void onSelectedDayChange(@NonNull CalendarView calendarView, int i, int i1, int i2) {
-                String calendarDateSelected = String.valueOf(i1) + "/" + String.valueOf(i2) + "/" + String.valueOf(i);
-                SetMonth(i1);
+                String calendarDateSelected = String.valueOf(i1+1) + "/" + String.valueOf(i2) + "/" + String.valueOf(i);
+                SetMonth(i1+1);
                 SetDay(i2);
                 SetYear(i);
                 UpdateCalendarState(false);
@@ -112,7 +140,6 @@ public class AddClientModule extends AppCompatActivity implements View.OnClickLi
 
         Intent getIntent = getIntent();
         ArrayList<CalendarData> calendarData = (ArrayList<CalendarData>)getIntent.getSerializableExtra("calendar_data_list");
-
 
         ClientModule newModule = new ClientModule(
                 Float.valueOf(this.dist),

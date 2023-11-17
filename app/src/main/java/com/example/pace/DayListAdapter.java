@@ -23,7 +23,7 @@ public class DayListAdapter extends RecyclerView.Adapter<DayListAdapter.ViewHold
     public void getCalendarData (List<CalendarData> newClientModuleList) { this.calendarData = newClientModuleList; }
     public List<CalendarData> setCalendarData() { return this.calendarData; }
 
-    public Context getApplicationContext() { return applicationContext; }
+    public Context getApplicationContext() { return this.applicationContext; }
     public void setApplicationContext(Context applicationContext) { this.applicationContext = applicationContext;}
 
     @NonNull
@@ -60,8 +60,6 @@ public class DayListAdapter extends RecyclerView.Adapter<DayListAdapter.ViewHold
             holder.percentageText.setText(String.format("%.2f", this.calendarData.get(position).getPercentageCalculation()));
             holder.percentageText.setTextColor(color);
             holder.percentageStatus.setTextColor(color);
-        } else {
-
         }
     }
 

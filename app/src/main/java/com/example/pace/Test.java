@@ -28,7 +28,19 @@ public class Test {
     }
 
     /* 11/6/2023 Function responsible for populating an ArrayList<CalendarData> */
-    public ArrayList<CalendarData> populateCalendarDataList() {
+    public ArrayList<CalendarData> populateCalendarDataList1() {
+        ArrayList<CalendarData> calendarDataList = new ArrayList<>();
+        calendarDataList.add(new CalendarData(populateClientModuleListDataSet1(), 10, 3, 2023));
+        calendarDataList.add(new CalendarData(populateClientModuleListDataSet1(), 10, 3, 2023));
+        calendarDataList.add(new CalendarData(populateClientModuleListDataSet3(), 10, 3, 2023));
+        calendarDataList.add(new CalendarData(populateClientModuleListDataSet2(), 10, 3, 2023));
+        calendarDataList.add(new CalendarData(populateClientModuleListDataSet3(), 7, 3, 2023));
+        calendarDataList.add(new CalendarData(populateClientModuleListDataSet1(), 6, 3, 2023));
+        calendarDataList.add(new CalendarData(populateClientModuleListDataSet2(), 5, 3, 2023));
+        return calendarDataList;
+    }
+
+    public ArrayList<CalendarData> populateCalendarDataList2() {
         ArrayList<CalendarData> calendarDataList = new ArrayList<>();
         calendarDataList.add(new CalendarData(populateClientModuleListDataSet1(), 11, 3, 2023));
         calendarDataList.add(new CalendarData(populateClientModuleListDataSet1(), 10, 3, 2023));
@@ -38,5 +50,12 @@ public class Test {
         calendarDataList.add(new CalendarData(populateClientModuleListDataSet1(), 6, 3, 2023));
         calendarDataList.add(new CalendarData(populateClientModuleListDataSet2(), 5, 3, 2023));
         return calendarDataList;
+    }
+
+    public ArrayList<WeeklyData> populateWeeklyDataList() {
+        ArrayList<WeeklyData> weeklyDataList = new ArrayList<>();
+        weeklyDataList.add(new WeeklyData());
+        weeklyDataList.add(new WeeklyData());
+        return weeklyDataList;
     }
 }

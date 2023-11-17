@@ -1,16 +1,25 @@
 package com.example.pace;
+
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.LinearSnapHelper;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.SnapHelper;
+import androidx.viewpager2.widget.ViewPager2;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 
+import com.google.android.material.tabs.TabLayout;
+import com.google.android.material.tabs.TabLayoutMediator;
+
 import java.util.ArrayList;
-import java.util.Calendar;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -40,13 +49,17 @@ public class MainActivity extends AppCompatActivity {
 
         AddClientButton(this.calendarDataList, this.t);
 
-        InitializeDayListAdapter();
+        InitFragments();
+
+        InitFragmentData();
+
+        InitTabs(this.dailyFragments);
     }
-    /* 11/5/2023 Initialize Test object member */
+    /* Initialize Test object member */
     public Test t;
     private void InitializeTest() { this.t = new Test(); }
 
-    /* 11/6/2023 Initialize the Toolbar */
+    /* Initialize the Toolbar */
     public Toolbar toolbar;
     public ImageButton toolbarAddClientButton;
     private void InitializeToolbarProperties() {
@@ -55,13 +68,13 @@ public class MainActivity extends AppCompatActivity {
         this.toolbarAddClientButton = findViewById(R.id.app_toolbar_add_button);
     }
 
-    /* 11/6/2023 Initialize the Toolbar ImageButton */
+    /* Initialize the Toolbar ImageButton */
     private void AddClientButton(ArrayList<CalendarData> calendarDataList, Test t) {
         this.toolbarAddClientButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this, AddClientModule.class);
-                /* 11/7/2023 Populate the passed serializable ArrayList<CalendarData> to test receiving end (AddClientModule.class)
+                /* Populate the passed serializable ArrayList<CalendarData> to test receiving end (AddClientModule.class)
                 *calendarDataList.add(new CalendarData(t.populateClientModuleListDataSet2(), 11, 2, 2023));*/
                 intent.putExtra("calendar_data_list", calendarDataList);
                 startActivity(intent);
@@ -69,71 +82,119 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    /* 11/5/2023 Set the xml elements to their public member objects */
-    public RecyclerView dayList, averagesList;
+    public ViewPager2 viewPagerAverages, viewPagerDaily;
+    public TabLayout tabLayout;
     private void InitializeViews() {
-        this.averagesList = findViewById(R.id.activity_main_averages_list);
-        this.dayList = findViewById(R.id.activity_main_daily_list);
+        this.viewPagerAverages = findViewById(R.id.activity_main_top_viewpager);
+        this.viewPagerDaily = findViewById(R.id.activity_main_bottom_viewpager);
+        this.tabLayout = findViewById(R.id.activity_main_tab_layout);
     }
 
-    /* 11/7/2023 Create the ArrayList<CalendarData> to represent your day to day view*/
     public ArrayList<CalendarData> calendarDataList;
     private void InitializeCalendarData() {
         this.calendarDataList = new ArrayList<>();
     }
 
-    /* 11/5/2023 Initialize the DayListAdapter and LinearLayoutManager for this.dayList */
-    public DayListAdapter dayListAdapter;
-    private void InitializeDayListAdapter() {
-
-        //ArrayList<CalendarData> calData = this.t.populateCalendarDataList();
-
-        SetCalculatedPercentage(this.calendarDataList);
-        this.dayListAdapter = new DayListAdapter(this.calendarDataList, getApplicationContext());
-        LinearLayoutManager layoutManager = new LinearLayoutManager(MainActivity.this);
-        this.dayList.setLayoutManager(layoutManager);
-        this.dayList.setAdapter(this.dayListAdapter);
-    }
-
-    /* 11/7/2023 Determine where the getIntent() is coming from */
     private void DetermineIntentFunctionality() {
         Intent getIntent = getIntent();
         int retCode = getIntent.getIntExtra("ret_code", 402);
         Log.v("ret_code", ""+retCode);
         if (retCode == 10) {
             this.calendarDataList = (ArrayList<CalendarData>)getIntent.getSerializableExtra("calendar_data_list");
-
-            //InitializeDayListAdapter();
         }
     }
 
-    /* 11/8/2023 Create a function that calculates a percentage and populates members with that value from the ArrayList<CalendarData> */
-    private void SetCalculatedPercentage(ArrayList<CalendarData> calendarDataList) {
+    public ListFunctions listFunctions = new ListFunctions();
 
-        for (int i = 0; i < calendarDataList.size(); ++i) {
+    /* Set the Fragments */
+    public AveragesFragment monthlyAverages, yearlyAverages;
+    public DailyFragment dailyList, weeklyList, monthlyList;
+    public ArrayList<DailyFragment> dailyFragments;
+    private void InitFragments() {
+        // Fragment instantiation
+        this.monthlyAverages = new AveragesFragment();
+        this.yearlyAverages = new AveragesFragment();
 
-            Log.w("cal_data_m", "= " + calendarDataList.get(i).getMonth());
+        // dailyList initialization (fragmentType == 1 ? daily)
+        this.dailyList = new DailyFragment(getApplicationContext(), "Daily", 1);
+        // Calculate percentages from dailyList members
+        this.listFunctions.SetCalculatedPercentage(this.calendarDataList);
+        // Set the calendarDataList to the fragment
+        this.dailyList.SetCalendarData(this.calendarDataList);
 
-            if (i + 1 < calendarDataList.size()) {
-                float originalExpenditure = calendarDataList.get(i).CalculateClientExpenditure();
-                float newExpenditure = calendarDataList.get(i + 1).CalculateClientExpenditure();
+        // weeklyList initialization (fragmentType == 2 ? weekly)
+        this.weeklyList = new DailyFragment(getApplicationContext(), "Weekly", 2);
+        // Set the weekly list to the fragment member
+        ArrayList<WeeklyData> organizedWeeklyList = this.listFunctions.organizeCalendarData(this.calendarDataList);
+        this.listFunctions.setWeeklyDataExpenditure(organizedWeeklyList);
+        this.listFunctions.setWeekDateRange(organizedWeeklyList);
+        this.listFunctions.setWeeklyPercentages(organizedWeeklyList);
+        this.weeklyList.SetWeeklyData(organizedWeeklyList);
 
-                if (originalExpenditure != 0) {
-                    float percentageCalculation = calendarDataList.get(i).calculatePercentage(originalExpenditure, newExpenditure);
 
-                    calendarDataList.get(i).setPercentageCalculation(percentageCalculation);
 
-                    Log.e("cal_data_calc", "= "+percentageCalculation);
-                } else {
+        this.monthlyList = new DailyFragment(getApplicationContext(), "Monthly", 3);
 
-                    calendarDataList.get(i).setPercentageCalculation(0);
-                    Log.e("cal_data_error", "Original expenditure is zero, cannot calculate percentage change.");
-                }
-            } else {
-                calendarDataList.get(i).setPercentageCalculation(100.0f);
+
+        // TabLayout list
+        this.dailyFragments = new ArrayList<>();
+        this.dailyFragments.add(this.dailyList);
+        this.dailyFragments.add(this.weeklyList);
+        this.dailyFragments.add(this.monthlyList);
+    }
+
+    public AveragesFragmentAdapter averagesAdapter;
+    public DailyFragmentAdapter dailyAdapter;
+    private void InitFragmentData() {
+        // Averages adapter
+        this.averagesAdapter = new AveragesFragmentAdapter(getSupportFragmentManager(), getLifecycle());
+        this.averagesAdapter.addFragment(monthlyAverages);
+        this.averagesAdapter.addFragment(yearlyAverages);
+
+        // Daily adapter
+        this.dailyAdapter = new DailyFragmentAdapter(getSupportFragmentManager(), getLifecycle());
+        this.dailyAdapter.addFragment(dailyList);
+        this.dailyAdapter.addFragment(weeklyList);
+        this.dailyAdapter.addFragment(monthlyList);
+
+        // Set adapter
+        this.viewPagerAverages.setAdapter(this.averagesAdapter);
+        this.viewPagerDaily.setAdapter(this.dailyAdapter);
+    }
+
+    private void InitTabs(ArrayList<DailyFragment> dailyFragments) {
+        new TabLayoutMediator(this.tabLayout, this.viewPagerDaily, new TabLayoutMediator.TabConfigurationStrategy() {
+            @Override
+            public void onConfigureTab(@NonNull TabLayout.Tab tab, int position) {
+                tab.setText(dailyFragments.get(position).getFragmentName());
             }
-        }
+        }).attach();
     }
+
+    /* 11/8/2023 Initialize the AveragesListAdapter */
+    //public AveragesListAdapter averagesListAdapter;
+    //private void InitializeAveragesListAdapter() {
+    //    // The SnapHelper will create snap the item on the screen to the center
+    //    SnapHelper snapHelper = new LinearSnapHelper();
+    //    snapHelper.attachToRecyclerView(this.averagesList);
+    //    averagesListAdapter = new AveragesListAdapter(this.calendarDataList, getApplicationContext());
+    //    LinearLayoutManager layoutManager = new LinearLayoutManager(MainActivity.this, LinearLayoutManager.HORIZONTAL, false);
+    //    this.averagesList.setLayoutManager(layoutManager);
+    //    this.averagesList.setAdapter(this.averagesListAdapter);
+    //}
+
+    ///* 11/5/2023 Initialize the DayListAdapter and LinearLayoutManager for this.dayList */
+    //public DayListAdapter dayListAdapter;
+    //private void InitializeDayListAdapter() {
+
+    //ArrayList<CalendarData> calData = this.t.populateCalendarDataList();
+
+    //SetCalculatedPercentage(this.calendarDataList);
+    //this.dayListAdapter = new DayListAdapter(this.calendarDataList, getApplicationContext());
+    //LinearLayoutManager layoutManager = new LinearLayoutManager(MainActivity.this);
+    //this.dayList.setLayoutManager(layoutManager);
+    //this.dayList.setAdapter(this.dayListAdapter);
+    //}
 }
 
 
