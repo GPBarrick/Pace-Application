@@ -5,5 +5,18 @@
         <item name="colorPrimary">@color/forest</item>
     </style>
 
+    <style name="CalenderViewCustom" parent="Theme.AppCompat">
+        <item name="colorControlActivated">@color/purple_haze</item>
+        <item name="android:textColorPrimary">@color/space_grey</item>
+    </style>
+
+    <style name="CalenderViewWeekCustomText" parent="android:TextAppearance.DeviceDefault.Small">
+        <item name="android:textColor">@color/purple_haze</item>
+    </style>
+
+    <style name="CalenderViewDateCustomText">
+        <item name="android:textColor">@drawable/calendar_selector</item>
+    </style>
+
     <style name="Theme.Pace" parent="Base.Theme.Pace" />
 </resources>
