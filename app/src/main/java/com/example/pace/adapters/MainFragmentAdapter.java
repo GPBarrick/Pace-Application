@@ -1,4 +1,4 @@
-package com.example.pace.config;
+package com.example.pace.adapters;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;

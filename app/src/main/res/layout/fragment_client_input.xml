@@ -19,7 +19,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toTopOf="@+id/client_input_beige_background"
-            app:layout_constraintHeight_percent="0.5"
+            app:layout_constraintHeight_percent="0.45"
             android:background="@color/forest"/>
 
         <ImageView
@@ -30,7 +30,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             android:background="@color/beige"
-            app:layout_constraintHeight_percent="0.5"/>
+            app:layout_constraintHeight_percent="0.55"/>
 
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/client_input_tabLayout"

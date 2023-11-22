@@ -7,7 +7,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager2.widget.ViewPager2;
 
-import com.example.pace.config.MainFragmentAdapter;
+import com.example.pace.adapters.MainFragmentAdapter;
 import com.example.pace.fragmentlayouts.ClientInputFragment;
 import com.example.pace.fragmentlayouts.HomeFragment;
 import com.google.android.material.tabs.TabLayout;

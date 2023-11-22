@@ -12,7 +12,6 @@ import androidx.fragment.app.Fragment;
 import com.example.pace.R;
 
 public class ClientInputFragment extends Fragment {
-
     public ClientInputFragment() {
 
     }
@@ -23,5 +22,4 @@ public class ClientInputFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_client_input, container, false);
         return view;
     }
-
 }
