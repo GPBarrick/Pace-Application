@@ -1,11 +1,82 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".fragmentlayouts.ClientInputFragment">
+    android:layout_height="match_parent">
 
-    <!-- TODO: FrameLayout, TabLayout, ViewPager, EditText, ImageButton -->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <FrameLayout
+            android:id="@+id/client_input_frameLayout"
+            android:layout_width="match_parent"
+            android:layout_height="350dp"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentTop="true"
+            android:background="@color/forest"/>
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/client_input_frameLayout"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:background="@color/beige"
+
+
+            />
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/client_input_tabLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/client_input_frameLayout"
+            android:layout_marginTop="30dp"
+            android:layout_centerHorizontal="true"/>
+
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/client_input_viewPager"
+            android:layout_width="match_parent"
+            android:layout_height="175dp"
+            android:layout_below="@+id/client_input_tabLayout"
+            android:layout_centerHorizontal="true"
+
+            />
+
+        <EditText
+            android:id="@+id/client_input_date_text"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_below="@+id/client_input_viewPager"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="25dp"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="120dp"
+            android:layout_marginTop="50dp"
+            android:background="@drawable/edit_text_background"
+            android:textColor="@color/white"
+            android:hint="@string/date_hint"
+            android:textColorHint="@color/white"
+            android:gravity="center"/>
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@+id/client_input_date_text"
+            android:layout_alignTop="@+id/client_input_date_text"
+            android:layout_alignBottom="@+id/client_input_date_text"
+            android:background="@drawable/calendar_icon"
+            android:layout_marginStart="-75dp"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="30dp"
+
+            />
+
+
+
+    </RelativeLayout>
 
 </FrameLayout>
