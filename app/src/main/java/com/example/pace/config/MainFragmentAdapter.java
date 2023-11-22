@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 public class MainFragmentAdapter extends FragmentStateAdapter {
 
-    private ArrayList<Fragment> fragmentList;
+    private ArrayList<Fragment> fragmentList = new ArrayList<>();
 
     public MainFragmentAdapter(@NonNull FragmentManager fragmentManager, @NonNull Lifecycle lifecycle) {
         super(fragmentManager, lifecycle);
