@@ -19,16 +19,18 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toTopOf="@+id/client_input_beige_background"
+            app:layout_constraintHeight_percent="0.5"
             android:background="@color/forest"/>
 
         <ImageView
             android:id="@+id/client_input_beige_background"
             android:layout_width="match_parent"
-            android:layout_height="350dp"
+            android:layout_height="0dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            android:background="@color/beige"/>
+            android:background="@color/beige"
+            app:layout_constraintHeight_percent="0.5"/>
 
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/client_input_tabLayout"
