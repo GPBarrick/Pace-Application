@@ -3,7 +3,7 @@
 
     <data>
         <variable
-            name="buttonHandling"
+            name="inputDataBinding"
             type="com.example.pace.databinding.ClientInputDataBinding" />
     </data>
     
@@ -60,7 +60,7 @@
 
             <ImageButton
                 android:id="@+id/client_input_calendar_button"
-                android:onClick="@{buttonHandling::onCalendarButtonClick}"
+                android:onClick="@{inputDataBinding::onCalendarButtonClick}"
                 android:layout_width="45dp"
                 android:layout_height="45dp"
                 android:background="@drawable/calendar_icon"
@@ -84,7 +84,7 @@
 
             <CalendarView
                 android:id="@+id/client_input_calendarView"
-                android:onSelectedDayChange="@{buttonHandling::getCalendarData}"
+                android:onSelectedDayChange="@{inputDataBinding::getCalendarData}"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:layout_constraintBottom_toTopOf="@+id/client_input_calendar_editText"

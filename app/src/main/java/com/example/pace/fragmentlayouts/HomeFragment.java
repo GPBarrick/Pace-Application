@@ -13,8 +13,8 @@ import androidx.viewpager2.widget.ViewPager2;
 import com.example.pace.R;
 import com.example.pace.adapters.HomeCardAdapter;
 import com.example.pace.adapters.HomeListAdapter;
-import com.example.pace.fragmentelements.CardFragment;
 import com.example.pace.fragmentelements.DailyListFragment;
+import com.example.pace.fragmentelements.HomeCardFragment;
 import com.example.pace.fragmentelements.MonthlyListFragment;
 import com.example.pace.fragmentelements.WeeklyListFragment;
 import com.google.android.material.tabs.TabLayout;
@@ -55,8 +55,8 @@ public class HomeFragment extends Fragment {
     }
     private void initCardViewPager() {
         HomeCardAdapter homeCardAdapter = new HomeCardAdapter(getActivity().getSupportFragmentManager(), getLifecycle());
-        homeCardAdapter.addFragment(new CardFragment());
-        homeCardAdapter.addFragment(new CardFragment());
+        homeCardAdapter.addFragment(new HomeCardFragment());
+        homeCardAdapter.addFragment(new HomeCardFragment());
         this.cardViewPager.setOrientation(ViewPager2.ORIENTATION_HORIZONTAL);
         this.cardViewPager.setAdapter(homeCardAdapter);
     }

@@ -17,7 +17,7 @@ import com.example.pace.R;
 import com.example.pace.adapters.ClientInputAdapter;
 import com.example.pace.databinding.ClientInputDataBinding;
 import com.example.pace.databinding.FragmentClientInputBinding;
-import com.example.pace.fragmentelements.CardFragment;
+import com.example.pace.fragmentelements.ClientInputCardFragment;
 import com.example.pace.fragmentinputlayouts.InputDistanceFragment;
 import com.example.pace.fragmentinputlayouts.InputGasPriceFragment;
 import com.example.pace.fragmentinputlayouts.InputIncomeFragment;
@@ -36,29 +36,38 @@ public class ClientInputFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         FragmentClientInputBinding fragmentClientInputBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_client_input, container, false);
         View view = fragmentClientInputBinding.getRoot();
-        initBindingData(fragmentClientInputBinding);
+
         initCardFragment();
+
+        initBindingData(fragmentClientInputBinding);
+
         initInputFragments(fragmentClientInputBinding);
+
         initTabLayout(fragmentClientInputBinding);
+
         return view;
+    }
+
+    public ClientInputCardFragment cardFragment;
+    private void initCardFragment() {
+
+        this.cardFragment = new ClientInputCardFragment();
+        initCardFrameLayout();
     }
 
     public ClientInputDataBinding clientInputDataBinding;
     private void initBindingData(FragmentClientInputBinding fragmentClientInputBinding) {
+
         this.clientInputDataBinding = new ClientInputDataBinding(
                 fragmentClientInputBinding.clientInputCalendarView,
                 fragmentClientInputBinding.clientInputCalendarEditText
         );
-        fragmentClientInputBinding.setButtonHandling(this.clientInputDataBinding);
-    }
-
-    public CardFragment cardFragment;
-    private void initCardFragment() {
-        this.cardFragment = new CardFragment();
-        initCardFrameLayout();
+        fragmentClientInputBinding.setInputDataBinding(this.clientInputDataBinding);
+        this.clientInputDataBinding.setCardFragment(this.cardFragment);
     }
 
     private void initCardFrameLayout() {
+
         FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.client_input_frameLayout, this.cardFragment);
@@ -72,10 +81,11 @@ public class ClientInputFragment extends Fragment {
     public ArrayList<Fragment> inputFragments;
     public ClientInputAdapter clientInputAdapter;
     private void initInputFragments(FragmentClientInputBinding fragmentClientInputBinding) {
-        this.inputMpgFragment = new InputMpgFragment();
-        this.inputGasPriceFragment = new InputGasPriceFragment();
-        this.inputDistanceFragment = new InputDistanceFragment();
-        this.inputIncomeFragment = new InputIncomeFragment();
+
+        this.inputMpgFragment = new InputMpgFragment(fragmentClientInputBinding);
+        this.inputGasPriceFragment = new InputGasPriceFragment(fragmentClientInputBinding);
+        this.inputDistanceFragment = new InputDistanceFragment(fragmentClientInputBinding);
+        this.inputIncomeFragment = new InputIncomeFragment(fragmentClientInputBinding);
 
         this.inputFragments = new ArrayList<>();
         this.inputFragments.add(this.inputMpgFragment);
@@ -93,6 +103,7 @@ public class ClientInputFragment extends Fragment {
     }
 
     private void initTabLayout(FragmentClientInputBinding fragmentClientInputBinding) {
+
         ArrayList<String> tabLayoutText = new ArrayList<>();
         tabLayoutText.add("MPG");
         tabLayoutText.add("Gas Price");

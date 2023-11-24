@@ -11,15 +11,14 @@ import androidx.fragment.app.Fragment;
 
 import com.example.pace.R;
 
-public class CardFragment extends Fragment {
-    public CardFragment() {
+public class HomeCardFragment extends Fragment {
+    public HomeCardFragment() {
 
     }
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_card, container, false);
-        return view;
+        return inflater.inflate(R.layout.fragment_home_card, container, false);
     }
 }

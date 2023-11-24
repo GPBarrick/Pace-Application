@@ -5,5 +5,9 @@
     <string name="welcome_message">Welcome Back</string>
     <string name="date_hint">Date</string>
     <string name="sample">sample</string>
+    <string name="mpg_hint">MPG</string>
+    <string name="gasPrice_hint">Gas Price</string>
+    <string name="distance_hint">Distance</string>
+    <string name="income_hint">Income</string>
 
 </resources>

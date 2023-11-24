@@ -6,6 +6,8 @@ import android.widget.EditText;
 
 import androidx.databinding.BaseObservable;
 
+import com.example.pace.fragmentelements.ClientInputCardFragment;
+
 import java.util.Calendar;
 
 public class ClientInputDataBinding extends BaseObservable {
@@ -38,5 +40,11 @@ public class ClientInputDataBinding extends BaseObservable {
         calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
         calendar.set(Calendar.YEAR, year);
         this.calendarDate.setText(calendar.get(Calendar.MONTH) + "/" + calendar.get(Calendar.DATE) + "/" + calendar.get(Calendar.YEAR));
+        this.clientInputCardFragment.dateText.setText(String.valueOf(this.calendarDate.getText()));
+    }
+
+    public ClientInputCardFragment clientInputCardFragment;
+    public void setCardFragment(ClientInputCardFragment cardFragment) {
+        this.clientInputCardFragment = cardFragment;
     }
 }
