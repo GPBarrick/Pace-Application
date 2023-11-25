@@ -92,19 +92,6 @@
                 android:layout_marginStart="-15dp"
                 android:background="@drawable/red_x_icon"
                 android:layout_marginBottom="-5dp"/>
-            
-            <CalendarView
-                android:id="@+id/client_input_calendarView"
-                android:onSelectedDayChange="@{inputDataBinding::getCalendarData}"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:layout_constraintBottom_toTopOf="@+id/client_input_calendar_editText"
-                android:background="@color/beige"
-                android:theme="@style/CalenderViewCustom"
-                android:dateTextAppearance="@style/CalenderViewDateCustomText"
-                android:weekDayTextAppearance="@style/CalenderViewWeekCustomText"
-                android:layout_marginBottom="25dp"
-                android:visibility="invisible"/>
 
             <View
                 android:layout_width="0dp"
@@ -122,6 +109,18 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/client_input_viewPager"
                 android:layout_marginTop="10dp"/>
+
+            <CalendarView
+                android:id="@+id/client_input_calendarView"
+                android:onSelectedDayChange="@{inputDataBinding::getCalendarData}"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toTopOf="@+id/client_input_calendar_editText"
+                android:background="@color/beige"
+                android:theme="@style/CalenderViewCustom"
+                android:dateTextAppearance="@style/CalenderViewDateCustomText"
+                android:weekDayTextAppearance="@style/CalenderViewWeekCustomText"
+                android:layout_marginBottom="25dp"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
