@@ -14,13 +14,13 @@
         android:layout_marginTop="25dp"
         android:layout_marginStart="25dp"
         android:layout_marginEnd="25dp"
-        android:layout_marginBottom="55dp"
+        android:layout_marginBottom="77dp"
         app:cardBackgroundColor="@color/space_grey"
         app:cardCornerRadius="15dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="215dp">
 
             <TextView
                 android:id="@+id/input_card_dateText"
