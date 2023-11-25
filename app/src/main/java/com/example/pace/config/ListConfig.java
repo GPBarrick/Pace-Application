@@ -20,7 +20,15 @@ public class ListConfig implements ListFunctions {
     }
 
     @Override
-    public void organizeDescending(ArrayList<ClientData> clientDataList) {
+    public void organizeDailyDescending(ArrayList<ClientData> clientDataList) {
+
+    }
+    @Override
+    public void organizeWeeklyDescending(ArrayList<ClientData> clientDataList) {
+
+    }
+    @Override
+    public void organizeMonthlyDescending(ArrayList<ClientData> clientDataList) {
 
     }
 
@@ -35,7 +43,24 @@ public class ListConfig implements ListFunctions {
     }
 
     @Override
-    public void setFormattedListDate(ArrayList<ClientData> clientDataList) {
+    public void setFormattedDailyListDate(ArrayList<ClientData> clientDataList) {
+        for (int index = 0; index < clientDataList.size(); ++index) {
+            String month = findMonthString(clientDataList.get(index));
+            clientDataList.get(index).setFormattedDateList(month);
+        }
+    }
+    @Override
+    public void setFormattedWeeklyListDate(ArrayList<ClientData> clientDataList) {
 
+    }
+    @Override
+    public void setFormattedMonthlyListDate(ArrayList<ClientData> clientDataList) {
+
+    }
+
+    @Override
+    public String findMonthString(ClientData clientData) {
+        String[] monthArr = { "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Oct", "Nov", "Dec" };
+        return monthArr[clientData.getMonth()];
     }
 }

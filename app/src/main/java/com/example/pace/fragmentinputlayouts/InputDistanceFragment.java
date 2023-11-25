@@ -26,6 +26,12 @@ public class InputDistanceFragment extends Fragment {
         this.errorBool = false;
     }
 
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        this.distanceInputText.getText().clear();
+    }
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -48,19 +54,23 @@ public class InputDistanceFragment extends Fragment {
         this.distanceInputText = view.findViewById(R.id.input_distance_editText);
 
         this.errorIcon.setVisibility(View.INVISIBLE);
+
     }
 
     private void initListeners() {
+
         this.forwardButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (distanceInputText.getText().length() > 0) {
+                    fragmentClientInputBinding.getInputDataBinding().setDistance(Float.parseFloat(String.valueOf(distanceInputText.getText())));
                     fragmentClientInputBinding.getInputDataBinding().clientInputCardFragment.distanceText.setText(
                             distanceInputText.getText() + " mi"
                     );
-                    fragmentClientInputBinding.clientInputViewPager.setCurrentItem(3);
                     errorIcon.setVisibility(View.INVISIBLE);
                     errorBool = false;
+
+                    fragmentClientInputBinding.clientInputViewPager.setCurrentItem(3);
                 } else {
                     errorIcon.setVisibility(View.VISIBLE);
                     errorBool = true;
@@ -77,12 +87,14 @@ public class InputDistanceFragment extends Fragment {
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
                 if (actionId == EditorInfo.IME_ACTION_SEND) {
                     if (distanceInputText.getText().length() > 0) {
+                        fragmentClientInputBinding.getInputDataBinding().setDistance(Float.parseFloat(String.valueOf(distanceInputText.getText())));
                         fragmentClientInputBinding.getInputDataBinding().clientInputCardFragment.distanceText.setText(
                                 distanceInputText.getText() + " mi"
                         );
-                        fragmentClientInputBinding.clientInputViewPager.setCurrentItem(3);
                         errorIcon.setVisibility(View.INVISIBLE);
                         errorBool = false;
+
+                        fragmentClientInputBinding.clientInputViewPager.setCurrentItem(3);
                     } else {
                         errorIcon.setVisibility(View.VISIBLE);
                         errorBool = true;

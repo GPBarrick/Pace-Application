@@ -26,6 +26,12 @@ public class InputGasPriceFragment extends Fragment {
         this.errorBool = false;
     }
 
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        this.gasPriceInputText.getText().clear();
+    }
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -51,16 +57,20 @@ public class InputGasPriceFragment extends Fragment {
     }
 
     private void initListeners() {
+
         this.forwardButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (gasPriceInputText.getText().length() > 0) {
+                    fragmentClientInputBinding.getInputDataBinding().setGasPrice(Float.parseFloat(String.valueOf(gasPriceInputText.getText())));
                     fragmentClientInputBinding.getInputDataBinding().clientInputCardFragment.gasPriceText.setText(
                             "$" + gasPriceInputText.getText()
                     );
-                    fragmentClientInputBinding.clientInputViewPager.setCurrentItem(2);
                     errorIcon.setVisibility(View.INVISIBLE);
                     errorBool = false;
+
+
+                    fragmentClientInputBinding.clientInputViewPager.setCurrentItem(2);
                 } else {
                     errorIcon.setVisibility(View.VISIBLE);
                     errorBool = true;
@@ -77,12 +87,14 @@ public class InputGasPriceFragment extends Fragment {
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
                 if (actionId == EditorInfo.IME_ACTION_SEND) {
                     if (gasPriceInputText.getText().length() > 0) {
+                        fragmentClientInputBinding.getInputDataBinding().setGasPrice(Float.parseFloat(String.valueOf(gasPriceInputText.getText())));
                         fragmentClientInputBinding.getInputDataBinding().clientInputCardFragment.gasPriceText.setText(
                                 "$" + gasPriceInputText.getText()
                         );
-                        fragmentClientInputBinding.clientInputViewPager.setCurrentItem(2);
                         errorIcon.setVisibility(View.INVISIBLE);
                         errorBool = false;
+
+                        fragmentClientInputBinding.clientInputViewPager.setCurrentItem(2);
                     } else {
                         errorIcon.setVisibility(View.VISIBLE);
                         errorBool = true;

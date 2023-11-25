@@ -15,8 +15,11 @@ public class ClientInputDataBinding extends BaseObservable {
 
     private boolean isCalendarVisible;
     private CalendarView calendarView;
+    public CalendarView getCalendarView() { return this.calendarView; }
     private EditText calendarDate;
-    public ImageView errorIcon;
+    public EditText getCalendarDate() { return this.calendarDate; }
+    private ImageView errorIcon;
+    public ImageView getErrorIcon() { return this.errorIcon; }
     public ClientInputDataBinding(CalendarView calendarView, EditText calendarDate, ImageView errorIcon) {
         this.calendarView = calendarView;
         this.calendarView.setVisibility(CalendarView.INVISIBLE);
@@ -27,6 +30,7 @@ public class ClientInputDataBinding extends BaseObservable {
         this.errorIcon = errorIcon;
         //this.clientInputCardFragment.setDateValid(false);
         this.errorIcon.setVisibility(View.INVISIBLE);
+
     }
 
     public void onCalendarButtonClick(View view) {
@@ -43,6 +47,9 @@ public class ClientInputDataBinding extends BaseObservable {
         this.isCalendarVisible = false;
         this.calendarView.setVisibility(CalendarView.INVISIBLE);
         Calendar calendar = Calendar.getInstance();
+        this.month = month;
+        this.day = dayOfMonth;
+        this.year = year;
         calendar.set(Calendar.MONTH, month + 1);
         calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
         calendar.set(Calendar.YEAR, year);
@@ -56,4 +63,35 @@ public class ClientInputDataBinding extends BaseObservable {
     public void setCardFragment(ClientInputCardFragment cardFragment) {
         this.clientInputCardFragment = cardFragment;
     }
+
+    private int month;
+    public int getMonth() { return this.month; }
+    public void setMonth(int month) { this.month = month; }
+
+    private int day;
+    public int getDay() { return this.day; }
+    public void setDay(int day) { this.day = day; }
+
+    private int year;
+    public int getYear() { return this.year; }
+    public void setYear(int year) { this.year = year; }
+
+    private float mpg;
+    public float getMpg() { return this.mpg; }
+    public void setMpg(float mpg) { this.mpg = mpg; }
+
+    private float gasPrice;
+    public float getGasPrice() { return this.gasPrice; }
+    public void setGasPrice(float gasPrice) { this.gasPrice = gasPrice; }
+
+    private float distance;
+    public void setDistance(float distance) { this.distance = distance; }
+    public float getDistance() { return this.distance; }
+
+    private float income;
+    public void setIncome(float income) { this.income = income; }
+    public float getIncome() { return this.income; }
+
+
+
 }

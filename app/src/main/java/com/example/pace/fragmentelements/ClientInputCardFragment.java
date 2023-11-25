@@ -42,4 +42,13 @@ public class ClientInputCardFragment extends Fragment {
     boolean dateValid = false;
     public void setDateValid(boolean dateValid) { this.dateValid = dateValid; }
     public boolean getDateValid() { return this.dateValid; }
+
+    public void resetAllCalendarCardValues() {
+        this.dateText.setText("Date");
+        this.dateValid = false;
+        this.mpgText.setText("");
+        this.gasPriceText.setText("");
+        this.distanceText.setText("");
+        this.incomeText.setText("");
+    }
 }

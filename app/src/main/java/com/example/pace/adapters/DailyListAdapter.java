@@ -3,6 +3,7 @@ package com.example.pace.adapters;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -28,7 +29,7 @@ public class DailyListAdapter extends RecyclerView.Adapter<DailyListAdapter.View
 
     @Override
     public void onBindViewHolder(@NonNull DailyListAdapter.ViewHolder holder, int position) {
-
+        holder.textView.setText(this.clientDataList.get(position).getFormattedDateList());
     }
 
     @Override
@@ -37,9 +38,10 @@ public class DailyListAdapter extends RecyclerView.Adapter<DailyListAdapter.View
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-
+        public TextView textView;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
+            this.textView = itemView.findViewById(R.id.layout_list_dateText);
         }
     }
 }
