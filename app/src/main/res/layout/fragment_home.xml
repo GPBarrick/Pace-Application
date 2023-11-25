@@ -66,7 +66,25 @@
             app:layout_constraintTop_toBottomOf="@+id/home_tabLayout"
             app:layout_constraintBottom_toBottomOf="parent"/>
 
+        <ImageButton
+            android:id="@+id/home_modifyList_button"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            app:layout_constraintStart_toStartOf="@+id/home_tools_background"
+            app:layout_constraintTop_toTopOf="@+id/home_tools_background"
+            app:layout_constraintBottom_toBottomOf="@+id/home_tools_background"
+            android:elevation="15dp"
+            android:background="@drawable/wrench_icon"
+            android:layout_marginStart="25dp"/>
 
+        <View
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:background="@color/forest"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/home_tabLayout"/>
+        
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 
