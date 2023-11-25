@@ -57,7 +57,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/client_input_tabLayout"
                 app:layout_constraintBottom_toTopOf="@+id/client_input_calendar_editText"
-                android:layout_marginBottom="100dp"/>
+                android:layout_marginBottom="55dp"/>
 
             <ImageButton
                 android:id="@+id/client_input_calendar_button"
@@ -108,7 +108,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/client_input_viewPager"
-                android:layout_marginTop="10dp"/>
+                android:layout_marginTop="20dp"/>
 
             <CalendarView
                 android:id="@+id/client_input_calendarView"
