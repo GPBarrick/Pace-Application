@@ -36,9 +36,6 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.131" />
 
-
-            <!-- TODO: Add Text -->
-
             <ImageView
                 android:id="@+id/home_card_design_2"
                 android:layout_width="56dp"
@@ -50,6 +47,8 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.78" />
+
+            <!-- TODO: Add Text -->
 
             <TextView
                 android:id="@+id/home_card_month_text"
@@ -65,7 +64,31 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            
+            <TextView
+                android:id="@+id/home_card_month_text2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="12dp"
+                android:text="MPG:"
+                android:textColor="@color/beige"
+                android:textSize="15dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/home_card_month_text" />
+
+            <TextView
+                android:id="@+id/home_card_month_text3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Gas Price:"
+                android:textColor="@color/beige"
+                android:textSize="15dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.057"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/home_card_month_text2"
+                app:layout_constraintVertical_bias="0.0" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
