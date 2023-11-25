@@ -60,7 +60,8 @@ public class ClientInputFragment extends Fragment {
 
         this.clientInputDataBinding = new ClientInputDataBinding(
                 fragmentClientInputBinding.clientInputCalendarView,
-                fragmentClientInputBinding.clientInputCalendarEditText
+                fragmentClientInputBinding.clientInputCalendarEditText,
+                fragmentClientInputBinding.clientInputErrorIcon
         );
         fragmentClientInputBinding.setInputDataBinding(this.clientInputDataBinding);
         this.clientInputDataBinding.setCardFragment(this.cardFragment);
