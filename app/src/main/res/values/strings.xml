@@ -9,5 +9,6 @@
     <string name="gasPrice_hint">Gas Price</string>
     <string name="distance_hint">Distance</string>
     <string name="income_hint">Income</string>
+    <string name="textView">TextView</string>
 
 </resources>
