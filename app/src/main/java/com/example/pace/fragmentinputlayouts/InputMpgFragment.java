@@ -55,7 +55,7 @@ public class InputMpgFragment extends Fragment {
             public void onClick(View view) {
                 if (mpgInputText.getText().length() > 0) {
                     fragmentClientInputBinding.getInputDataBinding().clientInputCardFragment.mpgText.setText(
-                            String.valueOf(mpgInputText.getText())
+                            mpgInputText.getText() + " m/g"
                     );
                     fragmentClientInputBinding.clientInputViewPager.setCurrentItem(1);
                     errorIcon.setVisibility(View.INVISIBLE);
@@ -71,7 +71,7 @@ public class InputMpgFragment extends Fragment {
                 if (actionId == EditorInfo.IME_ACTION_SEND) {
                     if (mpgInputText.getText().length() > 0) {
                         fragmentClientInputBinding.getInputDataBinding().clientInputCardFragment.mpgText.setText(
-                                String.valueOf(mpgInputText.getText())
+                                mpgInputText.getText() + " m/g"
                         );
                         fragmentClientInputBinding.clientInputViewPager.setCurrentItem(1);
                         errorIcon.setVisibility(View.INVISIBLE);

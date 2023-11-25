@@ -59,9 +59,15 @@ public class InputIncomeFragment extends Fragment {
                             "$" + incomeInputText.getText()
                     );
                     // TODO: ADD CLIENT
+
+                    checkCalendarBinding();
+
                     errorIcon.setVisibility(View.INVISIBLE);
                     errorBool = false;
                 } else {
+
+                    checkCalendarBinding();
+
                     errorIcon.setVisibility(View.VISIBLE);
                     errorBool = true;
                 }
@@ -80,10 +86,16 @@ public class InputIncomeFragment extends Fragment {
                         fragmentClientInputBinding.getInputDataBinding().clientInputCardFragment.incomeText.setText(
                                 "$" + incomeInputText.getText()
                         );
-                        fragmentClientInputBinding.clientInputViewPager.setCurrentItem(3);
+                        // TODO: ADD CLIENT
+
+                        checkCalendarBinding();
+
                         errorIcon.setVisibility(View.INVISIBLE);
                         errorBool = false;
                     } else {
+
+                        checkCalendarBinding();
+
                         errorIcon.setVisibility(View.VISIBLE);
                         errorBool = true;
                     }
@@ -97,5 +109,14 @@ public class InputIncomeFragment extends Fragment {
     public boolean errorBool;
     public boolean getErrorBool() {
         return errorBool;
+    }
+
+    public void checkCalendarBinding() {
+
+        if(fragmentClientInputBinding.getInputDataBinding().clientInputCardFragment.getDateValid()) {
+            fragmentClientInputBinding.clientInputErrorIcon.setVisibility(View.INVISIBLE);
+        } else {
+            fragmentClientInputBinding.clientInputErrorIcon.setVisibility(View.VISIBLE);
+        }
     }
 }

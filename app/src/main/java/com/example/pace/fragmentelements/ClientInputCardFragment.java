@@ -38,4 +38,8 @@ public class ClientInputCardFragment extends Fragment {
         this.distanceText = view.findViewById(R.id.input_card_distanceText);
         this.incomeText = view.findViewById(R.id.input_card_incomeText);
     }
+
+    boolean dateValid = false;
+    public void setDateValid(boolean dateValid) { this.dateValid = dateValid; }
+    public boolean getDateValid() { return this.dateValid; }
 }

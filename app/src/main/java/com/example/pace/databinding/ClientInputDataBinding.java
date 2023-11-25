@@ -3,6 +3,7 @@ package com.example.pace.databinding;
 import android.view.View;
 import android.widget.CalendarView;
 import android.widget.EditText;
+import android.widget.ImageView;
 
 import androidx.databinding.BaseObservable;
 
@@ -15,11 +16,17 @@ public class ClientInputDataBinding extends BaseObservable {
     private boolean isCalendarVisible;
     private CalendarView calendarView;
     private EditText calendarDate;
-    public ClientInputDataBinding(CalendarView calendarView, EditText calendarDate) {
+    public ImageView errorIcon;
+    public ClientInputDataBinding(CalendarView calendarView, EditText calendarDate, ImageView errorIcon) {
         this.calendarView = calendarView;
         this.calendarView.setVisibility(CalendarView.INVISIBLE);
+
         this.isCalendarVisible = false;
         this.calendarDate = calendarDate;
+
+        this.errorIcon = errorIcon;
+        //this.clientInputCardFragment.setDateValid(false);
+        this.errorIcon.setVisibility(View.INVISIBLE);
     }
 
     public void onCalendarButtonClick(View view) {
@@ -41,6 +48,8 @@ public class ClientInputDataBinding extends BaseObservable {
         calendar.set(Calendar.YEAR, year);
         this.calendarDate.setText(calendar.get(Calendar.MONTH) + "/" + calendar.get(Calendar.DATE) + "/" + calendar.get(Calendar.YEAR));
         this.clientInputCardFragment.dateText.setText(String.valueOf(this.calendarDate.getText()));
+        this.clientInputCardFragment.setDateValid(true);
+        this.errorIcon.setVisibility(View.INVISIBLE);
     }
 
     public ClientInputCardFragment clientInputCardFragment;
