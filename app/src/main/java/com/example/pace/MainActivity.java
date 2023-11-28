@@ -30,6 +30,8 @@ import com.google.firebase.auth.EmailAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class MainActivity extends AppCompatActivity {
     @Override
@@ -54,6 +56,16 @@ public class MainActivity extends AppCompatActivity {
         InitFragmentData();
 
         InitTabs(this.dailyFragments);
+        databaseMessage();
+    }
+
+    //testing of the database section
+    void databaseMessage(){
+        // Write a message to the database
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference myRef = database.getReference("testing the database");
+
+        myRef.setValue("Hello, World!");
     }
     /* Initialize Test object member */
     public Test t;
