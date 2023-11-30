@@ -13,15 +13,11 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.pace.R;
 import com.example.pace.adapters.DailyListAdapter;
-import com.example.pace.clientuser.ClientData;
-
-import java.util.ArrayList;
+import com.example.pace.config.ListHolder;
 
 public class DailyListFragment extends Fragment {
 
-    public ArrayList<ClientData> clientDataList;
-    public DailyListFragment(ArrayList<ClientData> clientDataList) {
-        this.clientDataList = clientDataList;
+    public DailyListFragment() {
     }
 
     @Nullable
@@ -41,16 +37,13 @@ public class DailyListFragment extends Fragment {
         this.dailyList = view.findViewById(R.id.daily_list_recyclerView);
     }
 
-    public DailyListAdapter dailyListAdapter;
     public void initListAdapter() {
 
-        this.clientDataList.add(new ClientData());
-        this.clientDataList.add(new ClientData());
-        this.clientDataList.add(new ClientData());
-        this.clientDataList.add(new ClientData());
+        //ListConfig.getInstance().setFormattedDailyListDate(this.clientDataList);
+        //ListConfig.getInstance().calculatePercentages(this.clientDataList);
 
-        this.dailyListAdapter = new DailyListAdapter(this.clientDataList);
+        ListHolder.getInstance().dailyListAdapter = new DailyListAdapter(ListHolder.getInstance().clientDataList);
         this.dailyList.setLayoutManager(new LinearLayoutManager(getActivity()));
-        this.dailyList.setAdapter(this.dailyListAdapter);
+        this.dailyList.setAdapter(ListHolder.getInstance().dailyListAdapter);
     }
 }

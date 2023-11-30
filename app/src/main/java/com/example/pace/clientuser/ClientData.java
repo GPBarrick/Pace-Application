@@ -71,7 +71,7 @@ public class ClientData {
     public String getFormattedDateList() { return this.formattedDateList; }
 
     public ClientData() {/* Default constructor */}
-    public ClientData(int month, int day, int year, int mpg, int gasPrice, int distance, int income) {
+    public ClientData(int month, int day, int year, float mpg, float gasPrice, float distance, float income) {
         this.month = month;
         this.day = day;
         this.year = year;

@@ -83,16 +83,20 @@ public class ClientInputFragment extends Fragment {
     public ClientInputAdapter clientInputAdapter;
     private void initInputFragments(FragmentClientInputBinding fragmentClientInputBinding) {
 
-        this.inputMpgFragment = new InputMpgFragment(fragmentClientInputBinding);
-        this.inputGasPriceFragment = new InputGasPriceFragment(fragmentClientInputBinding);
-        this.inputDistanceFragment = new InputDistanceFragment(fragmentClientInputBinding);
-        this.inputIncomeFragment = new InputIncomeFragment(fragmentClientInputBinding);
-
         this.inputFragments = new ArrayList<>();
+        this.inputMpgFragment = new InputMpgFragment(fragmentClientInputBinding);
         this.inputFragments.add(this.inputMpgFragment);
+
+        this.inputGasPriceFragment = new InputGasPriceFragment(fragmentClientInputBinding);
         this.inputFragments.add(this.inputGasPriceFragment);
+
+        this.inputDistanceFragment = new InputDistanceFragment(fragmentClientInputBinding);
         this.inputFragments.add(this.inputDistanceFragment);
+
+        this.inputIncomeFragment = new InputIncomeFragment(fragmentClientInputBinding);
         this.inputFragments.add(this.inputIncomeFragment);
+
+        this.inputIncomeFragment.setFragmentList(this.inputFragments);
 
         this.clientInputAdapter = new ClientInputAdapter(getActivity().getSupportFragmentManager(), getLifecycle());
         for (int index = 0; index < this.inputFragments.size(); ++index) {

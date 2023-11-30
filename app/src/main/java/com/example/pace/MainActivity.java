@@ -8,6 +8,8 @@ import androidx.fragment.app.Fragment;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.example.pace.adapters.MainFragmentAdapter;
+import com.example.pace.clientuser.ClientData;
+import com.example.pace.config.ListHolder;
 import com.example.pace.fragmentlayouts.ClientInputFragment;
 import com.example.pace.fragmentlayouts.HomeFragment;
 import com.google.android.material.tabs.TabLayout;
@@ -25,6 +27,10 @@ public class MainActivity extends AppCompatActivity {
         initTabLayout();
     }
 
+    ArrayList<ClientData> clientDataList = new ArrayList<>();
+    public void setClientDataList(ArrayList<ClientData> clientDataList) { this.clientDataList = clientDataList; }
+    public ArrayList<ClientData> getClientDataList() { return this.clientDataList; }
+
     public ViewPager2 mainViewPager;
     public TabLayout mainTabLayout;
     private void initViews() {
@@ -35,6 +41,9 @@ public class MainActivity extends AppCompatActivity {
     public HomeFragment homeFragment;
     public ClientInputFragment clientInputFragment;
     private void initFragments() {
+        ListHolder.getInstance().clientDataList = this.clientDataList;
+        ListHolder.getInstance().mainActivityPager = this.mainViewPager;
+
         this.homeFragment = new HomeFragment();
         this.clientInputFragment = new ClientInputFragment();
 

@@ -26,6 +26,12 @@ public class InputMpgFragment extends Fragment {
         this.errorBool = false;
     }
 
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        this.mpgInputText.getText().clear();
+    }
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -47,6 +53,7 @@ public class InputMpgFragment extends Fragment {
         this.errorIcon = view.findViewById(R.id.input_mpg_errorIcon);
 
         this.errorIcon.setVisibility(View.INVISIBLE);
+
     }
 
     private void initListeners() {
@@ -54,6 +61,7 @@ public class InputMpgFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 if (mpgInputText.getText().length() > 0) {
+                    fragmentClientInputBinding.getInputDataBinding().setMpg(Float.parseFloat(String.valueOf(mpgInputText.getText())));
                     fragmentClientInputBinding.getInputDataBinding().clientInputCardFragment.mpgText.setText(
                             mpgInputText.getText() + " m/g"
                     );
@@ -70,6 +78,7 @@ public class InputMpgFragment extends Fragment {
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
                 if (actionId == EditorInfo.IME_ACTION_SEND) {
                     if (mpgInputText.getText().length() > 0) {
+                        fragmentClientInputBinding.getInputDataBinding().setMpg(Float.parseFloat(String.valueOf(mpgInputText.getText())));
                         fragmentClientInputBinding.getInputDataBinding().clientInputCardFragment.mpgText.setText(
                                 mpgInputText.getText() + " m/g"
                         );

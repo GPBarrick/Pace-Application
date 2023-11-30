@@ -13,7 +13,6 @@ import androidx.viewpager2.widget.ViewPager2;
 import com.example.pace.R;
 import com.example.pace.adapters.HomeCardAdapter;
 import com.example.pace.adapters.HomeListAdapter;
-import com.example.pace.clientuser.ClientData;
 import com.example.pace.fragmentelements.DailyListFragment;
 import com.example.pace.fragmentelements.HomeCardFragment;
 import com.example.pace.fragmentelements.MonthlyListFragment;
@@ -24,6 +23,7 @@ import com.google.android.material.tabs.TabLayoutMediator;
 import java.util.ArrayList;
 
 public class HomeFragment extends Fragment {
+
     public HomeFragment() {
     }
 
@@ -38,10 +38,6 @@ public class HomeFragment extends Fragment {
         return view;
     }
 
-    ArrayList<ClientData> clientDataList = new ArrayList<>();
-    public void setClientDataList(ArrayList<ClientData> clientDataList) { this.clientDataList = clientDataList; }
-    public ArrayList<ClientData> getClientDataList() { return this.clientDataList; }
-
     public ViewPager2 listViewPager;
     public ViewPager2 cardViewPager;
     public TabLayout listTabLayout;
@@ -52,7 +48,7 @@ public class HomeFragment extends Fragment {
     }
     private void initListViewPager() {
         HomeListAdapter homeListAdapter = new HomeListAdapter(getActivity().getSupportFragmentManager(), getLifecycle());
-        homeListAdapter.addFragment(new DailyListFragment(this.clientDataList));
+        homeListAdapter.addFragment(new DailyListFragment());
         homeListAdapter.addFragment(new WeeklyListFragment());
         homeListAdapter.addFragment(new MonthlyListFragment());
         this.listViewPager.setOrientation(ViewPager2.ORIENTATION_HORIZONTAL);
