@@ -59,6 +59,7 @@ public class MainActivity extends AppCompatActivity {
         databaseMessage();
     }
 
+    //back to original branch I had
     //testing of the database section
     void databaseMessage(){
         // Write a message to the database
