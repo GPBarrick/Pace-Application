@@ -77,6 +77,7 @@
             android:background="@drawable/wrench_icon"
             android:layout_marginStart="25dp"/>
 
+
         <View
             android:layout_width="0dp"
             android:layout_height="1dp"

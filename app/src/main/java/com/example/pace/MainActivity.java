@@ -1,6 +1,9 @@
 package com.example.pace;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ImageButton;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -14,6 +17,7 @@ import com.example.pace.fragmentlayouts.ClientInputFragment;
 import com.example.pace.fragmentlayouts.HomeFragment;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
+import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.ArrayList;
 
@@ -25,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
         initViews();
         initFragments();
         initTabLayout();
+
     }
 
     ArrayList<ClientData> clientDataList = new ArrayList<>();
