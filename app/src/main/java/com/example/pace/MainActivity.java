@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager2.widget.ViewPager2;
 
+import com.example.pace.DataBase.DataBase;
 import com.example.pace.adapters.MainFragmentAdapter;
 import com.example.pace.clientuser.ClientData;
 import com.example.pace.config.ListHolder;
@@ -18,6 +19,8 @@ import com.example.pace.fragmentlayouts.HomeFragment;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 
@@ -29,6 +32,14 @@ public class MainActivity extends AppCompatActivity {
         initViews();
         initFragments();
         initTabLayout();
+
+        //testing database
+
+        DataBase database = new DataBase();
+        if(clientDataList.get(0)!= null){
+            database.FirebaseSetUp(clientDataList.get(0));
+        }
+        //end of testing.
 
     }
 

@@ -39,6 +39,7 @@ dependencies {
 
     implementation("com.google.android.gms:play-services-base:18.2.0")
     implementation("com.google.firebase:firebase-auth:22.3.0")
+    implementation("com.google.firebase:firebase-database:20.3.0")
     // ROOM database
     var room_version = "2.6.0"
     implementation("androidx.room:room-runtime:$room_version")

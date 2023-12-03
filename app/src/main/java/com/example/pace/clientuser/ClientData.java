@@ -80,4 +80,5 @@ public class ClientData {
         this.distance = distance;
         this.income = income;
     }
+
 }
