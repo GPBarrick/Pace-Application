@@ -65,7 +65,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/home_card_month_text2"
+                android:id="@+id/home_card_mpg_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="MPG:"
@@ -79,7 +79,7 @@
                 app:layout_constraintVertical_bias="0.066" />
 
             <TextView
-                android:id="@+id/home_card_month_text3"
+                android:id="@+id/home_card_gas_price_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Gas Price:"
@@ -89,11 +89,11 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.057"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/home_card_month_text2"
+                app:layout_constraintTop_toBottomOf="@+id/home_card_mpg_text"
                 app:layout_constraintVertical_bias="0.121" />
 
             <TextView
-                android:id="@+id/home_card_month_text4"
+                android:id="@+id/home_card_distance_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Distance:"
@@ -103,11 +103,11 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.056"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/home_card_month_text3"
+                app:layout_constraintTop_toBottomOf="@+id/home_card_gas_price_text"
                 app:layout_constraintVertical_bias="0.202" />
 
             <TextView
-                android:id="@+id/home_card_month_text5"
+                android:id="@+id/home_card_income_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Income:"
@@ -117,7 +117,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.054"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/home_card_month_text4"
+                app:layout_constraintTop_toBottomOf="@+id/home_card_distance_text"
                 app:layout_constraintVertical_bias="0.333" />
 
 

@@ -61,7 +61,7 @@
                 android:layout_height="22dp"
                 app:layout_constraintBottom_toTopOf="@+id/input_gasPrice_editText"
                 app:layout_constraintStart_toEndOf="@+id/input_gasPrice_backButton"
-                android:background="@drawable/red_x_icon"
+                android:background="@drawable/error_icon"
                 android:layout_marginStart="5dp"
                 android:layout_marginBottom="-5dp"/>
 
