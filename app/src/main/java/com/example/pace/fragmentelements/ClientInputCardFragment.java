@@ -32,7 +32,7 @@ public class ClientInputCardFragment extends Fragment {
     public TextView distanceText;
     public TextView incomeText;
     private void initViews(View view) {
-        this.dateText = view.findViewById(R.id.input_card_dateText);
+        this.dateText = view.findViewById(R.id.input_card_header);
         this.mpgText = view.findViewById(R.id.input_card_mpgText);
         this.gasPriceText = view.findViewById(R.id.input_card_gasPriceText);
         this.distanceText = view.findViewById(R.id.input_card_distanceText);

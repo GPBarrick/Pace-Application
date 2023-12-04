@@ -11,10 +11,10 @@
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="20dp"
         android:layout_marginStart="25dp"
         android:layout_marginEnd="25dp"
-        android:layout_marginBottom="10dp"
+        android:layout_marginBottom="50dp"
         app:cardBackgroundColor="@color/space_grey"
         app:cardCornerRadius="15dp">
 
@@ -22,135 +22,145 @@
             android:layout_width="match_parent"
             android:layout_height="215dp">
 
-            <TextView
-                android:id="@+id/input_card_dateText"
-                android:layout_width="match_parent"
+            <!-- TODO: Add Image Designs-->
+
+            <ImageView
+                android:id="@+id/home_card_design"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:src="@drawable/card_design"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                android:layout_marginTop="10dp"
-                android:textColor="@color/beige"
-                android:text="@string/date_hint"
-                android:gravity="center"
-                android:textSize="32sp"/>
+                app:layout_constraintVertical_bias="0.131" />
 
+            <ImageView
+                android:id="@+id/home_card_design_2"
+                android:layout_width="56dp"
+                android:layout_height="51dp"
+                android:src="@drawable/maple_leaf_icon"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.944"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.78" />
+
+
+            <!-- TODO: Add Text-->
+
+            <TextView
+                android:id="@+id/input_card_header"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:gravity="center"
+                android:text="November"
+                android:textColor="@color/beige"
+                android:textSize="32sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.057"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <!--  MPG  -->
             <TextView
                 android:id="@+id/input_card_hintMpg"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/input_card_dateText"
-                android:layout_marginStart="15dp"
-                android:layout_marginTop="8dp"
+                android:text="MPG:"
                 android:textColor="@color/beige"
-                android:textSize="20sp"
-                android:text="@string/mpg_hint"/>
+                android:textSize="15dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.052"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/input_card_header"
+                app:layout_constraintVertical_bias="0.066" />
 
             <TextView
                 android:id="@+id/input_card_mpgText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:layout_constraintStart_toEndOf="@+id/input_card_hintMpg"
-                app:layout_constraintTop_toBottomOf="@+id/input_card_dateText"
-                android:layout_marginStart="15dp"
+                app:layout_constraintBottom_toBottomOf="@+id/input_card_hintMpg"
+                android:layout_marginStart="10dp"
                 android:layout_marginTop="8dp"
                 android:textColor="@color/beige"
-                android:textSize="20sp"
+                android:textSize="15dp"
                 android:textStyle="bold"/>
-            
-            <View
-                android:layout_width="0dp"
-                android:layout_height="1dp"
-                android:background="@color/beige"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/input_card_hintMpg"
-                app:layout_constraintBottom_toTopOf="@+id/input_card_hintGasPrice"
-                android:layout_marginStart="15dp"
-                android:layout_marginEnd="50dp"/>
 
+            <!--  Gas Price  -->
             <TextView
                 android:id="@+id/input_card_hintGasPrice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:text="Gas Price:"
+                android:textColor="@color/beige"
+                android:textSize="15dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.057"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/input_card_hintMpg"
-                android:layout_marginStart="15dp"
-                android:layout_marginTop="10dp"
-                android:textColor="@color/beige"
-                android:textSize="20sp"
-                android:text="@string/gasPrice_hint"/>
+                app:layout_constraintVertical_bias="0.121" />
 
             <TextView
                 android:id="@+id/input_card_gasPriceText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:layout_constraintStart_toEndOf="@+id/input_card_hintGasPrice"
-                app:layout_constraintTop_toBottomOf="@+id/input_card_mpgText"
-                android:layout_marginStart="15dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="8dp"
                 android:textColor="@color/beige"
-                android:textSize="20sp"
-                android:textStyle="bold"/>
+                android:textSize="15sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/input_card_hintGasPrice"
+                app:layout_constraintStart_toEndOf="@+id/input_card_hintGasPrice" />
 
-            <View
-                android:layout_width="0dp"
-                android:layout_height="1dp"
-                android:background="@color/beige"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/input_card_hintGasPrice"
-                app:layout_constraintBottom_toTopOf="@+id/input_card_distanceHint"
-                android:layout_marginStart="15dp"
-                android:layout_marginEnd="50dp"/>
-
+            <!--  Edit This  -->
             <TextView
                 android:id="@+id/input_card_distanceHint"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:text="Distance:"
+                android:textColor="@color/beige"
+                android:textSize="15dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.056"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/input_card_hintGasPrice"
-                android:layout_marginStart="15dp"
-                android:layout_marginTop="10dp"
-                android:textColor="@color/beige"
-                android:textSize="20sp"
-                android:text="@string/distance_hint"/>
+                app:layout_constraintVertical_bias="0.202" />
 
             <TextView
                 android:id="@+id/input_card_distanceText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:layout_constraintStart_toEndOf="@+id/input_card_distanceHint"
-                app:layout_constraintTop_toBottomOf="@+id/input_card_gasPriceText"
-                android:layout_marginStart="15dp"
-                android:layout_marginTop="10dp"
+                app:layout_constraintTop_toBottomOf="@+id/input_card_hintGasPrice"
+                app:layout_constraintTop_toTopOf="@+id/input_card_distanceHint"
+                app:layout_constraintBottom_toBottomOf="@+id/input_card_distanceHint"
+                android:layout_marginStart="10dp"
                 android:textColor="@color/beige"
-                android:textSize="20sp"
+                android:textSize="15sp"
                 android:textStyle="bold"/>
 
-            <View
-                android:layout_width="0dp"
-                android:layout_height="1dp"
-                android:background="@color/beige"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/input_card_distanceHint"
-                app:layout_constraintBottom_toTopOf="@+id/input_card_incomeHint"
-                android:layout_marginStart="15dp"
-                android:layout_marginEnd="50dp"/>
-
+            <!--  Edit This  -->
             <TextView
                 android:id="@+id/input_card_incomeHint"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:text="Income:"
+                android:textColor="@color/beige"
+                android:textSize="15dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.054"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/input_card_distanceHint"
-                android:layout_marginStart="15dp"
-                android:layout_marginTop="10dp"
-                android:textColor="@color/beige"
-                android:textSize="20sp"
-                android:text="@string/income_hint"/>
+                app:layout_constraintVertical_bias="0.333" />
 
             <TextView
                 android:id="@+id/input_card_incomeText"
@@ -158,10 +168,11 @@
                 android:layout_height="wrap_content"
                 app:layout_constraintStart_toEndOf="@+id/input_card_incomeHint"
                 app:layout_constraintTop_toBottomOf="@+id/input_card_distanceText"
-                android:layout_marginStart="15dp"
-                android:layout_marginTop="10dp"
+                app:layout_constraintBottom_toBottomOf="@+id/input_card_incomeHint"
+                app:layout_constraintTop_toTopOf="@id/input_card_incomeHint"
+                android:layout_marginStart="10dp"
                 android:textColor="@color/beige"
-                android:textSize="20sp"
+                android:textSize="15sp"
                 android:textStyle="bold"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
