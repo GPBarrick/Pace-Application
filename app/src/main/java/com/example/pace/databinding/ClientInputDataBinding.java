@@ -1,5 +1,6 @@
 package com.example.pace.databinding;
 
+import android.util.Log;
 import android.view.View;
 import android.widget.CalendarView;
 import android.widget.EditText;
@@ -47,16 +48,18 @@ public class ClientInputDataBinding extends BaseObservable {
         this.isCalendarVisible = false;
         this.calendarView.setVisibility(CalendarView.INVISIBLE);
         Calendar calendar = Calendar.getInstance();
-        this.month = month;
+        this.month = month + 1;
         this.day = dayOfMonth;
         this.year = year;
-        calendar.set(Calendar.MONTH, month + 1);
-        calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
-        calendar.set(Calendar.YEAR, year);
-        this.calendarDate.setText(calendar.get(Calendar.MONTH) + "/" + calendar.get(Calendar.DATE) + "/" + calendar.get(Calendar.YEAR));
+        calendar.set(Calendar.MONTH, month);
+        calendar.set(Calendar.DAY_OF_MONTH, this.day);
+        calendar.set(Calendar.YEAR, this.year);
+        this.weekOfYear = calendar.get(Calendar.WEEK_OF_YEAR);
+        this.calendarDate.setText(this.month + "/" + this.day + "/" + this.year);
         this.clientInputCardFragment.dateText.setText(String.valueOf(this.calendarDate.getText()));
         this.clientInputCardFragment.setDateValid(true);
         this.errorIcon.setVisibility(View.INVISIBLE);
+        calendar.clear();
     }
 
     public ClientInputCardFragment clientInputCardFragment;
@@ -92,6 +95,9 @@ public class ClientInputDataBinding extends BaseObservable {
     public void setIncome(float income) { this.income = income; }
     public float getIncome() { return this.income; }
 
+    private int weekOfYear;
+    public void setWeekOfYear(int weekOfYear) { this.weekOfYear = weekOfYear; }
+    public int getWeekOfYear() { return this.weekOfYear; }
 
 
 }

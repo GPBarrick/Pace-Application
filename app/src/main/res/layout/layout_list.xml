@@ -13,12 +13,9 @@
         android:layout_height="45dp"
         android:src="@drawable/route_icon_yellow"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHeight="match_parent"
-        app:layout_constraintHorizontal_bias="0.123"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginStart="25dp"/>
 
     <TextView
         android:id="@+id/layout_list_dateText"
@@ -27,61 +24,50 @@
         android:text="@string/textView"
         android:textSize="16sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.303"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.296"/>
+        app:layout_constraintStart_toEndOf="@+id/layout_list_image"
+        app:layout_constraintTop_toTopOf="@+id/layout_list_image"
+        android:layout_marginStart="20dp"/>
 
     <TextView
+        android:id="@+id/layout_list_routesText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/textView"
         android:textSize="12dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.287"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.728" />
+        app:layout_constraintBottom_toBottomOf="@+id/layout_list_image"
+        app:layout_constraintStart_toEndOf="@+id/layout_list_image"
+        app:layout_constraintStart_toStartOf="@+id/layout_list_dateText"/>
 
     <TextView
+        android:id="@+id/layout_list_routesNum"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/textView"
         android:textSize="12dp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.43"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.728" />
+        app:layout_constraintStart_toEndOf="@+id/layout_list_routesText"
+        app:layout_constraintTop_toTopOf="@+id/layout_list_routesText"
+        android:layout_marginStart="5dp"/>
 
     <TextView
+        android:id="@+id/layout_list_expenditureText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/textView"
         android:textSize="16dp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/layout_list_dateText"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.877"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.296" />
+        android:layout_marginEnd="60dp" />
 
     <TextView
+        android:id="@+id/layout_list_expenditurePercentageText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/textView"
         android:textSize="16dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.877"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.728" />
+        app:layout_constraintTop_toTopOf="@+id/layout_list_routesText"
+        app:layout_constraintBottom_toBottomOf="@+id/layout_list_routesText"
+        app:layout_constraintEnd_toEndOf="@+id/layout_list_expenditureText"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

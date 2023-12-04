@@ -36,6 +36,7 @@ android {
 
 dependencies {
 
+    implementation("androidx.room:room-common:2.6.1")
     // ROOM database
     var room_version = "2.6.0"
     implementation("androidx.room:room-runtime:$room_version")
