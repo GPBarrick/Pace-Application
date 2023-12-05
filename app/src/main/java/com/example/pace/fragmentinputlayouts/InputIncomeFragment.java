@@ -20,6 +20,7 @@ import androidx.fragment.app.Fragment;
 import com.example.pace.R;
 import com.example.pace.clientuser.ClientData;
 import com.example.pace.clientuser.ClientDataDailyList;
+import com.example.pace.clientuser.ClientDataMonthlyList;
 import com.example.pace.clientuser.ClientDataWeeklyList;
 import com.example.pace.config.ListHolder;
 import com.example.pace.databinding.FragmentClientInputBinding;
@@ -165,6 +166,7 @@ public class InputIncomeFragment extends Fragment {
 
             initDailyListData(clientData);
             initWeeklyListData(clientData);
+            initMonthlyListData(clientData);
 
             fragmentClientInputBinding.clientInputViewPager.setCurrentItem(0);
             fragmentClientInputBinding.getInputDataBinding().clientInputCardFragment.resetAllCalendarCardValues();
@@ -275,12 +277,17 @@ public class InputIncomeFragment extends Fragment {
             ListHolder.getInstance().outputWeeklyDataList.get(0).setStartYear(startYear);
             ListHolder.getInstance().outputWeeklyDataList.get(0).setEndYear(endYear);
             ListHolder.getInstance().outputWeeklyDataList.get(0).setWeekOfYear(clientData.getWeekOfYear());
+            ListHolder.getInstance().outputWeeklyDataList.get(0).setExpenditure(clientData.getExpenditureCalculation());
 
         } else {
             boolean wasFound = false;
             for (int r = 0; r < ListHolder.getInstance().outputWeeklyDataList.size(); ++r) {
                 if (ListHolder.getInstance().outputWeeklyDataList.get(r).getWeekOfYear() == clientData.getWeekOfYear()) {
                     ListHolder.getInstance().outputWeeklyDataList.get(r).getClientDataList().add(clientData);
+                    ListHolder.getInstance().outputWeeklyDataList.get(r).setExpenditure(
+                            ListHolder.getInstance().outputWeeklyDataList.get(r).getExpenditure()
+                            + clientData.getExpenditureCalculation()
+                    );
                     ListHolder.getInstance().weeklyListAdapter.notifyDataSetChanged();
                     wasFound = true;
                     break;
@@ -326,6 +333,9 @@ public class InputIncomeFragment extends Fragment {
                 ListHolder.getInstance().outputWeeklyDataList.get(
                         ListHolder.getInstance().outputWeeklyDataList.size() - 1
                 ).setWeekOfYear(clientData.getWeekOfYear());
+                ListHolder.getInstance().outputWeeklyDataList.get(
+                        ListHolder.getInstance().outputWeeklyDataList.size() - 1
+                ).setExpenditure(clientData.getExpenditureCalculation());
 
                 ListHolder.getInstance().weeklyListAdapter.notifyItemInserted(ListHolder.getInstance().outputWeeklyDataList.size());
             }
@@ -345,6 +355,40 @@ public class InputIncomeFragment extends Fragment {
                             +" ey:"+ String.valueOf(ListHolder.getInstance().outputWeeklyDataList.get(i).getEndYear())
                             +" wof:"+ String.valueOf(ListHolder.getInstance().outputWeeklyDataList.get(i).getWeekOfYear())
             );
+        }
+    }
+
+    private void initMonthlyListData(ClientData clientData) {
+        if (ListHolder.getInstance().outputMonthlyDataList.size() == 0) {
+            ArrayList<ClientData> clientDataList = new ArrayList<>();
+            clientDataList.add(clientData);
+            ListHolder.getInstance().outputMonthlyDataList.add(new ClientDataMonthlyList(clientDataList));
+            ListHolder.getInstance().outputMonthlyDataList.get(0).setMonth(clientData.getMonth());
+            ListHolder.getInstance().outputMonthlyDataList.get(0).setYear(clientData.getYear());
+        } else {
+            boolean wasFound = false;
+            for (int i = 0; i < ListHolder.getInstance().outputMonthlyDataList.size(); ++i) {
+                if (ListHolder.getInstance().outputMonthlyDataList.get(i).getMonth() == clientData.getMonth()) {
+                    ListHolder.getInstance().outputMonthlyDataList.get(i).getClientDataList().add(clientData);
+                    ListHolder.getInstance().outputMonthlyDataList.get(i).setMonth(clientData.getMonth());
+                    ListHolder.getInstance().outputMonthlyDataList.get(i).setYear(clientData.getYear());
+                    ListHolder.getInstance().monthlyListAdapter.notifyDataSetChanged();
+                    wasFound = true;
+                    break;
+                }
+            }
+            if (!wasFound) {
+                ArrayList<ClientData> clientDataList = new ArrayList<>();
+                clientDataList.add(clientData);
+                ListHolder.getInstance().outputMonthlyDataList.add(new ClientDataMonthlyList(clientDataList));
+                ListHolder.getInstance().outputMonthlyDataList.get(
+                        ListHolder.getInstance().outputMonthlyDataList.size() - 1
+                ).setMonth(clientData.getMonth());
+                ListHolder.getInstance().outputMonthlyDataList.get(
+                        ListHolder.getInstance().outputMonthlyDataList.size() - 1
+                ).setYear(clientData.getYear());
+                ListHolder.getInstance().monthlyListAdapter.notifyItemInserted(ListHolder.getInstance().outputMonthlyDataList.size());
+            }
         }
     }
 }
