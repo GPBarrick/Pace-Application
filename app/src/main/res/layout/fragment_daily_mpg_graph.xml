@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="425dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/beige"
+    tools:context=".graphutil.graphutilfragments.DailyMpgGraphFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/daily_mpg_graph_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Average MPG"
+            android:textSize="15sp"
+            android:textColor="@color/space_grey"
+            android:layout_marginBottom="10dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/daily_mpg_graph_separator"/>
+
+        <TextView
+            android:id="@+id/daily_mpg_graph_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:textColor="@color/space_grey"
+            android:text="@string/sample"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/daily_mpg_graph_text"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        
+        <View
+            android:id="@+id/daily_mpg_graph_separator"
+            android:layout_width="0dp"
+            android:layout_height="3dp"
+            android:background="@color/space_grey"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/daily_mpg_graph_text"
+            android:layout_marginBottom="5dp"
+            android:layout_marginHorizontal="35dp"/>
+
+        <com.github.mikephil.charting.charts.LineChart
+            android:id="@+id/daily_mpg_lineGraph"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/daily_mpg_graph_separator"
+            android:layout_margin="20dp"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</FrameLayout>

@@ -20,6 +20,10 @@ public class ClientDataDailyList {
     public void setExpenditure(float expenditure) { this.expenditure = expenditure; }
     public float getExpenditure() { return this.expenditure; }
 
+    private float averageMpg;
+    public void setAverageMpg(float averageMpg) { this.averageMpg = averageMpg; }
+    public float getAverageMpg() { return this.averageMpg; }
+
     private ArrayList<ClientData> clientDataList;
     public void setClientDataList(ArrayList<ClientData> clientDataList) { this.clientDataList = clientDataList; }
     public ArrayList<ClientData> getClientDataList() { return this.clientDataList; }
