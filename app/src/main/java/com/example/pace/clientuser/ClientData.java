@@ -81,4 +81,5 @@ public class ClientData {
         this.income = income;
         this.weekOfYear = weekOfYear;
     }
+
 }

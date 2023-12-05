@@ -112,9 +112,6 @@
             android:elevation="15dp"
             android:background="@drawable/grid_icon"/>
 
-
-
-
         <View
             android:layout_width="0dp"
             android:layout_height="1dp"
