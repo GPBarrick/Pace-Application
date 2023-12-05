@@ -27,11 +27,6 @@ public class ClientData {
     public void setYear(int year) { this.year = year; }
     public int getYear() { return this.year; }
 
-    @ColumnInfo(name = "client_weekNumber")
-    private int weekNumber;
-    public void setWeekNumber(int weekNumber) { this.weekNumber = weekNumber; }
-    public int getWeekNumber() { return this.weekNumber; }
-
     @ColumnInfo(name = "client_mpg")
     private float mpg;
     public void setMpg(float mpg) { this.mpg = mpg; }
@@ -62,16 +57,21 @@ public class ClientData {
     public void setExpenditureCalculation(float expenditureCalculation) { this.expenditureCalculation = expenditureCalculation; }
     public float getExpenditureCalculation() { return this.expenditureCalculation; }
 
+    @ColumnInfo(name = "client_weekOfYear")
+    private int weekOfYear;
+    public void setWeekOfYear(int weekOfYear) { this.weekOfYear = weekOfYear; }
+    public int getWeekOfYear() { return this.weekOfYear; }
+
     private String formattedDateCard;
     public void setFormattedDateCard(String formattedDateCard) { this.formattedDateCard = formattedDateCard; }
     public String getFormattedDateCard() { return this.formattedDateCard; }
 
-    public String formattedDateList;
+    private String formattedDateList;
     public void setFormattedDateList(String formattedDateList) { this.formattedDateList = formattedDateList; }
     public String getFormattedDateList() { return this.formattedDateList; }
 
     public ClientData() {/* Default constructor */}
-    public ClientData(int month, int day, int year, float mpg, float gasPrice, float distance, float income) {
+    public ClientData(int month, int day, int year, float mpg, float gasPrice, float distance, float income, int weekOfYear) {
         this.month = month;
         this.day = day;
         this.year = year;
@@ -79,5 +79,7 @@ public class ClientData {
         this.gasPrice = gasPrice;
         this.distance = distance;
         this.income = income;
+        this.weekOfYear = weekOfYear;
     }
+
 }

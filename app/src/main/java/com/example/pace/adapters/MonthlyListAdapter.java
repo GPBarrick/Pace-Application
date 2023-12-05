@@ -9,37 +9,31 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.pace.R;
-import com.example.pace.clientuser.ClientData;
 import com.example.pace.clientuser.ClientDataDailyList;
 import com.example.pace.config.ListHolder;
 
-import java.util.ArrayList;
+public class MonthlyListAdapter extends RecyclerView.Adapter<MonthlyListAdapter.ViewHolder> {
 
-public class DailyListAdapter extends RecyclerView.Adapter<DailyListAdapter.ViewHolder> {
-
-    public DailyListAdapter() {
+    public MonthlyListAdapter() {
     }
 
     @NonNull
     @Override
-    public DailyListAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public MonthlyListAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_list, parent, false);
         return new ViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull DailyListAdapter.ViewHolder holder, int position) {
-
-        holder.dateText.setText(determineDateFormat(ListHolder.getInstance().outputDailyDataList.get(position)));
+    public void onBindViewHolder(@NonNull MonthlyListAdapter.ViewHolder holder, int position) {
+        holder.dateText.setText(determineDateFormat(ListHolder.getInstance().outputMonthlyDataList.get(position).getMonth()));
         holder.routesText.setText("Routes: ");
-        holder.routesNum.setText(""+ListHolder.getInstance().outputDailyDataList.get(position).getClientDataList().size());
-        holder.expenditureText.setText("$ "+String.format("%.2f",ListHolder.getInstance().outputDailyDataList.get(position).getExpenditure()));
-        holder.relatedPercentage.setText("% 0.00");
+        holder.routesNum.setText(""+ListHolder.getInstance().outputMonthlyDataList.get(position).getClientDataList().size());
     }
 
     @Override
     public int getItemCount() {
-        return ListHolder.getInstance().outputDailyDataList.size();
+        return ListHolder.getInstance().outputMonthlyDataList.size();
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
@@ -58,8 +52,8 @@ public class DailyListAdapter extends RecyclerView.Adapter<DailyListAdapter.View
         }
     }
 
-    public String determineDateFormat(ClientDataDailyList clientData) {
-        String[] monthArr = { "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" };
-        return monthArr[clientData.getMonth() - 1] + " " + clientData.getDay() + ", " + clientData.getYear();
+    public String determineDateFormat(int monthIndex) {
+        String[] monthArr = { "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" };
+        return monthArr[monthIndex - 1];
     }
 }
