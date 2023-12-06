@@ -313,7 +313,9 @@ public class ListOrganizer {
                 ListHolder.getInstance().outputMonthlyDataList.get(
                         ListHolder.getInstance().outputMonthlyDataList.size() - 1
                 ).setExpenditure(clientData.getExpenditureCalculation());
-                ListHolder.getInstance().monthlyListAdapter.notifyItemInserted(ListHolder.getInstance().outputMonthlyDataList.size());
+                if (ListHolder.getInstance().monthlyListAdapter != null) {
+                    ListHolder.getInstance().monthlyListAdapter.notifyItemInserted(ListHolder.getInstance().outputMonthlyDataList.size());
+                }
             }
         }
     }
