@@ -55,7 +55,7 @@ public class ClientInputCardFragment extends Fragment {
         this.gasPriceText.setText("");
         this.distanceText.setText("");
         this.incomeText.setText("");
-        this.monthIcon.setImageResource(getMonthIcons(6));
+        this.monthIcon.setImageResource(getMonthIcons(12));
     }
 
     public int getMonthIcons(int monthIndex) {
@@ -63,10 +63,16 @@ public class ClientInputCardFragment extends Fragment {
                 R.drawable.snowflake_icon, // January 0
                 R.drawable.heart_icon, // February 1
                 R.drawable.clover_icon, // March 2
-                R.drawable.showers_icon, // April 3
+                R.drawable.umbrella_icon, // April 3
                 R.drawable.flowers_icon, // May 4
-                R.drawable.sun_icon, // June 5
-                R.drawable.blank_month_icon // Blank 6
+                R.drawable.beach_ball_icon, // June 5
+                R.drawable.fireworks_icon, // July 6
+                R.drawable.campfire_icon, // August 7
+                R.drawable.books_icon, // September 8
+                R.drawable.pumpkin_icon, // October 9
+                R.drawable.maple_leaf_icon, // November 10
+                R.drawable.christmas_tree_icon, // December 11
+                R.drawable.blank_month_icon // Blank 12
         };
         return monthIconArr[monthIndex];
     }
