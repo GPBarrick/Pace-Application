@@ -24,6 +24,10 @@ public class ClientDataDailyList {
     public void setAverageMpg(float averageMpg) { this.averageMpg = averageMpg; }
     public float getAverageMpg() { return this.averageMpg; }
 
+    private float averageGasPrice;
+    public void setAverageGasPrice(float averageGasPrice) { this.averageGasPrice = averageGasPrice; }
+    public float getAverageGasPrice() { return this.averageGasPrice; }
+
     private String formattedDate;
     public void setFormattedDate(String formattedDate) { this.formattedDate = formattedDate; }
     public String getFormattedDate() { return this.formattedDate; }

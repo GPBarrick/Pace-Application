@@ -38,6 +38,7 @@ public class ListOrganizer {
 
             ListHolder.getInstance().outputDailyDataList.get(0).setExpenditure(clientData.getExpenditureCalculation());
             ListHolder.getInstance().outputDailyDataList.get(0).setAverageMpg(clientData.getMpg());
+            ListHolder.getInstance().outputDailyDataList.get(0).setAverageGasPrice(clientData.getGasPrice());
 
             ListHolder.getInstance().dailyListAdapter.notifyItemInserted(ListHolder.getInstance().outputDailyDataList.size());
 
@@ -53,12 +54,25 @@ public class ListOrganizer {
                     ListHolder.getInstance().outputDailyDataList.get(i).setExpenditure(
                             ListHolder.getInstance().outputDailyDataList.get(i).getExpenditure() + clientData.getExpenditureCalculation()
                     );
+
                     float averageMpgTotal = 0.0f;
                     for (int t = 0; t < ListHolder.getInstance().outputDailyDataList.get(i).getClientDataList().size(); ++t) {
                         averageMpgTotal = averageMpgTotal + ListHolder.getInstance().outputDailyDataList.get(i).getClientDataList().get(t).getMpg();
                     }
-                    averageMpgTotal = averageMpgTotal / ListHolder.getInstance().outputDailyDataList.get(i).getClientDataList().size();
+                    if (ListHolder.getInstance().outputDailyDataList.get(i).getClientDataList().size() > 0) {
+                        averageMpgTotal = averageMpgTotal / ListHolder.getInstance().outputDailyDataList.get(i).getClientDataList().size();
+                    }
                     ListHolder.getInstance().outputDailyDataList.get(i).setAverageMpg(averageMpgTotal);
+
+                    float averageGasPriceTotal = 0.2f;
+                    for (int t = 0; t < ListHolder.getInstance().outputDailyDataList.get(i).getClientDataList().size(); ++t) {
+                        averageGasPriceTotal = averageGasPriceTotal + ListHolder.getInstance().outputDailyDataList.get(i).getClientDataList().get(t).getGasPrice();
+                    }
+                    if (ListHolder.getInstance().outputDailyDataList.get(i).getClientDataList().size() > 0) {
+                        averageGasPriceTotal = averageGasPriceTotal / ListHolder.getInstance().outputDailyDataList.get(i).getClientDataList().size();
+                    }
+                    ListHolder.getInstance().outputDailyDataList.get(i).setAverageGasPrice(averageGasPriceTotal);
+
                     ListHolder.getInstance().dailyListAdapter.notifyDataSetChanged();
                     wasFound = true;
                     break;
@@ -88,6 +102,10 @@ public class ListOrganizer {
                 ListHolder.getInstance().outputDailyDataList.get(
                         ListHolder.getInstance().outputDailyDataList.size() - 1
                 ).setAverageMpg(clientData.getMpg());
+
+                ListHolder.getInstance().outputDailyDataList.get(
+                        ListHolder.getInstance().outputDailyDataList.size() - 1
+                ).setAverageGasPrice(clientData.getGasPrice());
 
                 ListHolder.getInstance().dailyListAdapter.notifyItemInserted(ListHolder.getInstance().outputDailyDataList.size());
             }

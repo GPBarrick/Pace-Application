@@ -11,9 +11,12 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.example.pace.R;
+import com.example.pace.adapters.DailyGraphHeaderAdapter;
 import com.example.pace.adapters.DailyListGraphAdapter;
 import com.example.pace.config.ListHolder;
 import com.example.pace.fragmentlayouts.MainFragment;
@@ -34,7 +37,11 @@ public class DailyListItemFragment extends Fragment {
 
         initFragments();
 
-        initListener();
+        initHeaderData();
+
+        initReturnListener();
+
+        initViewPagerListener();
 
         return view;
     }
@@ -42,12 +49,24 @@ public class DailyListItemFragment extends Fragment {
     public ViewPager2 graphFragmentPager;
     public ImageButton returnButton;
     public TextView dateText;
+    public RecyclerView headerData;
     private void initViews(View view) {
         this.graphFragmentPager = view.findViewById(R.id.daily_list_item_viewPager);
         this.returnButton = view.findViewById(R.id.daily_list_item_returnButton);
         this.dateText = view.findViewById(R.id.daily_list_item_mainDateText);
+        this.headerData = view.findViewById(R.id.daily_list_item_headerInfo);
 
         initDateText();
+    }
+
+    private DailyGraphHeaderAdapter dailyGraphHeaderAdapter;
+    private void initHeaderData() {
+        this.dailyGraphHeaderAdapter = new DailyGraphHeaderAdapter(
+                this.graphFragmentPager.getCurrentItem(),
+                ListHolder.getInstance().outputDailyDataListIndex
+        );
+        this.headerData.setLayoutManager(new LinearLayoutManager(getActivity().getApplicationContext()));
+        this.headerData.setAdapter(dailyGraphHeaderAdapter);
     }
 
     private void initDateText() {
@@ -80,15 +99,30 @@ public class DailyListItemFragment extends Fragment {
 
         this.graphFragmentPager.setOrientation(ViewPager2.ORIENTATION_HORIZONTAL);
         this.graphFragmentPager.setAdapter(this.graphAdapter);
+        this.graphFragmentPager.setCurrentItem(ListHolder.getInstance().dataListGraphPagerIndex, false);
     }
 
-    private void initListener() {
+    private void initReturnListener() {
         this.returnButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                ListHolder.getInstance().dataListGraphPagerIndex = 0;
                 FragmentTransaction fragmentTransaction = ListHolder.getInstance().fragmentManager.beginTransaction();
                 fragmentTransaction.replace(R.id.activity_main_mainFrame, new MainFragment());
                 fragmentTransaction.commit();
+            }
+        });
+    }
+
+    private void initViewPagerListener() {
+        this.graphFragmentPager.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
+            @Override
+            public void onPageSelected(int position) {
+                if (dailyGraphHeaderAdapter != null) {
+                    dailyGraphHeaderAdapter.setDataSet(position);
+                    dailyGraphHeaderAdapter.notifyDataSetChanged();
+                }
+                ListHolder.getInstance().dataListGraphPagerIndex = position;
             }
         });
     }
