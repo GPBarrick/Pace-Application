@@ -37,18 +37,27 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/input_vehicle_recyclerView"
             app:layout_constraintVertical_bias="0.706"
-            android:background="@color/cardview_dark_background"/>
+            android:background="@drawable/edit_text_background"
+            android:textColor="@color/white"
+            android:hint="Vehicle Name"
+            android:textColorHint="@color/white"
+            android:textAlignment="center"/>
 
         <EditText
             android:id="@+id/input_vehicle_input_mpg"
             android:layout_width="300dp"
             android:layout_height="45dp"
-            android:background="@color/cardview_dark_background"
+            android:background="@drawable/edit_text_background"
+            android:hint="Vehicle MPG"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textColorHint="@color/white"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.505"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/input_vehicle_recyclerView"
-            app:layout_constraintVertical_bias="0.789" />
+            app:layout_constraintVertical_bias="0.814" />
 
         <ImageView
             android:id="@+id/vehicle_input_errorIcon_name"
@@ -72,14 +81,29 @@
 
 
         <ImageButton
+            android:id="@+id/vehicle_input_confirm_and_save"
             android:layout_width="330dp"
             android:layout_height="60dp"
+            android:background="@drawable/purple_accent_background"
+            android:textAlignment="center"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.921"
-            android:background="@color/purple_haze"/>
+            app:layout_constraintVertical_bias="0.921" />
+
+        <TextView
+            android:id="@+id/vehicle_input_button_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/input_vehicle_confirm_and_save_button"
+            android:textColor="@color/white"
+            android:textSize="30sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.908" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
