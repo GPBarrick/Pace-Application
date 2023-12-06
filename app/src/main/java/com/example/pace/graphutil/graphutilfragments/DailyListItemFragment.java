@@ -1,24 +1,18 @@
 package com.example.pace.graphutil.graphutilfragments;
 
-import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
-import androidx.viewpager2.widget.ViewPager2;
-
-import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.TextView;
 
-import com.example.pace.MainActivity;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
+import androidx.viewpager2.widget.ViewPager2;
+
 import com.example.pace.R;
 import com.example.pace.adapters.DailyListGraphAdapter;
 import com.example.pace.config.ListHolder;
@@ -47,9 +41,19 @@ public class DailyListItemFragment extends Fragment {
 
     public ViewPager2 graphFragmentPager;
     public ImageButton returnButton;
+    public TextView dateText;
     private void initViews(View view) {
         this.graphFragmentPager = view.findViewById(R.id.daily_list_item_viewPager);
         this.returnButton = view.findViewById(R.id.daily_list_item_returnButton);
+        this.dateText = view.findViewById(R.id.daily_list_item_mainDateText);
+
+        initDateText();
+    }
+
+    private void initDateText() {
+        this.dateText.setText(ListHolder.getInstance().outputDailyDataList.get(
+                ListHolder.getInstance().outputDailyDataListIndex
+        ).getFormattedDate());
     }
 
     public DailyMpgGraphFragment mpgGraphFragment;

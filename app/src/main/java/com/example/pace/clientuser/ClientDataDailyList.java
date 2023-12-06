@@ -24,6 +24,14 @@ public class ClientDataDailyList {
     public void setAverageMpg(float averageMpg) { this.averageMpg = averageMpg; }
     public float getAverageMpg() { return this.averageMpg; }
 
+    private String formattedDate;
+    public void setFormattedDate(String formattedDate) { this.formattedDate = formattedDate; }
+    public String getFormattedDate() { return this.formattedDate; }
+
+    private float percentageDifference;
+    public void setPercentageDifference(float percentageDifference) { this.percentageDifference = percentageDifference; }
+    public float getPercentageDifference() { return this.percentageDifference; }
+
     private ArrayList<ClientData> clientDataList;
     public void setClientDataList(ArrayList<ClientData> clientDataList) { this.clientDataList = clientDataList; }
     public ArrayList<ClientData> getClientDataList() { return this.clientDataList; }

@@ -30,10 +30,11 @@ public class DailyListAdapter extends RecyclerView.Adapter<DailyListAdapter.View
     public void onBindViewHolder(@NonNull DailyListAdapter.ViewHolder holder, int position) {
 
         holder.dateText.setText(determineDateFormat(ListHolder.getInstance().outputDailyDataList.get(position)));
+        ListHolder.getInstance().outputDailyDataList.get(position).setFormattedDate(determineDateFormat(ListHolder.getInstance().outputDailyDataList.get(position)));
         holder.routesText.setText("Routes: ");
         holder.routesNum.setText(""+ListHolder.getInstance().outputDailyDataList.get(position).getClientDataList().size());
         holder.expenditureText.setText("$ "+String.format("%.2f",ListHolder.getInstance().outputDailyDataList.get(position).getExpenditure()));
-        holder.relatedPercentage.setText("% 0.00");
+        holder.relatedPercentage.setText("% "+String.format("%.2f",ListHolder.getInstance().outputDailyDataList.get(position).getPercentageDifference()));
     }
 
     @Override
