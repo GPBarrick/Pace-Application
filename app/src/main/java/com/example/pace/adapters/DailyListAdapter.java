@@ -6,14 +6,13 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.pace.R;
-import com.example.pace.clientuser.ClientData;
 import com.example.pace.clientuser.ClientDataDailyList;
 import com.example.pace.config.ListHolder;
-
-import java.util.ArrayList;
+import com.example.pace.graphutil.graphutilfragments.DailyListItemFragment;
 
 public class DailyListAdapter extends RecyclerView.Adapter<DailyListAdapter.ViewHolder> {
 
@@ -42,7 +41,7 @@ public class DailyListAdapter extends RecyclerView.Adapter<DailyListAdapter.View
         return ListHolder.getInstance().outputDailyDataList.size();
     }
 
-    public static class ViewHolder extends RecyclerView.ViewHolder {
+    public class ViewHolder extends RecyclerView.ViewHolder {
         public TextView dateText;
         public TextView routesText;
         public TextView routesNum;
@@ -55,6 +54,16 @@ public class DailyListAdapter extends RecyclerView.Adapter<DailyListAdapter.View
             this.routesNum = itemView.findViewById(R.id.layout_list_routesNum);
             this.expenditureText = itemView.findViewById(R.id.layout_list_expenditureText);
             this.relatedPercentage = itemView.findViewById(R.id.layout_list_expenditurePercentageText);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    ListHolder.getInstance().outputDailyDataListIndex = getAdapterPosition();
+                    FragmentTransaction fragmentTransaction = ListHolder.getInstance().fragmentManager.beginTransaction();
+                    fragmentTransaction.replace(R.id.activity_main_mainFrame, new DailyListItemFragment());
+                    fragmentTransaction.commit();
+                }
+            });
         }
     }
 

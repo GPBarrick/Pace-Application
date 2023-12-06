@@ -187,7 +187,7 @@ public class InputIncomeFragment extends Fragment {
     }
 
     public void setExpenditure(ClientData clientData) {
-        clientData.setExpenditureCalculation(((clientData.getDistance() / clientData.getMpg()) * clientData.getGasPrice()) - clientData.getIncome());
+        clientData.setExpenditureCalculation(clientData.getIncome() - ((clientData.getDistance() / clientData.getMpg()) * clientData.getGasPrice()));
     }
 
     public void initDailyListData(ClientData clientData) {
@@ -202,6 +202,7 @@ public class InputIncomeFragment extends Fragment {
             ListHolder.getInstance().outputDailyDataList.get(0).setYear(clientData.getYear());
 
             ListHolder.getInstance().outputDailyDataList.get(0).setExpenditure(clientData.getExpenditureCalculation());
+            ListHolder.getInstance().outputDailyDataList.get(0).setAverageMpg(clientData.getMpg());
 
             ListHolder.getInstance().dailyListAdapter.notifyItemInserted(ListHolder.getInstance().outputDailyDataList.size());
 
@@ -242,6 +243,10 @@ public class InputIncomeFragment extends Fragment {
                 ListHolder.getInstance().outputDailyDataList.get(
                         ListHolder.getInstance().outputDailyDataList.size() - 1
                 ).setExpenditure(clientData.getExpenditureCalculation());
+
+                ListHolder.getInstance().outputDailyDataList.get(
+                        ListHolder.getInstance().outputDailyDataList.size() - 1
+                ).setAverageMpg(clientData.getMpg());
 
                 ListHolder.getInstance().dailyListAdapter.notifyItemInserted(ListHolder.getInstance().outputDailyDataList.size());
             }
@@ -288,7 +293,9 @@ public class InputIncomeFragment extends Fragment {
                             ListHolder.getInstance().outputWeeklyDataList.get(r).getExpenditure()
                             + clientData.getExpenditureCalculation()
                     );
-                    ListHolder.getInstance().weeklyListAdapter.notifyDataSetChanged();
+                    if (ListHolder.getInstance().weeklyListAdapter != null) {
+                        ListHolder.getInstance().weeklyListAdapter.notifyDataSetChanged();
+                    }
                     wasFound = true;
                     break;
                 }
@@ -337,7 +344,7 @@ public class InputIncomeFragment extends Fragment {
                         ListHolder.getInstance().outputWeeklyDataList.size() - 1
                 ).setExpenditure(clientData.getExpenditureCalculation());
 
-                ListHolder.getInstance().weeklyListAdapter.notifyItemInserted(ListHolder.getInstance().outputWeeklyDataList.size());
+                //ListHolder.getInstance().weeklyListAdapter.notifyItemInserted(ListHolder.getInstance().outputWeeklyDataList.size() - 1);
             }
         }
         debugDateDetails();
@@ -365,14 +372,21 @@ public class InputIncomeFragment extends Fragment {
             ListHolder.getInstance().outputMonthlyDataList.add(new ClientDataMonthlyList(clientDataList));
             ListHolder.getInstance().outputMonthlyDataList.get(0).setMonth(clientData.getMonth());
             ListHolder.getInstance().outputMonthlyDataList.get(0).setYear(clientData.getYear());
+            ListHolder.getInstance().outputMonthlyDataList.get(0).setExpenditure(clientData.getExpenditureCalculation());
         } else {
             boolean wasFound = false;
             for (int i = 0; i < ListHolder.getInstance().outputMonthlyDataList.size(); ++i) {
                 if (ListHolder.getInstance().outputMonthlyDataList.get(i).getMonth() == clientData.getMonth()) {
                     ListHolder.getInstance().outputMonthlyDataList.get(i).getClientDataList().add(clientData);
+                    ListHolder.getInstance().outputMonthlyDataList.get(i).setExpenditure(
+                            ListHolder.getInstance().outputMonthlyDataList.get(i).getExpenditure()
+                            + clientData.getExpenditureCalculation()
+                    );
                     ListHolder.getInstance().outputMonthlyDataList.get(i).setMonth(clientData.getMonth());
                     ListHolder.getInstance().outputMonthlyDataList.get(i).setYear(clientData.getYear());
-                    ListHolder.getInstance().monthlyListAdapter.notifyDataSetChanged();
+                    if (ListHolder.getInstance().monthlyListAdapter != null) {
+                        ListHolder.getInstance().monthlyListAdapter.notifyDataSetChanged();
+                    }
                     wasFound = true;
                     break;
                 }
@@ -387,6 +401,9 @@ public class InputIncomeFragment extends Fragment {
                 ListHolder.getInstance().outputMonthlyDataList.get(
                         ListHolder.getInstance().outputMonthlyDataList.size() - 1
                 ).setYear(clientData.getYear());
+                ListHolder.getInstance().outputMonthlyDataList.get(
+                        ListHolder.getInstance().outputMonthlyDataList.size() - 1
+                ).setExpenditure(clientData.getExpenditureCalculation());
                 ListHolder.getInstance().monthlyListAdapter.notifyItemInserted(ListHolder.getInstance().outputMonthlyDataList.size());
             }
         }

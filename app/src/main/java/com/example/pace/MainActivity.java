@@ -1,13 +1,16 @@
 package com.example.pace;
 
+import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
-import android.widget.ImageButton;
+import android.view.KeyEvent;
+import android.view.WindowManager;
+import android.widget.FrameLayout;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.example.pace.DataBase.DataBase;
@@ -16,11 +19,9 @@ import com.example.pace.clientuser.ClientData;
 import com.example.pace.config.ListHolder;
 import com.example.pace.fragmentlayouts.ClientInputFragment;
 import com.example.pace.fragmentlayouts.HomeFragment;
+import com.example.pace.fragmentlayouts.MainFragment;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 
@@ -29,15 +30,14 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        initViews();
-        initFragments();
-        initTabLayout();
+
+        initLayout();
 
         //testing database
 
         DataBase database = new DataBase();
         if(ListHolder.getInstance().clientDataList.size() > 0){
-            database.FirebaseSetUp(clientDataList.get(0));
+            database.FirebaseSetUp(this.clientDataList.get(0));
         }
         //end of testing.
 
@@ -47,46 +47,32 @@ public class MainActivity extends AppCompatActivity {
     public void setClientDataList(ArrayList<ClientData> clientDataList) { this.clientDataList = clientDataList; }
     public ArrayList<ClientData> getClientDataList() { return this.clientDataList; }
 
-    public ViewPager2 mainViewPager;
-    public TabLayout mainTabLayout;
-    private void initViews() {
-        this.mainViewPager = findViewById(R.id.activity_main_viewPager);
-        this.mainTabLayout = findViewById(R.id.activity_main_tabLayout);
-    }
-    public ArrayList<Fragment> mainFragmentList;
-    public HomeFragment homeFragment;
-    public ClientInputFragment clientInputFragment;
-    private void initFragments() {
+    public FrameLayout frameLayout;
+    public MainFragment mainFragment;
+    private void initLayout() {
+        mainFragment = new MainFragment();
+        this.frameLayout = findViewById(R.id.activity_main_mainFrame);
+
         ListHolder.getInstance().clientDataList = this.clientDataList;
-        ListHolder.getInstance().mainActivityPager = this.mainViewPager;
+        ListHolder.getInstance().mainFragment = this.mainFragment;
 
-        this.homeFragment = new HomeFragment();
-        this.clientInputFragment = new ClientInputFragment();
-
-        this.mainFragmentList = new ArrayList<>();
-        this.mainFragmentList.add(this.homeFragment);
-        this.mainFragmentList.add(this.clientInputFragment);
-
-        MainFragmentAdapter fragmentAdapter = new MainFragmentAdapter(getSupportFragmentManager(), getLifecycle());
-        for (int index = 0; index < this.mainFragmentList.size(); ++index) {
-            fragmentAdapter.addFragment(this.mainFragmentList.get(index));
-        }
-
-        initViewPager(fragmentAdapter);
+        initFragmentData();
     }
-    private void initViewPager(MainFragmentAdapter fragmentAdapter) {
-        this.mainViewPager.setOrientation(ViewPager2.ORIENTATION_HORIZONTAL);
-        this.mainViewPager.setAdapter(fragmentAdapter);
+
+    private void initFragmentData() {
+        ListHolder.getInstance().fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = ListHolder.getInstance().fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.activity_main_mainFrame, this.mainFragment);
+        fragmentTransaction.commit();
     }
-    private void initTabLayout() {
-        ArrayList<String> tabLayoutText = new ArrayList<>();
-        tabLayoutText.add("Home");
-        tabLayoutText.add("Add");
-        new TabLayoutMediator(this.mainTabLayout, this.mainViewPager, new TabLayoutMediator.TabConfigurationStrategy() {
-            @Override
-            public void onConfigureTab(@NonNull TabLayout.Tab tab, int position) {
-                tab.setText(tabLayoutText.get(position));
-            }
-        }).attach();
-    }
+
+//    @Override
+//    public boolean onKeyDown(int keyCode, KeyEvent event) {
+//        if (keyCode == KeyEvent.KEYCODE_BACK) {
+//            Intent mainActivity = new Intent(DailyListItem.this, MainActivity.class);
+//            startActivity(mainActivity);
+//            return true;
+//        }
+//        return super.onKeyDown(keyCode, event);
+//    }
 }

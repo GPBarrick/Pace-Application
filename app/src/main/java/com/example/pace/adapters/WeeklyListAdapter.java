@@ -49,6 +49,7 @@ public class WeeklyListAdapter extends RecyclerView.Adapter<WeeklyListAdapter.Vi
         holder.dateText.setText(dateFormat);
         holder.routesText.setText("Routes: ");
         holder.routesNum.setText(String.valueOf(ListHolder.getInstance().outputWeeklyDataList.get(position).getClientDataList().size()));
+        holder.expenditureText.setText("$ "+String.format("%.2f",ListHolder.getInstance().outputWeeklyDataList.get(position).getExpenditure()));
     }
 
     @Override

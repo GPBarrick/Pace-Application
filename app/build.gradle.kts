@@ -37,6 +37,7 @@ android {
 
 dependencies {
 
+    implementation("com.github.PhilJay:MPAndroidChart:v3.1.0")
 
     implementation("androidx.room:room-common:2.6.1")
 

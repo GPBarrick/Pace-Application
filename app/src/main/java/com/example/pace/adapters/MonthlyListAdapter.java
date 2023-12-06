@@ -29,6 +29,7 @@ public class MonthlyListAdapter extends RecyclerView.Adapter<MonthlyListAdapter.
         holder.dateText.setText(determineDateFormat(ListHolder.getInstance().outputMonthlyDataList.get(position).getMonth()));
         holder.routesText.setText("Routes: ");
         holder.routesNum.setText(""+ListHolder.getInstance().outputMonthlyDataList.get(position).getClientDataList().size());
+        holder.expenditureText.setText("$ "+String.format("%.2f",ListHolder.getInstance().outputMonthlyDataList.get(position).getExpenditure()));
     }
 
     @Override
