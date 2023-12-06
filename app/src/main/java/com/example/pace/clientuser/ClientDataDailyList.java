@@ -28,6 +28,14 @@ public class ClientDataDailyList {
     public void setAverageGasPrice(float averageGasPrice) { this.averageGasPrice = averageGasPrice; }
     public float getAverageGasPrice() { return this.averageGasPrice; }
 
+    private float averageDistance;
+    public void setAverageDistance(float averageDistance) { this.averageDistance = averageDistance; }
+    public float getAverageDistance() { return this.averageDistance; }
+
+    private float averageIncome;
+    public void setAverageIncome(float averageIncome) { this.averageIncome = averageIncome; }
+    public float getAverageIncome() { return this.averageIncome; }
+
     private String formattedDate;
     public void setFormattedDate(String formattedDate) { this.formattedDate = formattedDate; }
     public String getFormattedDate() { return this.formattedDate; }
