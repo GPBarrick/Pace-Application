@@ -125,7 +125,7 @@
                 android:id="@+id/home_card_month_text2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="200dp"
+                android:layout_marginTop="188dp"
                 android:gravity="center"
                 android:text="(Average per month)"
                 android:textColor="@color/beige"
