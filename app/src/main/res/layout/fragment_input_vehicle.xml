@@ -29,13 +29,57 @@
 
 
         <EditText
-            android:layout_width="match_parent"
+            android:id="@+id/input_vehicle_input_name"
+            android:layout_width="300dp"
             android:layout_height="45dp"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/input_vehicle_recyclerView"
-            app:layout_constraintVertical_bias="0.706" />
+            app:layout_constraintVertical_bias="0.706"
+            android:background="@color/cardview_dark_background"/>
 
+        <EditText
+            android:id="@+id/input_vehicle_input_mpg"
+            android:layout_width="300dp"
+            android:layout_height="45dp"
+            android:background="@color/cardview_dark_background"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/input_vehicle_recyclerView"
+            app:layout_constraintVertical_bias="0.789" />
+
+        <ImageView
+            android:id="@+id/vehicle_input_errorIcon_name"
+            android:layout_width="22dp"
+            android:layout_height="22dp"
+            app:layout_constraintStart_toStartOf="@+id/input_vehicle_input_name"
+            app:layout_constraintBottom_toTopOf="@+id/input_vehicle_input_name"
+            android:layout_marginStart="-15dp"
+            android:background="@drawable/error_icon"
+            android:layout_marginBottom="-5dp"/>
+
+        <ImageView
+            android:id="@+id/vehicle_input_errorIcon_mpg"
+            android:layout_width="22dp"
+            android:layout_height="22dp"
+            app:layout_constraintStart_toStartOf="@+id/input_vehicle_input_mpg"
+            app:layout_constraintBottom_toTopOf="@+id/input_vehicle_input_mpg"
+            android:layout_marginStart="-15dp"
+            android:background="@drawable/error_icon"
+            android:layout_marginBottom="-5dp"/>
+
+
+        <ImageButton
+            android:layout_width="330dp"
+            android:layout_height="60dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.921"
+            android:background="@color/purple_haze"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
