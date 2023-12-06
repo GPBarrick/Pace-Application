@@ -1,17 +1,18 @@
 package com.example.pace.graphutil.graphutilfragments;
 
-import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-
+import com.example.pace.R;
 import com.example.pace.config.ListHolder;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.Description;
@@ -21,19 +22,14 @@ import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.formatter.IndexAxisValueFormatter;
+import com.github.mikephil.charting.highlight.Highlight;
+import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
+import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
-import java.util.Map;
-
-import android.graphics.Color;
-import android.widget.TextView;
-
-import com.example.pace.R;
-import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
 
 public class DailyMpgGraphFragment extends Fragment {
     public DailyMpgGraphFragment() {
@@ -48,6 +44,8 @@ public class DailyMpgGraphFragment extends Fragment {
 
         initGraph();
 
+        setPointListener();
+
         return view;
     }
 
@@ -55,6 +53,7 @@ public class DailyMpgGraphFragment extends Fragment {
     public TextView mpgValue;
     private void initViews(View view) {
         this.lineChart = view.findViewById(R.id.daily_mpg_lineGraph);
+
         this.mpgValue = view.findViewById(R.id.daily_mpg_graph_value);
         this.mpgValue.setText(""+ListHolder.getInstance().outputDailyDataList.get(
                 ListHolder.getInstance().outputDailyDataListIndex
@@ -63,27 +62,29 @@ public class DailyMpgGraphFragment extends Fragment {
 
     private void initGraph() {
         Description description = new Description();
-        description.setText("Expenditure");
+        description.setText("");
         description.setPosition(15.0f, 15.0f);
 
         this.lineChart.setDescription(description);
         this.lineChart.getAxisRight().setDrawLabels(false);
+        this.lineChart.getLegend().setEnabled(false);
 
         addDataXValues();
 
         XAxis xAxis = this.lineChart.getXAxis();
         xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
         xAxis.setValueFormatter(new IndexAxisValueFormatter(xValues));
-        xAxis.setAxisLineWidth(2.0f);
-        xAxis.setLabelCount(3);
+        xAxis.setAxisLineWidth(3.0f);
+        xAxis.setAxisLineColor(Color.BLACK);
+        xAxis.setLabelCount(15);
         xAxis.setGranularity(1.0f);
 
         YAxis yAxis = this.lineChart.getAxisLeft();
         yAxis.setAxisMinimum(0.0f);
-        yAxis.setAxisMaximum(100.0f);
-        yAxis.setAxisLineWidth(2.0f);
-        yAxis.setAxisLineColor(Color.WHITE);
-        yAxis.setLabelCount(10);
+        yAxis.setAxisMaximum(getMaximum() + 15.0f);
+        yAxis.setAxisLineWidth(3.0f);
+        yAxis.setAxisLineColor(Color.BLACK);
+        yAxis.setLabelCount(15);
 
         addEntries();
 
@@ -117,7 +118,6 @@ public class DailyMpgGraphFragment extends Fragment {
         this.holeColors = new ArrayList<>();
         this.sizeList = new ArrayList<>();
         for (int i = 0; i < ListHolder.getInstance().outputDailyDataList.size(); ++i) {
-            Log.v("ENTRY.INDEXLIST", ""+i+", "+ ListHolder.getInstance().outputDailyDataListIndex);
             if (i == ListHolder.getInstance().outputDailyDataListIndex) {
                 Entry entry = new Entry(
                         i, ListHolder.getInstance().outputDailyDataList.get(i).getAverageMpg()
@@ -143,6 +143,7 @@ public class DailyMpgGraphFragment extends Fragment {
     public void addLineData() {
         //this.lineDataSet = new LineDataSet(this.mpgEntries, "Average MPG");
         //this.lineDataSet.setColor(Color.BLUE);
+
         this.dataSets = new ArrayList<>();
         for(int i = 0; i < this.mpgEntries.size(); ++i) {
             LineDataSet dsi = new LineDataSet(Collections.singletonList(this.mpgEntries.get(i)), null);
@@ -151,9 +152,44 @@ public class DailyMpgGraphFragment extends Fragment {
             dsi.setCircleHoleColor(this.holeColors.get(i));
             dsi.setCircleRadius(this.sizeList.get(i));
             dsi.setCircleHoleRadius(this.sizeList.get(i));
-            dsi.setColor(Color.BLUE);
-            if (i == 0) { dsi.setLabel("Average MPG"); }
             dataSets.add(dsi);
         }
+
+        LineDataSet dataSet = new LineDataSet(this.mpgEntries, null);
+        dataSet.setColor(Color.BLUE);
+        dataSet.setCircleHoleColor(Color.TRANSPARENT);
+        dataSet.setCircleColor(Color.TRANSPARENT);
+        dataSet.setDrawValues(false);
+        dataSets.add(dataSet);
+    }
+
+    private float getMaximum() {
+        float retVal = 0.0f;
+        for (int i = 0; i < ListHolder.getInstance().outputDailyDataList.size(); ++i) {
+            if (retVal < ListHolder.getInstance().outputDailyDataList.get(i).getAverageMpg()) {
+                retVal = ListHolder.getInstance().outputDailyDataList.get(i).getAverageMpg();
+            }
+        }
+        return retVal;
+    }
+
+    private void setPointListener() {
+        this.lineChart.setOnChartValueSelectedListener(new OnChartValueSelectedListener()
+        {
+            @Override
+            public void onValueSelected(Entry e, Highlight h)
+            {
+                ListHolder.getInstance().outputDailyDataListIndex = (int)e.getX();
+                FragmentTransaction fragmentTransaction = ListHolder.getInstance().fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.activity_main_mainFrame, new DailyListItemFragment());
+                fragmentTransaction.commit();
+            }
+
+            @Override
+            public void onNothingSelected()
+            {
+
+            }
+        });
     }
 }
