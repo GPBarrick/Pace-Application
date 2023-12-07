@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 
+import com.example.pace.DataBase.DataBase;
 import com.example.pace.R;
 import com.example.pace.adapters.MainFragmentAdapter;
 import com.example.pace.clientuser.ClientData;
@@ -22,6 +23,8 @@ import com.google.android.material.tabs.TabLayoutMediator;
 import java.util.ArrayList;
 
 public class MainFragment extends Fragment {
+    DataBase database = new DataBase();
+    ArrayList<ClientData> clientDataList = new ArrayList<>();
     public MainFragment() {
 
     }
@@ -79,9 +82,26 @@ public class MainFragment extends Fragment {
                 tab.setText(tabLayoutText.get(position));
             }
         }).attach();
+//***************************************check that the app return to home and add to the database***********************
+        mainViewPager.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
+            @Override
+            public void onPageSelected(int position) {
+                super.onPageSelected(position);
+
+                // defaulted to 0 since the app action is to return to home.
+                //after the user finish inputtind the data the data is send to the database.
+                if (position == 0) {
+                    ListHolder.getInstance().clientDataList = clientDataList;
+                    database.FirebaseSetUp(clientDataList);
+                }
+            }
+        });
+//***************************************END OF THE BLOCK THAT CALL THE DATABASE*****************************************
     }
 
     private void initKeyboardSoftInput() {
         getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
     }
+
+
 }

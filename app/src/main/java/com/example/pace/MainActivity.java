@@ -22,6 +22,8 @@ import com.example.pace.fragmentlayouts.HomeFragment;
 import com.example.pace.fragmentlayouts.MainFragment;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import java.util.ArrayList;
 
@@ -32,17 +34,19 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         initLayout();
-
-        //testing database
-
-        DataBase database = new DataBase();
-        if(ListHolder.getInstance().clientDataList.size() > 0){
-            database.FirebaseSetUp(this.clientDataList.get(0));
-        }
-        //end of testing.
-
     }
-
+    //***********************THE DATABASE CLASS NEEDS TO BE CALLED EVERYTIME THE USER CICKS ADD BUTTON*********************
+    //*******FIGURED OUT HOW EVENT LISTENERS TO SET UP THE DATABASE CLASS IN THE ADD BUTTON LISTENER
+    //-----------------------DELETE THIS IS JUST TO TEST THE DATA BASE------------------------------
+   // protected void onDestroy() {
+    DataBase testing = new DataBase();
+      //  super.onDestroy();
+        //testing database
+     //   DataBase database = new DataBase();
+     //   database.FirebaseSetUp(clientDataList);
+        //end of testing.
+   // }
+    //-------------------END OF THE TESTING AREA----------------------------------------------------
     ArrayList<ClientData> clientDataList = new ArrayList<>();
     public void setClientDataList(ArrayList<ClientData> clientDataList) { this.clientDataList = clientDataList; }
     public ArrayList<ClientData> getClientDataList() { return this.clientDataList; }
