@@ -36,6 +36,7 @@ public class ListHolder {
     public ArrayList<ClientData> clientDataList;
     public ArrayList<ClientDataDailyList> outputDailyDataList = new ArrayList<>();
     public int outputDailyDataListIndex;
+    public int dataListGraphPagerIndex = 0;
     public DailyListAdapter dailyListAdapter;
     public ArrayList<ClientDataWeeklyList> outputWeeklyDataList = new ArrayList<>();
     public WeeklyListAdapter weeklyListAdapter;

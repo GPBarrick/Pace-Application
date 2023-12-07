@@ -24,6 +24,26 @@ public class ClientDataDailyList {
     public void setAverageMpg(float averageMpg) { this.averageMpg = averageMpg; }
     public float getAverageMpg() { return this.averageMpg; }
 
+    private float averageGasPrice;
+    public void setAverageGasPrice(float averageGasPrice) { this.averageGasPrice = averageGasPrice; }
+    public float getAverageGasPrice() { return this.averageGasPrice; }
+
+    private float averageDistance;
+    public void setAverageDistance(float averageDistance) { this.averageDistance = averageDistance; }
+    public float getAverageDistance() { return this.averageDistance; }
+
+    private float averageIncome;
+    public void setAverageIncome(float averageIncome) { this.averageIncome = averageIncome; }
+    public float getAverageIncome() { return this.averageIncome; }
+
+    private String formattedDate;
+    public void setFormattedDate(String formattedDate) { this.formattedDate = formattedDate; }
+    public String getFormattedDate() { return this.formattedDate; }
+
+    private float percentageDifference;
+    public void setPercentageDifference(float percentageDifference) { this.percentageDifference = percentageDifference; }
+    public float getPercentageDifference() { return this.percentageDifference; }
+
     private ArrayList<ClientData> clientDataList;
     public void setClientDataList(ArrayList<ClientData> clientDataList) { this.clientDataList = clientDataList; }
     public ArrayList<ClientData> getClientDataList() { return this.clientDataList; }

@@ -25,7 +25,7 @@
             <!-- TODO: Add Image Designs-->
 
             <ImageView
-                android:id="@+id/home_card_design"
+                android:id="@+id/input_card_accentDesign"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/card_design"
@@ -37,10 +37,10 @@
                 app:layout_constraintVertical_bias="0.131" />
 
             <ImageView
-                android:id="@+id/home_card_design_2"
+                android:id="@+id/input_card_monthIcon"
                 android:layout_width="56dp"
                 android:layout_height="51dp"
-                android:src="@drawable/maple_leaf_icon"
+                android:src="@drawable/blank_month_icon"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.944"

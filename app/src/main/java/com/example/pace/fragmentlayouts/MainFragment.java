@@ -11,6 +11,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
+import android.widget.ImageButton;
+import android.widget.Toast;
 
 import com.example.pace.DataBase.DataBase;
 import com.example.pace.R;
@@ -19,6 +21,7 @@ import com.example.pace.clientuser.ClientData;
 import com.example.pace.config.ListHolder;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
+import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.ArrayList;
 
@@ -38,15 +41,19 @@ public class MainFragment extends Fragment {
         initFragments();
         initTabLayout();
         initKeyboardSoftInput();
+        initSignOut();
 
         return view;
     }
 
     public ViewPager2 mainViewPager;
     public TabLayout mainTabLayout;
+
+    public ImageButton signOutButton;
     private void initViews(View view) {
         this.mainViewPager = view.findViewById(R.id.main_viewPager);
         this.mainTabLayout = view.findViewById(R.id.main_tabLayout);
+        this.signOutButton = view.findViewById(R.id.main_notification_button);
     }
     public ArrayList<Fragment> mainFragmentList;
     public HomeFragment homeFragment;
@@ -102,6 +109,21 @@ public class MainFragment extends Fragment {
     private void initKeyboardSoftInput() {
         getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
     }
+
+
+    private void initSignOut() {
+        signOutButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FirebaseAuth.getInstance().signOut();
+                Toast.makeText(getContext(),"You are signed out", Toast.LENGTH_LONG).show();
+            }
+        });
+    }
+
+
+
+
 
 
 }

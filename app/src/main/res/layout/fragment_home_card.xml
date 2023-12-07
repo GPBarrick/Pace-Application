@@ -40,7 +40,7 @@
                 android:id="@+id/home_card_design_2"
                 android:layout_width="56dp"
                 android:layout_height="51dp"
-                android:src="@drawable/maple_leaf_icon"
+                android:src="@drawable/blank_month_icon"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.944"
@@ -63,6 +63,7 @@
                 app:layout_constraintHorizontal_bias="0.057"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
+
 
             <TextView
                 android:id="@+id/home_card_mpg_text"
@@ -119,6 +120,19 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/home_card_distance_text"
                 app:layout_constraintVertical_bias="0.333" />
+
+            <TextView
+                android:id="@+id/home_card_month_text2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="188dp"
+                android:gravity="center"
+                android:text="(Average per month)"
+                android:textColor="@color/beige"
+                android:textSize="10sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

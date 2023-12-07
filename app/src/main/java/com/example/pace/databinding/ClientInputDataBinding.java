@@ -8,8 +8,10 @@ import android.widget.ImageView;
 
 import androidx.databinding.BaseObservable;
 
+import com.example.pace.R;
 import com.example.pace.fragmentelements.ClientInputCardFragment;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 
 public class ClientInputDataBinding extends BaseObservable {
@@ -20,7 +22,6 @@ public class ClientInputDataBinding extends BaseObservable {
     private EditText calendarDate;
     public EditText getCalendarDate() { return this.calendarDate; }
     private ImageView errorIcon;
-    public ImageView getErrorIcon() { return this.errorIcon; }
     public ClientInputDataBinding(CalendarView calendarView, EditText calendarDate, ImageView errorIcon) {
         this.calendarView = calendarView;
         this.calendarView.setVisibility(CalendarView.INVISIBLE);
@@ -31,7 +32,6 @@ public class ClientInputDataBinding extends BaseObservable {
         this.errorIcon = errorIcon;
         //this.clientInputCardFragment.setDateValid(false);
         this.errorIcon.setVisibility(View.INVISIBLE);
-
     }
 
     public void onCalendarButtonClick(View view) {
@@ -58,6 +58,7 @@ public class ClientInputDataBinding extends BaseObservable {
         this.calendarDate.setText(this.month + "/" + this.day + "/" + this.year);
         this.clientInputCardFragment.dateText.setText(String.valueOf(this.calendarDate.getText()));
         this.clientInputCardFragment.setDateValid(true);
+        this.clientInputCardFragment.monthIcon.setImageResource(this.clientInputCardFragment.getMonthIcons(month));
         this.errorIcon.setVisibility(View.INVISIBLE);
         calendar.clear();
     }
