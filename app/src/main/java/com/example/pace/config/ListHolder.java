@@ -7,6 +7,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.example.pace.adapters.DailyListAdapter;
+import com.example.pace.adapters.HomeCardAdapter;
 import com.example.pace.adapters.MonthlyListAdapter;
 import com.example.pace.adapters.WeeklyListAdapter;
 import com.example.pace.clientuser.ClientData;
@@ -47,4 +48,6 @@ public class ListHolder {
     public FragmentManager fragmentManager;
 
     public MainFragment mainFragment;
+
+    public HomeCardAdapter homeCardAdapter;
 }

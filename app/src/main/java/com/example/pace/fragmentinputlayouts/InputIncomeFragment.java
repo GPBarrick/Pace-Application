@@ -2,6 +2,7 @@ package com.example.pace.fragmentinputlayouts;
 
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,6 +19,7 @@ import androidx.fragment.app.Fragment;
 
 import com.example.pace.R;
 import com.example.pace.clientuser.ClientData;
+import com.example.pace.config.DevFactory;
 import com.example.pace.config.ListHolder;
 import com.example.pace.config.ListOrganizer;
 import com.example.pace.databinding.FragmentClientInputBinding;
@@ -146,26 +148,39 @@ public class InputIncomeFragment extends Fragment {
 
     public void addClientDataToStructure() {
         if (fragmentClientInputBinding.getInputDataBinding().clientInputCardFragment.getDateValid()) {
-            ClientData clientData = new ClientData(
-                    fragmentClientInputBinding.getInputDataBinding().getMonth(),
-                    fragmentClientInputBinding.getInputDataBinding().getDay(),
-                    fragmentClientInputBinding.getInputDataBinding().getYear(),
-                    Float.parseFloat(""+fragmentClientInputBinding.getInputDataBinding().getMpg()),
-                    Float.parseFloat(""+fragmentClientInputBinding.getInputDataBinding().getGasPrice()),
-                    Float.parseFloat(""+fragmentClientInputBinding.getInputDataBinding().getDistance()),
-                    Float.parseFloat(""+fragmentClientInputBinding.getInputDataBinding().getIncome()),
-                    fragmentClientInputBinding.getInputDataBinding().getWeekOfYear()
-            );
-            ListHolder.getInstance().clientDataList.add(clientData);
+            if (
+                    fragmentClientInputBinding.getInputDataBinding().getMpg() == 0
+                    && fragmentClientInputBinding.getInputDataBinding().getGasPrice() == 0
+                    && fragmentClientInputBinding.getInputDataBinding().getDistance() == 0
+                    && fragmentClientInputBinding.getInputDataBinding().getIncome() == 0
+            ) {
+                DevFactory.getInstance().addClientData(200);
+                Log.v("DEV.FACTORY.ADD", "true");
+            } else {
+                ClientData clientData = new ClientData(
+                        fragmentClientInputBinding.getInputDataBinding().getMonth(),
+                        fragmentClientInputBinding.getInputDataBinding().getDay(),
+                        fragmentClientInputBinding.getInputDataBinding().getYear(),
+                        Float.parseFloat(""+fragmentClientInputBinding.getInputDataBinding().getMpg()),
+                        Float.parseFloat(""+fragmentClientInputBinding.getInputDataBinding().getGasPrice()),
+                        Float.parseFloat(""+fragmentClientInputBinding.getInputDataBinding().getDistance()),
+                        Float.parseFloat(""+fragmentClientInputBinding.getInputDataBinding().getIncome()),
+                        fragmentClientInputBinding.getInputDataBinding().getWeekOfYear()
+                );
+                ListHolder.getInstance().clientDataList.add(clientData);
 
-            setExpenditure(clientData);
+                ListOrganizer.getInstance().setExpenditure(clientData);
 
-            ListOrganizer.getInstance().initDailyListData(clientData);
-            ListOrganizer.getInstance().organizeDailyList(ListHolder.getInstance().outputDailyDataList);
-            ListOrganizer.getInstance().initWeeklyListData(clientData);
-            ListOrganizer.getInstance().organizeWeeklyList(ListHolder.getInstance().outputWeeklyDataList);
-            ListOrganizer.getInstance().initMonthlyListData(clientData);
-            ListOrganizer.getInstance().organizeMonthlyList(ListHolder.getInstance().outputMonthlyDataList);
+                ListOrganizer.getInstance().initDailyListData(clientData);
+                ListOrganizer.getInstance().organizeDailyList(ListHolder.getInstance().outputDailyDataList);
+                ListOrganizer.getInstance().initWeeklyListData(clientData);
+                ListOrganizer.getInstance().organizeWeeklyList(ListHolder.getInstance().outputWeeklyDataList);
+                ListOrganizer.getInstance().initMonthlyListData(clientData);
+                ListOrganizer.getInstance().organizeMonthlyList(ListHolder.getInstance().outputMonthlyDataList);
+                if (ListHolder.getInstance().homeCardAdapter != null) {
+                    ListHolder.getInstance().homeCardAdapter.notifyDataSetChanged();
+                }
+            }
 
             fragmentClientInputBinding.clientInputViewPager.setCurrentItem(0);
             fragmentClientInputBinding.getInputDataBinding().clientInputCardFragment.resetAllCalendarCardValues();
@@ -183,9 +198,5 @@ public class InputIncomeFragment extends Fragment {
                 }
             }, 400);
         }
-    }
-
-    public void setExpenditure(ClientData clientData) {
-        clientData.setExpenditureCalculation(clientData.getIncome() - ((clientData.getDistance() / clientData.getMpg()) * clientData.getGasPrice()));
     }
 }

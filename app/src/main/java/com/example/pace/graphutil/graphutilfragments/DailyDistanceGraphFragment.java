@@ -56,7 +56,7 @@ public class DailyDistanceGraphFragment extends Fragment {
         this.distanceValue = view.findViewById(R.id.daily_distance_graph_value);
         this.distanceValue.setText(ListHolder.getInstance().outputDailyDataList.get(
                 ListHolder.getInstance().outputDailyDataListIndex
-        ).getAverageDistance() + "mi");
+        ).getAverageDistance() + " mi");
     }
 
     private void initGraph() {

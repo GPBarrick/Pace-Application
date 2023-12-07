@@ -1,6 +1,7 @@
 package com.example.pace.fragmentlayouts;
 
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,13 +9,18 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.LinearSnapHelper;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.SnapHelper;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.example.pace.R;
 import com.example.pace.adapters.HomeCardAdapter;
 import com.example.pace.adapters.HomeListAdapter;
+import com.example.pace.config.DevFactory;
+import com.example.pace.config.ListHolder;
 import com.example.pace.fragmentelements.DailyListFragment;
-import com.example.pace.fragmentelements.HomeCardFragment;
 import com.example.pace.fragmentelements.MonthlyListFragment;
 import com.example.pace.fragmentelements.WeeklyListFragment;
 import com.google.android.material.tabs.TabLayout;
@@ -32,18 +38,18 @@ public class HomeFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
         initViews(view);
-        initCardViewPager();
+        initHomeCardAdapter();
         initListViewPager();
         initTabLayout();
         return view;
     }
 
     public ViewPager2 listViewPager;
-    public ViewPager2 cardViewPager;
+    public RecyclerView homeCardRecyclerView;
     public TabLayout listTabLayout;
     private void initViews(View view) {
         this.listViewPager = view.findViewById(R.id.home_list_viewPager);
-        this.cardViewPager = view.findViewById(R.id.home_card_viewPager);
+        this.homeCardRecyclerView = view.findViewById(R.id.home_card_recyclerView);
         this.listTabLayout = view.findViewById(R.id.home_tabLayout);
     }
     private void initListViewPager() {
@@ -54,12 +60,12 @@ public class HomeFragment extends Fragment {
         this.listViewPager.setOrientation(ViewPager2.ORIENTATION_HORIZONTAL);
         this.listViewPager.setAdapter(homeListAdapter);
     }
-    private void initCardViewPager() {
-        HomeCardAdapter homeCardAdapter = new HomeCardAdapter(getActivity().getSupportFragmentManager(), getLifecycle());
-        homeCardAdapter.addFragment(new HomeCardFragment());
-        homeCardAdapter.addFragment(new HomeCardFragment());
-        this.cardViewPager.setOrientation(ViewPager2.ORIENTATION_HORIZONTAL);
-        this.cardViewPager.setAdapter(homeCardAdapter);
+    private void initHomeCardAdapter() {
+        ListHolder.getInstance().homeCardAdapter = new HomeCardAdapter();
+        this.homeCardRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity().getApplicationContext()));
+        this.homeCardRecyclerView.setAdapter(ListHolder.getInstance().homeCardAdapter);
+        SnapHelper helper = new LinearSnapHelper();
+        helper.attachToRecyclerView(this.homeCardRecyclerView);
     }
     private void initTabLayout() {
         ArrayList<String> tabLayoutText = new ArrayList<>();
