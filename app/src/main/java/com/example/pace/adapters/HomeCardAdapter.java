@@ -1,26 +1,25 @@
 package com.example.pace.adapters;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.lifecycle.Lifecycle;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.viewpager2.adapter.FragmentStateAdapter;
 
 import com.example.pace.R;
 import com.example.pace.config.ListHolder;
 
-import java.util.ArrayList;
-
 public class HomeCardAdapter extends RecyclerView.Adapter<HomeCardAdapter.ViewHolder> {
 
-    public HomeCardAdapter() {
+    private Context applicationContext;
+    public HomeCardAdapter(Context applicationContext) {
+        this.applicationContext = applicationContext;
     }
 
     @NonNull
@@ -32,7 +31,8 @@ public class HomeCardAdapter extends RecyclerView.Adapter<HomeCardAdapter.ViewHo
 
     @Override
     public void onBindViewHolder(@NonNull HomeCardAdapter.ViewHolder holder, int position) {
-
+        Animation animation = AnimationUtils.loadAnimation(applicationContext, R.anim.recycler_view_animation_1);
+        holder.itemView.startAnimation(animation);
     }
 
     @Override
