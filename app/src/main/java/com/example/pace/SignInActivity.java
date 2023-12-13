@@ -19,6 +19,8 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
+import com.example.pace.DataBase.DataBase;
+import com.example.pace.clientuser.ClientData;
 import com.google.android.gms.auth.api.identity.BeginSignInRequest;
 import com.google.android.gms.auth.api.identity.BeginSignInResult;
 import com.google.android.gms.auth.api.identity.Identity;
@@ -35,6 +37,8 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
+
+import java.util.ArrayList;
 
 public class SignInActivity extends AppCompatActivity {
     ImageButton GoogleSignBnt;
@@ -53,6 +57,8 @@ public class SignInActivity extends AppCompatActivity {
             startActivity(singInIntent);
             finish();
         }
+
+
     }
     @Override
     protected void onCreate(Bundle savedInstanceState) {

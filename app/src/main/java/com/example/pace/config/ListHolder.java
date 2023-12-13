@@ -33,6 +33,7 @@ public class ListHolder {
         return listHolderInstance;
     }
 
+
     public ArrayList<ClientData> clientDataList;
     public ArrayList<ClientDataDailyList> outputDailyDataList = new ArrayList<>();
     public int outputDailyDataListIndex;
