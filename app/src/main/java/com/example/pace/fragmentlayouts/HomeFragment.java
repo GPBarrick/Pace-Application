@@ -1,7 +1,6 @@
 package com.example.pace.fragmentlayouts;
 
 import android.os.Bundle;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,7 +17,6 @@ import androidx.viewpager2.widget.ViewPager2;
 import com.example.pace.R;
 import com.example.pace.adapters.HomeCardAdapter;
 import com.example.pace.adapters.HomeListAdapter;
-import com.example.pace.config.DevFactory;
 import com.example.pace.config.ListHolder;
 import com.example.pace.fragmentelements.DailyListFragment;
 import com.example.pace.fragmentelements.MonthlyListFragment;
@@ -61,7 +59,7 @@ public class HomeFragment extends Fragment {
         this.listViewPager.setAdapter(homeListAdapter);
     }
     private void initHomeCardAdapter() {
-        ListHolder.getInstance().homeCardAdapter = new HomeCardAdapter();
+        ListHolder.getInstance().homeCardAdapter = new HomeCardAdapter(getActivity().getApplicationContext());
         this.homeCardRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity().getApplicationContext()));
         this.homeCardRecyclerView.setAdapter(ListHolder.getInstance().homeCardAdapter);
         SnapHelper helper = new LinearSnapHelper();

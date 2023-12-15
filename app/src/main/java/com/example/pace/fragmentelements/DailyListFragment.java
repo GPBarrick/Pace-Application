@@ -13,10 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.pace.R;
 import com.example.pace.adapters.DailyListAdapter;
-import com.example.pace.clientuser.ClientDataDailyList;
 import com.example.pace.config.ListHolder;
-
-import java.util.ArrayList;
 
 public class DailyListFragment extends Fragment {
 
@@ -41,7 +38,7 @@ public class DailyListFragment extends Fragment {
     }
 
     public void initListAdapter() {
-        ListHolder.getInstance().dailyListAdapter = new DailyListAdapter();
+        ListHolder.getInstance().dailyListAdapter = new DailyListAdapter(getActivity().getApplicationContext());
         this.dailyList.setLayoutManager(new LinearLayoutManager(getActivity()));
         this.dailyList.setAdapter(ListHolder.getInstance().dailyListAdapter);
     }
