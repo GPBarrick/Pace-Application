@@ -18,9 +18,7 @@ public class HomeListAdapter extends FragmentStateAdapter {
 
     @NonNull
     @Override
-    public Fragment createFragment(int position) {
-        return this.fragmentList.get(position);
-    }
+    public Fragment createFragment(int position) {return this.fragmentList.get(position);}
 
     @Override
     public int getItemCount() {

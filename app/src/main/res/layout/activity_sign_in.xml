@@ -67,23 +67,6 @@
                 android:textAlignment="center"
                 android:textSize="18sp" />
 
-            <Button
-                android:id="@+id/Sign_up_btn"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Create account"
-                android:textAlignment="center"
-                android:textSize="18sp" />
-
-
-            <com.google.android.gms.common.SignInButton
-                android:id="@+id/google_signIn_btn"
-                android:layout_width="324dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="15dp">
-
-            </com.google.android.gms.common.SignInButton>
-
 
         </LinearLayout>
     </androidx.cardview.widget.CardView>
@@ -103,18 +86,98 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0" />
 
-    <Button
+    <!-- TODO: Create an Account Button -->
+
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/common_signin_button_text"
+        android:text="Create an Account"
+        android:textColor="@color/white"
+        android:textSize="25sp"
+        app:layout_constraintBottom_toBottomOf="@+id/Sign_up_btn"
+        app:layout_constraintEnd_toEndOf="@id/Sign_up_btn"
+        app:layout_constraintStart_toStartOf="@+id/Sign_up_btn"
+        app:layout_constraintTop_toTopOf="@+id/Sign_up_btn"
+        android:elevation="15dp"/>
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="300dp"
+        android:layout_height="80dp"
+        android:background="@drawable/shadow_shape"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.872"
+        app:layout_constraintVertical_bias="0.79" />
 
-        />
+    <ImageButton
+        android:id="@+id/Sign_up_btn"
+        android:layout_width="305dp"
+        android:layout_height="70dp"
+        android:background="@drawable/purple_accent_background"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.465"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.78" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="300dp"
+        android:layout_height="80dp"
+        android:background="@drawable/shadow_shape"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.516"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.918" />
+
+    <!-- TODO: Sign in with Google -->
+
+    <TextView
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:elevation="15dp"
+        android:text="Sign in with Google"
+        android:textColor="@color/white"
+        android:textSize="25sp"
+        app:layout_constraintBottom_toBottomOf="@+id/google_signIn_btn"
+        app:layout_constraintEnd_toEndOf="@+id/google_signIn_btn"
+        app:layout_constraintHorizontal_bias="0.779"
+        app:layout_constraintStart_toStartOf="@id/google_signIn_btn"
+        app:layout_constraintTop_toTopOf="@id/google_signIn_btn"
+        app:layout_constraintVertical_bias="0.448" />
+
+    <ImageView
+        android:id="@+id/google_logo"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+
+        android:elevation="15dp"
+        android:src="@drawable/googlelogo"
+        app:layout_constraintBottom_toBottomOf="@+id/google_signIn_btn"
+        app:layout_constraintEnd_toEndOf="@+id/google_signIn_btn"
+        app:layout_constraintHorizontal_bias="0.054"
+        app:layout_constraintStart_toStartOf="@+id/google_signIn_btn"
+        app:layout_constraintTop_toTopOf="@+id/google_signIn_btn"
+        app:layout_constraintVertical_bias="0.46" />
+
+    <ImageButton
+        android:id="@+id/google_signIn_btn"
+        android:layout_width="300dp"
+        android:layout_height="70dp"
+        android:background="@drawable/purple_accent_background"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.906" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
