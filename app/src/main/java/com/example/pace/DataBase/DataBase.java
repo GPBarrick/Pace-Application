@@ -30,32 +30,62 @@ public class DataBase {
     DatabaseReference userRef;
     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
     ClientData clientData;
+    ArrayList<ClientData> data = new ArrayList<>();
     ArrayList<ClientData> clienList = new ArrayList<>();
+    ArrayList<ClientData> compareData = new ArrayList<>();
 
-    public void FirebaseSetUp(ArrayList<ClientData>data){
+    public void FirebaseSetUp(){
 
         String userId = user.getUid();
         mDatabase = FirebaseDatabase.getInstance().getReference();
+        data = ListHolder.getInstance().clientDataList;
 
-        if(!data.isEmpty()){
+        if(data.size() >= 1){
             userRef = mDatabase.child("user: ").child(userId);
             userRef.push().setValue(data).addOnCompleteListener(new OnCompleteListener<Void>() {
                 @Override
                 public void onComplete(@NonNull Task<Void> task) {
                     if(!task.isSuccessful()){
-                        DatabaseException e = null;
-                        e.printStackTrace();
+                        Exception e = task.getException();
+                        if (e != null) {
+                            e.printStackTrace();
+                        }
                     }
+
                 }
             });
+            data.clear();
+        }
+        else{
+            handleFireBaseData();
         }
 
-        FirebaseReadData();
 
     }
+    public void handleFireBaseData(){
+        FirebaseReadData();
+        for(int i=0; i<clienList.size(); i++){
+            if(compareData.get(i) == clienList.get(i)){
+                if(compareData.get(i).getMonth() == clienList.get(i).getMonth()){
+                    ListOrganizer.getInstance().initMonthlyListData(clienList.get(i));
+                }
+                if(compareData.get(i).getWeekOfYear() == clienList.get(i).getWeekOfYear()){
+                    ListOrganizer.getInstance().initWeeklyListData(clienList.get(i));
+                }
+                if(compareData.get(i).getDay() == clienList.get(i).getDay()){
+                    ListOrganizer.getInstance().initDailyListData(clienList.get(i));
+                }
+
+            }
+            else{
+                return;
+            }
 
 
-    public void FirebaseReadData() {
+        }
+        clienList.clear();
+    }
+    private void FirebaseReadData() {
         String userId = user.getUid();
         mDatabase = FirebaseDatabase.getInstance().getReference();
         userRef = mDatabase.child("user: ").child(userId);
@@ -64,13 +94,11 @@ public class DataBase {
 
             @Override
             public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                clientData = null;
                 for (DataSnapshot dataSnap: snapshot.getChildren()) {
                     clientData = dataSnap.getValue(ClientData.class);
                     clienList.add(clientData);
-                    ListOrganizer.getInstance().initDailyListData(clientData);
-                    // THE LIST ORGANIZER CLASS IS THE ONE THAT MAKE THIS SHIT APPEAR ON THE APP
-                    // NOW I NEED TO FOGURED HOW TO MAKE THE DATA TO BE ORGANIZED WITHIN THE APP, MONTH TO MONTH
-                    // WEEK TO WEEK AN DAYS.
+                    compareData.add(clientData);
 
                 }
 

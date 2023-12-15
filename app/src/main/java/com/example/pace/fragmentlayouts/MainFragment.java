@@ -97,9 +97,8 @@ public class MainFragment extends Fragment {
 
                 // defaulted to 0 since the app action is to return to home.
                 //after the user finish inputtind the data the data is send to the database.
-                if (position == 0) {
-                    database.FirebaseSetUp(ListHolder.getInstance().clientDataList);
-                }
+                database.FirebaseSetUp();
+
             }
         });
 //***************************************END OF THE BLOCK THAT CALL THE DATABASE*****************************************
