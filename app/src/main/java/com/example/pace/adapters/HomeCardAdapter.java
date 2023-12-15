@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 
 import com.example.pace.R;
+import com.example.pace.clientuser.ClientDataDailyList;
 import com.example.pace.config.ListHolder;
 
 import java.util.ArrayList;
@@ -32,7 +33,8 @@ public class HomeCardAdapter extends RecyclerView.Adapter<HomeCardAdapter.ViewHo
 
     @Override
     public void onBindViewHolder(@NonNull HomeCardAdapter.ViewHolder holder, int position) {
-
+        holder.dateText.setText(determineDateFormat(ListHolder.getInstance().outputMonthlyDataList.get(position).getMonth()));
+        holder.monthIcon.setImageResource(getMonthIcons(ListHolder.getInstance().outputMonthlyDataList.get(position).getMonth()));
     }
 
     @Override
@@ -56,5 +58,29 @@ public class HomeCardAdapter extends RecyclerView.Adapter<HomeCardAdapter.ViewHo
             this.incomeValue = itemView.findViewById(R.id.home_card_income_value);
             this.monthIcon = itemView.findViewById(R.id.home_card_monthIcon);
         }
+    }
+
+    public String determineDateFormat(int monthIndex) {
+        String[] monthArr = { "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" };
+        return monthArr[monthIndex - 1];
+    }
+
+    public int getMonthIcons(int monthIndex) {
+        Integer[] monthIconArr = {
+                R.drawable.snowflake_icon, // January 0
+                R.drawable.heart_icon, // February 1
+                R.drawable.clover_icon, // March 2
+                R.drawable.umbrella_icon, // April 3
+                R.drawable.flowers_icon, // May 4
+                R.drawable.beach_ball_icon, // June 5
+                R.drawable.fireworks_icon, // July 6
+                R.drawable.campfire_icon, // August 7
+                R.drawable.books_icon, // September 8
+                R.drawable.pumpkin_icon, // October 9
+                R.drawable.maple_leaf_icon, // November 10
+                R.drawable.christmas_tree_icon, // December 11
+                R.drawable.blank_month_icon // Blank 12
+        };
+        return monthIconArr[monthIndex];
     }
 }

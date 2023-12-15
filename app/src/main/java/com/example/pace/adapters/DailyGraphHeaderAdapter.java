@@ -41,25 +41,25 @@ public class DailyGraphHeaderAdapter extends RecyclerView.Adapter<DailyGraphHead
             case 0:
                 holder.sampleText.setText("MPG");
                 holder.sampleValue.setText(
-                        ""+ListHolder.getInstance().outputDailyDataList.get(structureIndex).getClientDataList().get(position).getMpg()
+                        String.format("%.2f", ""+ListHolder.getInstance().outputDailyDataList.get(structureIndex).getClientDataList().get(position).getMpg())
                 );
                 break;
             case 1:
                 holder.sampleText.setText("Gas Price");
                 holder.sampleValue.setText(
-                        ""+ListHolder.getInstance().outputDailyDataList.get(structureIndex).getClientDataList().get(position).getGasPrice()
+                        String.format("%.2f", ""+ListHolder.getInstance().outputDailyDataList.get(structureIndex).getClientDataList().get(position).getGasPrice())
                 );
                 break;
             case 2:
                 holder.sampleText.setText("Distance");
                 holder.sampleValue.setText(
-                        ""+ListHolder.getInstance().outputDailyDataList.get(structureIndex).getClientDataList().get(position).getDistance()
+                        String.format("%.2f", ""+ListHolder.getInstance().outputDailyDataList.get(structureIndex).getClientDataList().get(position).getDistance())
                 );
                 break;
             case 3:
                 holder.sampleText.setText("Income");
                 holder.sampleValue.setText(
-                        ""+ListHolder.getInstance().outputDailyDataList.get(structureIndex).getClientDataList().get(position).getIncome()
+                        String.format("%.2f", ""+ListHolder.getInstance().outputDailyDataList.get(structureIndex).getClientDataList().get(position).getIncome())
                 );
                 break;
         }
