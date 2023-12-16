@@ -57,12 +57,12 @@ public class DataBase {
             data.clear();
         }
         else{
-            handleFireBaseData();
+            OrganizeFireBaseData();
         }
 
 
     }
-    public void handleFireBaseData(){
+    public void OrganizeFireBaseData(){
         FirebaseReadData();
         for(int i=0; i<clienList.size(); i++){
             if(compareData.get(i) == clienList.get(i)){
