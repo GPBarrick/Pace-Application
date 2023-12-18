@@ -46,7 +46,9 @@
         layout="@layout/app_toolbar"/>
 
 </RelativeLayout></RelativeLayout>
+</RelativeLayout>
 =======
+<FrameLayout
     android:id="@+id/activity_main_mainFrame"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
