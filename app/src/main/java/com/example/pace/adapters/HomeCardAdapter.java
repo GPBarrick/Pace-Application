@@ -32,13 +32,12 @@ public class HomeCardAdapter extends RecyclerView.Adapter<HomeCardAdapter.ViewHo
 
     @Override
     public void onBindViewHolder(@NonNull HomeCardAdapter.ViewHolder holder, int position) {
-<<<<<<< HEAD
+
         holder.dateText.setText(determineDateFormat(ListHolder.getInstance().outputMonthlyDataList.get(position).getMonth()));
         holder.monthIcon.setImageResource(getMonthIcons(ListHolder.getInstance().outputMonthlyDataList.get(position).getMonth()));
-=======
         Animation animation = AnimationUtils.loadAnimation(applicationContext, R.anim.recycler_view_animation_1);
         holder.itemView.startAnimation(animation);
->>>>>>> d86e9c3e01b4c54f7b48c9e8d14d5a9209ed8899
+
     }
 
     @Override
