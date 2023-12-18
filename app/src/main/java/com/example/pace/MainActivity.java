@@ -22,6 +22,7 @@ import com.example.pace.fragmentlayouts.HomeFragment;
 import com.example.pace.fragmentlayouts.MainFragment;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
+import android.os.Bundle;
 
 import java.util.ArrayList;
 

@@ -40,13 +40,14 @@
                 android:id="@+id/home_card_design_2"
                 android:layout_width="56dp"
                 android:layout_height="51dp"
-                android:src="@drawable/blank_month_icon"
+                android:src="@drawable/maple_leaf_icon"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.944"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.78" />
+
 
             <!-- TODO: Add Text -->
 
