@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="270dp"
+    tools:context=".fragmentelements.ClientInputCardFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginEnd="25dp"
+        android:layout_marginBottom="50dp"
+        app:cardBackgroundColor="@color/space_grey"
+        app:cardCornerRadius="15dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="215dp">
+
+            <!-- TODO: Add Image Designs-->
+
+            <ImageView
+                android:id="@+id/input_card_accentDesign"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/card_design"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.131" />
+
+            <ImageView
+                android:id="@+id/input_card_monthIcon"
+                android:layout_width="56dp"
+                android:layout_height="51dp"
+                android:src="@drawable/blank_month_icon"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.944"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.78" />
+
+
+            <!-- TODO: Add Text-->
+
+            <TextView
+                android:id="@+id/input_card_header"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:gravity="center"
+                android:text="November"
+                android:textColor="@color/beige"
+                android:textSize="32sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.057"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <!--  MPG  -->
+            <TextView
+                android:id="@+id/input_card_hintMpg"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="MPG:"
+                android:textColor="@color/beige"
+                android:textSize="15dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.052"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/input_card_header"
+                app:layout_constraintVertical_bias="0.066" />
+
+            <TextView
+                android:id="@+id/input_card_mpgText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toEndOf="@+id/input_card_hintMpg"
+                app:layout_constraintBottom_toBottomOf="@+id/input_card_hintMpg"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="8dp"
+                android:textColor="@color/beige"
+                android:textSize="15dp"
+                android:textStyle="bold"/>
+
+            <!--  Gas Price  -->
+            <TextView
+                android:id="@+id/input_card_hintGasPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Gas Price:"
+                android:textColor="@color/beige"
+                android:textSize="15dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.057"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/input_card_hintMpg"
+                app:layout_constraintVertical_bias="0.121" />
+
+            <TextView
+                android:id="@+id/input_card_gasPriceText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="8dp"
+                android:textColor="@color/beige"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/input_card_hintGasPrice"
+                app:layout_constraintStart_toEndOf="@+id/input_card_hintGasPrice" />
+
+            <!--  Edit This  -->
+            <TextView
+                android:id="@+id/input_card_distanceHint"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Distance:"
+                android:textColor="@color/beige"
+                android:textSize="15dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.056"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/input_card_hintGasPrice"
+                app:layout_constraintVertical_bias="0.202" />
+
+            <TextView
+                android:id="@+id/input_card_distanceText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toEndOf="@+id/input_card_distanceHint"
+                app:layout_constraintTop_toBottomOf="@+id/input_card_hintGasPrice"
+                app:layout_constraintTop_toTopOf="@+id/input_card_distanceHint"
+                app:layout_constraintBottom_toBottomOf="@+id/input_card_distanceHint"
+                android:layout_marginStart="10dp"
+                android:textColor="@color/beige"
+                android:textSize="15sp"
+                android:textStyle="bold"/>
+
+            <!--  Edit This  -->
+            <TextView
+                android:id="@+id/input_card_incomeHint"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Income:"
+                android:textColor="@color/beige"
+                android:textSize="15dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.054"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/input_card_distanceHint"
+                app:layout_constraintVertical_bias="0.333" />
+
+            <TextView
+                android:id="@+id/input_card_incomeText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toEndOf="@+id/input_card_incomeHint"
+                app:layout_constraintTop_toBottomOf="@+id/input_card_distanceText"
+                app:layout_constraintBottom_toBottomOf="@+id/input_card_incomeHint"
+                app:layout_constraintTop_toTopOf="@id/input_card_incomeHint"
+                android:layout_marginStart="10dp"
+                android:textColor="@color/beige"
+                android:textSize="15sp"
+                android:textStyle="bold"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</FrameLayout>

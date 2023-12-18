@@ -41,4 +41,20 @@
 
 
     <string name="webId">818817431963-ocvfjqat0gcih5sbiiauihs7q5epi1pp.apps.googleusercontent.com</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="welcome_message">Welcome Back</string>
+    <string name="date_hint">Date</string>
+    <string name="sample">sample</string>
+    <string name="mpg_hint">MPG</string>
+    <string name="gasPrice_hint">Gas Price</string>
+    <string name="distance_hint">Distance</string>
+    <string name="income_hint">Income</string>
+    <string name="textView">TextView</string>
+    <string name="mpg_description">How many miles per gallon does your vehicle get?</string>
+    <string name="gasPrice_description">What is the price of gas in your area?</string>
+    <string name="distance_description">How far was your route?</string>
+    <string name="income_description">What was your income from this route?</string>
+    <string name="webId">818817431963-ocvfjqat0gcih5sbiiauihs7q5epi1pp.apps.googleusercontent.com</string>
+    <string name="input_vehicle_confirm_and_save_button">Confirm and Save</string>
 </resources>

@@ -93,6 +93,29 @@ private void createUser(){
             });
 
 }
+    private void createUser(){
+        mAuth.createUserWithEmailAndPassword(Email, PassWord)
+                .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            Toast.makeText(signUpActivity.this, "Account Created",
+                                    Toast.LENGTH_SHORT).show();
+                            Intent backHome = new Intent(signUpActivity.this, MainActivity.class);
+                            startActivity(backHome);
+                            finish();
+
+                        } else {
+                            // If sign in fails, display a message to the user.
+                            Toast.makeText(signUpActivity.this, "Authentication failed.",
+                                    Toast.LENGTH_SHORT).show();
+
+                        }
+
+                    }
+                });
+
+    }
 
 
 }

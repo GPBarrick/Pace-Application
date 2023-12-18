@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "818817431963",
+
     "project_id": "pace-5946d",
     "storage_bucket": "pace-5946d.appspot.com"
   },
@@ -35,7 +36,7 @@
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "818817431963-p2hpenvohpieql6d1108qgf5i2j7p8r1.apps.googleusercontent.com",
+              "client_id": "818817431963-ocvfjqat0gcih5sbiiauihs7q5epi1pp.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

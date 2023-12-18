@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -32,6 +34,21 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/temp_tag_logIn_layout">
+    tools:context=".SignInActivity"
+    android:background="@color/forest">
+    <!-- Dummy sign in page. -->
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView"
+        android:layout_width="381dp"
+        android:layout_height="400dp"
+        android:orientation="horizontal"
+        app:cardCornerRadius="30dp"
+        app:cardElevation="20dp"
+        app:layout_constraintBottom_toTopOf="@+id/imageView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -45,6 +62,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="LogIn"
+                android:text="Login"
                 android:textAlignment="center"
                 android:textSize="36sp"
                 android:textStyle="bold" />
@@ -59,6 +77,11 @@
                 android:textColor="@color/black"
                 android:autofillHints=""
                 android:inputType="text" />
+                android:autofillHints=""
+                android:hint="Email"
+                android:inputType="text"
+                android:padding="8dp"
+                android:textColor="@color/black" />
 
             <EditText
                 android:id="@+id/password_edit_text"
@@ -95,6 +118,19 @@
 
             </com.google.android.gms.common.SignInButton>
 
+                android:autofillHints=""
+                android:hint="Password"
+                android:inputType="textPassword"
+                android:padding="8dp"
+                android:textColor="@color/black" />
+
+            <Button
+                android:id="@+id/Sign_in_btn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Sign In"
+                android:textAlignment="center"
+                android:textSize="18sp" />
 
 
         </LinearLayout>
@@ -102,3 +138,114 @@
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="match_parent"
+        android:layout_height="115dp"
+        android:background="@drawable/rectangle"
+        android:rotation="-8"
+        android:scaleX="1.9"
+        android:scaleY="2.7"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <!-- TODO: Create an Account Button -->
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Create an Account"
+        android:textColor="@color/white"
+        android:textSize="25sp"
+        app:layout_constraintBottom_toBottomOf="@+id/Sign_up_btn"
+        app:layout_constraintEnd_toEndOf="@id/Sign_up_btn"
+        app:layout_constraintStart_toStartOf="@+id/Sign_up_btn"
+        app:layout_constraintTop_toTopOf="@+id/Sign_up_btn"
+        android:elevation="15dp"/>
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="300dp"
+        android:layout_height="80dp"
+        android:background="@drawable/shadow_shape"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.79" />
+
+    <ImageButton
+        android:id="@+id/Sign_up_btn"
+        android:layout_width="305dp"
+        android:layout_height="70dp"
+        android:background="@drawable/purple_accent_background"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.465"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.78" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="300dp"
+        android:layout_height="80dp"
+        android:background="@drawable/shadow_shape"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.516"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.918" />
+
+    <!-- TODO: Sign in with Google -->
+
+    <TextView
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:elevation="15dp"
+        android:text="Sign in with Google"
+        android:textColor="@color/white"
+        android:textSize="25sp"
+        app:layout_constraintBottom_toBottomOf="@+id/google_signIn_btn"
+        app:layout_constraintEnd_toEndOf="@+id/google_signIn_btn"
+        app:layout_constraintHorizontal_bias="0.779"
+        app:layout_constraintStart_toStartOf="@id/google_signIn_btn"
+        app:layout_constraintTop_toTopOf="@id/google_signIn_btn"
+        app:layout_constraintVertical_bias="0.448" />
+
+    <ImageView
+        android:id="@+id/google_logo"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+
+        android:elevation="15dp"
+        android:src="@drawable/googlelogo"
+        app:layout_constraintBottom_toBottomOf="@+id/google_signIn_btn"
+        app:layout_constraintEnd_toEndOf="@+id/google_signIn_btn"
+        app:layout_constraintHorizontal_bias="0.054"
+        app:layout_constraintStart_toStartOf="@+id/google_signIn_btn"
+        app:layout_constraintTop_toTopOf="@+id/google_signIn_btn"
+        app:layout_constraintVertical_bias="0.46" />
+
+    <ImageButton
+        android:id="@+id/google_signIn_btn"
+        android:layout_width="300dp"
+        android:layout_height="70dp"
+        android:background="@drawable/purple_accent_background"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.906" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout></androidx.constraintlayout.widget.ConstraintLayout>
+>>>>>>> Saul-new

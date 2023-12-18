@@ -13,6 +13,7 @@ import android.app.Instrumentation;
 import android.app.PendingIntent;
 import android.content.Intent;
 import android.content.IntentSender;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -21,6 +22,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import android.widget.ImageButton;
+import android.widget.Toast;
+
+import com.example.pace.DataBase.DataBase;
+import com.example.pace.clientuser.ClientData;
 import com.google.android.gms.auth.api.identity.BeginSignInRequest;
 import com.google.android.gms.auth.api.identity.BeginSignInResult;
 import com.google.android.gms.auth.api.identity.Identity;
@@ -46,6 +52,12 @@ public class SignInActivity extends AppCompatActivity {
     SignInButton GoogleSignBnt;
     FirebaseAuth mAuth;
     Button signUpBnt;
+import java.util.ArrayList;
+
+public class SignInActivity extends AppCompatActivity {
+    ImageButton GoogleSignBnt;
+    FirebaseAuth mAuth;
+    ImageButton signUpBnt;
     Button singInBnt;
     String userEmail, userPassWord;
     SignInClient oneTapClient;
@@ -58,6 +70,10 @@ public class SignInActivity extends AppCompatActivity {
         super.onStart();
         FirebaseUser CurrentUser = FirebaseAuth.getInstance().getCurrentUser();
         if(CurrentUser != null){
+    protected void onStart(){
+        super.onStart();
+        FirebaseUser CurrentUser = FirebaseAuth.getInstance().getCurrentUser();
+        if (CurrentUser != null) {
             Intent singInIntent = new Intent(SignInActivity.this, MainActivity.class);
             startActivity(singInIntent);
             finish();
@@ -220,8 +236,10 @@ public class SignInActivity extends AppCompatActivity {
                 });
 
     }
+<<<<<<< HEAD
 
 }
 
 
 
+}
