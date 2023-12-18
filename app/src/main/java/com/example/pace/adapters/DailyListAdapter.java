@@ -1,8 +1,11 @@
 package com.example.pace.adapters;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -16,7 +19,9 @@ import com.example.pace.graphutil.graphutilfragments.DailyListItemFragment;
 
 public class DailyListAdapter extends RecyclerView.Adapter<DailyListAdapter.ViewHolder> {
 
-    public DailyListAdapter() {
+    private Context applicationContext;
+    public DailyListAdapter(Context applicationContext) {
+        this.applicationContext = applicationContext;
     }
 
     @NonNull
@@ -28,6 +33,9 @@ public class DailyListAdapter extends RecyclerView.Adapter<DailyListAdapter.View
 
     @Override
     public void onBindViewHolder(@NonNull DailyListAdapter.ViewHolder holder, int position) {
+
+        Animation animation = AnimationUtils.loadAnimation(this.applicationContext, R.anim.recycler_view_animation_1);
+        holder.itemView.startAnimation(animation);
 
         holder.dateText.setText(determineDateFormat(ListHolder.getInstance().outputDailyDataList.get(position)));
         ListHolder.getInstance().outputDailyDataList.get(position).setFormattedDate(determineDateFormat(ListHolder.getInstance().outputDailyDataList.get(position)));

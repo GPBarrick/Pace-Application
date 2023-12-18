@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="289dp"
-    tools:context=".fragmentelements.HomeCardFragment">
+    android:layout_height="289dp">
 
     <!-- TODO: Update blank fragment layout -->
     <androidx.cardview.widget.CardView
@@ -25,7 +24,7 @@
             <!-- TODO: Add Image Designs-->
 
             <ImageView
-                android:id="@+id/home_card_design"
+                android:id="@+id/home_card_accentDesign"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/card_design"
@@ -37,7 +36,7 @@
                 app:layout_constraintVertical_bias="0.131" />
 
             <ImageView
-                android:id="@+id/home_card_design_2"
+                android:id="@+id/home_card_monthIcon"
                 android:layout_width="56dp"
                 android:layout_height="51dp"
                 android:src="@drawable/blank_month_icon"
@@ -56,7 +55,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:gravity="center"
-                android:text="November"
+                android:text=""
                 android:textColor="@color/beige"
                 android:textSize="32sp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -69,7 +68,7 @@
                 android:id="@+id/home_card_mpg_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="MPG:"
+                android:text="Average MPG:"
                 android:textColor="@color/beige"
                 android:textSize="15dp"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -80,10 +79,21 @@
                 app:layout_constraintVertical_bias="0.066" />
 
             <TextView
+                android:id="@+id/home_card_mpg_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toEndOf="@+id/home_card_mpg_text"
+                app:layout_constraintTop_toTopOf="@+id/home_card_mpg_text"
+                app:layout_constraintBottom_toBottomOf="@+id/home_card_mpg_text"
+                android:layout_marginStart="5dp"
+                android:textSize="15sp"
+                android:textStyle="bold"/>
+
+            <TextView
                 android:id="@+id/home_card_gas_price_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Gas Price:"
+                android:text="Average Gas Price:"
                 android:textColor="@color/beige"
                 android:textSize="15dp"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -94,10 +104,21 @@
                 app:layout_constraintVertical_bias="0.121" />
 
             <TextView
+                android:id="@+id/home_card_gas_price_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toEndOf="@+id/home_card_gas_price_text"
+                app:layout_constraintTop_toTopOf="@+id/home_card_gas_price_text"
+                app:layout_constraintBottom_toBottomOf="@+id/home_card_gas_price_text"
+                android:layout_marginStart="5dp"
+                android:textSize="15sp"
+                android:textStyle="bold"/>
+
+            <TextView
                 android:id="@+id/home_card_distance_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Distance:"
+                android:text="Average Distance:"
                 android:textColor="@color/beige"
                 android:textSize="15dp"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -108,10 +129,21 @@
                 app:layout_constraintVertical_bias="0.202" />
 
             <TextView
+                android:id="@+id/home_card_distance_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toEndOf="@+id/home_card_distance_text"
+                app:layout_constraintTop_toTopOf="@+id/home_card_distance_text"
+                app:layout_constraintBottom_toBottomOf="@+id/home_card_distance_text"
+                android:layout_marginStart="5dp"
+                android:textSize="15sp"
+                android:textStyle="bold"/>
+
+            <TextView
                 android:id="@+id/home_card_income_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Income:"
+                android:text="Average Income:"
                 android:textColor="@color/beige"
                 android:textSize="15dp"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -122,18 +154,15 @@
                 app:layout_constraintVertical_bias="0.333" />
 
             <TextView
-                android:id="@+id/home_card_month_text2"
+                android:id="@+id/home_card_income_value"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="188dp"
-                android:gravity="center"
-                android:text="(Average per month)"
-                android:textColor="@color/beige"
-                android:textSize="10sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
+                app:layout_constraintStart_toEndOf="@+id/home_card_income_text"
+                app:layout_constraintTop_toTopOf="@+id/home_card_income_text"
+                app:layout_constraintBottom_toBottomOf="@+id/home_card_income_text"
+                android:layout_marginStart="5dp"
+                android:textSize="15sp"
+                android:textStyle="bold"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

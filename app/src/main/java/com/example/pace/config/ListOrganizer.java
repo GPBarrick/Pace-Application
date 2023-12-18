@@ -325,4 +325,7 @@ public class ListOrganizer {
     private void calculateMonthlyListPercentages() {
 
     }
+    public void setExpenditure(ClientData clientData) {
+        clientData.setExpenditureCalculation(clientData.getIncome() - ((clientData.getDistance() / clientData.getMpg()) * clientData.getGasPrice()));
+    }
 }

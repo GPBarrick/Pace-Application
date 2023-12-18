@@ -13,8 +13,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <androidx.viewpager2.widget.ViewPager2
-            android:id="@+id/home_card_viewPager"
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/home_card_recyclerView"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             app:layout_constraintBottom_toTopOf="@id/home_beige_background"
@@ -46,7 +46,7 @@
             app:layout_constraintHeight_percent="0.15"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/home_card_viewPager"
+            app:layout_constraintTop_toBottomOf="@id/home_card_recyclerView"
             app:layout_constraintVertical_bias="0.33" />
 
         <com.google.android.material.tabs.TabLayout
